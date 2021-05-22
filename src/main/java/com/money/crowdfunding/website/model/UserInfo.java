@@ -3,6 +3,7 @@ package com.money.crowdfunding.website.model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * 包:com.money.crowdfunding.website.model
@@ -25,7 +26,7 @@ public class UserInfo implements Serializable {
     private String touxiang;
     private String dizhi;
     private String beizhu;
-    private String addtime;
+    private Timestamp addtime;
     private String issh;
 
 
@@ -125,11 +126,11 @@ public class UserInfo implements Serializable {
         this.beizhu = beizhu;
     }
 
-    public String getAddtime() {
+    public Timestamp getAddtime() {
         return addtime;
     }
 
-    public void setAddtime(String addtime) {
+    public void setAddtime(Timestamp addtime) {
         this.addtime = addtime;
     }
 

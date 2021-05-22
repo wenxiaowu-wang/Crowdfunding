@@ -3,9 +3,15 @@ package com.money.crowdfunding.website.service.impl;
 import com.money.crowdfunding.website.mapper.UserInfoMapper;
 import com.money.crowdfunding.website.model.UserInfo;
 import com.money.crowdfunding.website.service.UserInfoService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -27,6 +33,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
+    public UserInfo getUserInfoByIDM(String yonghuming,String mima) {
+        return userInfoMapper.getUserInfoByIDM(yonghuming,mima);
+    }
+
+    @Override
     public boolean getRegisterResult(UserInfo userInfo) {
 
         userInfo.setIssh("是");
@@ -42,6 +53,16 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         userInfo.setTouxiang(headCode2);
 
-        return false;
+        Date currentTime = new Date();
+        Timestamp timestamp = new Timestamp(currentTime.getTime());
+        userInfo.setAddtime(timestamp);
+
+        return userInfoMapper.insertOneAdmin(userInfo);
+    }
+
+
+    @Override
+    public boolean getLoginResult(String yonghuming, String mima) {
+        return userInfoMapper.getLoginResult(yonghuming,mima);
     }
 }

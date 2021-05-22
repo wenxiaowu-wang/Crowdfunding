@@ -6,8 +6,12 @@ import com.money.crowdfunding.website.service.UserInfoService;
 import com.money.crowdfunding.website.utils.httpUtils.HttpResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 /**
  * 包:com.money.crowdfunding.website.controller
@@ -30,8 +34,25 @@ public class UserInfoController {
 
 
     @PostMapping("/getRegisterResult")
-    public HttpResult getRegisterResult(@RequestBody UserInfo userInfo){
+    public HttpResult getRegisterResult(UserInfo userInfo){
         return HttpResult.ok().setData(userInfoService.getRegisterResult(userInfo));
     }
+
+    @RequestMapping("/getLoginResult/{yonghuming}/{mima}")
+    @ResponseBody
+    public HttpResult getLoginResult(@PathVariable(value = "yonghuming") String yonghuming, @PathVariable(value = "mima") String mima, HttpSession httpSession){
+        UserInfo userInfo = userInfoService.getUserInfoByIDM(yonghuming,mima);
+        httpSession.setAttribute("userInfo",userInfo);
+        return HttpResult.ok().setData(userInfoService.getLoginResult(yonghuming,mima));
+    }
+
+
+
+    @GetMapping("/getUserSession")
+    public HttpResult getUserSession(HttpSession httpSession){
+        UserInfo userInfo = (UserInfo) httpSession.getAttribute("userInfo");
+        return HttpResult.ok().setData(userInfo);
+    }
+
 
 }

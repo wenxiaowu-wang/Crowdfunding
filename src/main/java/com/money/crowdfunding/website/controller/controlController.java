@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.*;
 public class controlController {
 
     public controlController(){
-        System.out.println("hello");
+//        System.out.println("hello");
     }
 
     @RequestMapping("/hello")
-//    @ResponseBody
     public String sayHello(){
         System.out.println("进来了");
         return "html/helloo";
@@ -26,9 +25,7 @@ public class controlController {
 
 
     @RequestMapping("/userLogin")
-//    @ResponseBody
     public String UserLogin(){
-        System.out.println("进来了");
         return "html/UserLogin";
     }
 
@@ -42,4 +39,13 @@ public class controlController {
         return "html/adminFrame";
     }
 
+    @RequestMapping("/toHome")
+    public String toHome(){
+        return "html/home";
+    }
+
+    @RequestMapping("/userRegister")
+    public String userRegister(){
+        return "html/usersRegistrationInterface";
+    }
 }

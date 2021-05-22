@@ -18,7 +18,13 @@ public interface UserInfoMapper {
     @Select("select * from yonghuzhuce where yonghuming = #{name}")
     UserInfo selectUserInfoByName(@Param("name") String name);
 
-    @Insert("insert into yonghuzhuce(yonghuming,mima,xingming,xingbie,chushengnianyue,qq,youxiang,dianhua,shenfenzheng,touxiang,dizhi,beizhu,issh)values" +
-            "(#{yonghuming},#{mima},#{xingming},#{xingbie},#{chushengnianyue},#{qq},#{youxiang},#{dianhua},#{shenfenzheng},#{touxiang},#{dizhi},#{beizhu},#{issh})")
-    int insertOneAdmin(UserInfo userInfo);
+    @Insert("insert into yonghuzhuce(yonghuming,mima,xingming,xingbie,chushengnianyue,qq,youxiang,dianhua,shenfenzheng,touxiang,dizhi,addtime,beizhu,issh)values" +
+            "(#{yonghuming},#{mima},#{xingming},#{xingbie},#{chushengnianyue},#{qq},#{youxiang},#{dianhua},#{shenfenzheng},#{touxiang},#{dizhi},#{addtime},#{beizhu},#{issh})")
+    boolean insertOneAdmin(UserInfo userInfo);
+
+    @Select("select count(*) from yonghuzhuce where yonghuming = #{yonghuming} and mima =#{mima}")
+    boolean getLoginResult(@Param("yonghuming") String yonghuming,@Param("mima") String mima);
+
+    @Select("select * from yonghuzhuce where yonghuming = #{yonghuming} and mima =#{mima}")
+    UserInfo getUserInfoByIDM(@Param("yonghuming") String yonghuming,@Param("mima") String mima);
 }

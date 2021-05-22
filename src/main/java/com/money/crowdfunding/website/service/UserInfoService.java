@@ -13,5 +13,9 @@ public interface UserInfoService {
 
     public UserInfo getUserInfoByName(String name);
 
+    public UserInfo getUserInfoByIDM(String yonghuming,String mima);
+
     public boolean getRegisterResult(UserInfo userInfo);
+
+    public boolean getLoginResult(String yonghuming, String mima);
 }
