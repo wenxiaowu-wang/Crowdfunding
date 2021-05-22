@@ -1,7 +1,6 @@
 let register_vm = new Vue({
     el: "#app",
     data: {
-
         yonghuming: '',
         mima: '',
         password: '',
@@ -14,9 +13,6 @@ let register_vm = new Vue({
         shenfenzheng: '',
         dizhi: '',
         beizhu: '',
-
-
-
 
     },
     methods: {
@@ -101,7 +97,7 @@ let register_vm = new Vue({
                 });
                 return false;
             } else {
-                axios.get("/shaohuashuwu/smsCodeSession/compareSms/" +
+                axios.post("/user/getRegisterResult/" +
                     this.yonghuming + "/" +this.mima + "/" +this.xingming + "/" +this.xingbie + "/" +this.chushengnianyue + "/" +this.qq + "/" +this.youxiang + "/" +this.dianhua + "/" +this.shenfenzheng + "/" +this.dizhi + "/" +this.beizhu ).then(res => {
                         let result =res.data;
                         if(result){
@@ -123,7 +119,6 @@ let register_vm = new Vue({
                     });
                     console.log("注册失败："+error);
                 });
-
             }
         },
         goToLogin() {

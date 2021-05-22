@@ -15,18 +15,7 @@ new Vue({
         activeName: 'first'
     },
     methods: {
-        handleClick(tab, event) {
-            console.log(tab, event);
-        },
-        yz() {
-            let regphoto = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
-            if (!regphoto.test(this.phone_number)) {
-                this.$message({
-                    type: "error",
-                    message: "手机号格式错误，请重新输入"
-                });
-            }
-        },
+
         normalLogin() {
 
 
@@ -95,7 +84,7 @@ new Vue({
             }
         },
         gotoRegistration(){
-            window.location.assign("../pages/usersRegistrationInterface.html");
+            window.location.assign("../html/usersRegistrationInterface.html");
         },
 
 

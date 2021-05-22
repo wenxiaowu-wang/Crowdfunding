@@ -15,6 +15,7 @@ public class UserInfo implements Serializable {
     private Integer id;
     private String yonghuming;
     private String mima;
+    private String xingming;
     private String xingbie;
     private String chushengnianyue;
     private String qq;
@@ -140,6 +141,13 @@ public class UserInfo implements Serializable {
         this.issh = issh;
     }
 
+    public String getXingming() {
+        return xingming;
+    }
+
+    public void setXingming(String xingming) {
+        this.xingming = xingming;
+    }
 
     @Override
     public String toString() {
@@ -147,6 +155,7 @@ public class UserInfo implements Serializable {
                 "id=" + id +
                 ", yonghuming='" + yonghuming + '\'' +
                 ", mima='" + mima + '\'' +
+                ", xingming='" + xingming + '\'' +
                 ", xingbie='" + xingbie + '\'' +
                 ", chushengnianyue='" + chushengnianyue + '\'' +
                 ", qq='" + qq + '\'' +

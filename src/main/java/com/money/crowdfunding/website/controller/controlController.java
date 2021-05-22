@@ -24,4 +24,12 @@ public class controlController {
         return "html/helloo";
     }
 
+
+    @RequestMapping("/userLogin")
+//    @ResponseBody
+    public String UserLogin(){
+        System.out.println("进来了");
+        return "html/UserLogin";
+    }
+
 }
