@@ -24,4 +24,9 @@ public class controlController {
         return "html/helloo";
     }
 
+    @RequestMapping("/adminLogin")
+    public String adminLogin(){
+        return "html/adminLoginInterface";
+    }
+
 }

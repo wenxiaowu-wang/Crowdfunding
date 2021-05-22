@@ -2,7 +2,7 @@ body{
     min-width: 900px;
     height: 700px;
     background-color: #f5efff;
-    background-image: url("../../static/img/background/logo.png"),url("../../static/img/background/logBanner.png");/*no-repeat不重复*/
+    background-image: url("../img/background/logo.png"),url("../img/background/logBanner.png");/*no-repeat不重复*/
     background-size: 5% 10%,100% 90%;
     background-position: left 2.5% top 3%,left top 10%;
     background-repeat: no-repeat,no-repeat;

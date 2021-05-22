@@ -1,6 +1,6 @@
 body {
     min-width: 1300px;
-    background-image: url("../../static/img/background/registerBackground.jpg");
+    background-image: url("../img/background/registerBackground.jpg");
     /*background-repeat: no-repeat;*/
     background-position-x: center;
     background-size: cover ;

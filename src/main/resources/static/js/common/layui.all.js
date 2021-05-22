@@ -4067,7 +4067,7 @@ layui.define(function (e) {
         }
     }, e.layui && layui.define ? (r.ready(), layui.define("jquery", function (t) {
         r.path = layui.cache.dir, o.run(layui.$), e.layer = r, t("layer", r)
-    })) : "function" == typeof define && define.amd ? define(["jquery"], function () {
+    })) : "function" == typeof define && define.amd ? define(["static/js/common/jquery"], function () {
         return o.run(e.jQuery), r
     }) : function () {
         o.run(e.jQuery), r.ready()
