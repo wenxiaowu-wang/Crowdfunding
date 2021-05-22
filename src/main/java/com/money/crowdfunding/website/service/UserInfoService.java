@@ -13,5 +13,5 @@ public interface UserInfoService {
 
     public UserInfo getUserInfoByName(String name);
 
-    public Boolean getRegisterResult(UserInfo userInfo);
+    public boolean getRegisterResult(UserInfo userInfo);
 }

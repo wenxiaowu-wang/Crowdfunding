@@ -1,7 +1,9 @@
 package com.money.crowdfunding.website.controller;
 
+import com.money.crowdfunding.website.model.Admin;
 import com.money.crowdfunding.website.model.UserInfo;
 import com.money.crowdfunding.website.service.UserInfoService;
+import com.money.crowdfunding.website.utils.httpUtils.HttpResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,19 +22,16 @@ public class UserInfoController {
     UserInfoService userInfoService;
 
     @GetMapping("/getUserByName")
-//    @ResponseBody
     public UserInfo getUserByName(@Param("userName") String name){
         UserInfo userInfo = userInfoService.getUserInfoByName("111");
         System.out.println(userInfo);
         return userInfo;
     }
 
-    @GetMapping("/getRegisterResult")
-    public Boolean getRegisterResult(UserInfo userInfo){
-        boolean result = false;
-        result = userInfoService.getRegisterResult(userInfo);
-        return result;
-    }
 
+    @PostMapping("/getRegisterResult")
+    public HttpResult getRegisterResult(@RequestBody UserInfo userInfo){
+        return HttpResult.ok().setData(userInfoService.getRegisterResult(userInfo));
+    }
 
 }
