@@ -12,4 +12,6 @@ import com.money.crowdfunding.website.model.UserInfo;
 public interface UserInfoService {
 
     public UserInfo getUserInfoByName(String name);
+
+    public boolean getRegisterResult(UserInfo userInfo);
 }
