@@ -22,7 +22,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean isAdmin(String userName, String password) {
         Admin admin = adminMapper.selectAdminByName(userName);
-        if (admin.getPwd().isEmpty()){
+        if (admin == null){
             return false;
         }else{
             return admin.getPwd().equals(password);
@@ -37,5 +37,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Admin> getAllAdmin() {
         return adminMapper.getAllAdminList();
+    }
+
+    @Override
+    public Admin getOneAdminByName(String name) {
+        return adminMapper.selectAdminByName(name);
     }
 }

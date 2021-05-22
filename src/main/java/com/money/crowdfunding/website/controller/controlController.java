@@ -37,4 +37,9 @@ public class controlController {
         return "html/adminLoginInterface";
     }
 
+    @RequestMapping("/toAdminMain")
+    public String toAdminMain(){
+        return "html/adminFrame";
+    }
+
 }

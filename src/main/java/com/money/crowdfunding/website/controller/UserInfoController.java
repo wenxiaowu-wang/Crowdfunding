@@ -23,7 +23,7 @@ public class UserInfoController {
 
     @GetMapping("/getUserByName")
     public UserInfo getUserByName(@Param("userName") String name){
-        UserInfo userInfo = userInfoService.getUserInfoByName("111");
+        UserInfo userInfo = userInfoService.getUserInfoByName(name);
         System.out.println(userInfo);
         return userInfo;
     }

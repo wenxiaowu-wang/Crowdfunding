@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 包:com.money.crowdfunding.website.controller
  * 项目:website
@@ -20,7 +22,13 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("/isAdmin")
-    public HttpResult isAdmin(@Param("userName")String userName, @Param("password")String password){
+    public HttpResult isAdmin(@Param("userName")String userName, @Param("password")String password, HttpSession httpSession){
+        boolean result = false;
+        result = adminService.isAdmin(userName, password);
+        if (result){
+            Admin admin = adminService.getOneAdminByName(userName);
+            httpSession.setAttribute("adminInfo",admin);
+        }
         return HttpResult.ok().setData(adminService.isAdmin(userName, password));
     }
 
@@ -32,5 +40,12 @@ public class AdminController {
     @PostMapping("/addOne")
     public HttpResult addOne(@RequestBody Admin admin){
         return HttpResult.ok().setData(adminService.addOneAdmin(admin));
+    }
+
+    @GetMapping("/getSession")
+    public HttpResult getSession(HttpSession httpSession){
+        Admin admin = (Admin) httpSession.getAttribute("adminInfo");
+        System.out.println(admin);
+        return HttpResult.ok().setData(admin);
     }
 }

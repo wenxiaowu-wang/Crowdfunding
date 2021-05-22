@@ -20,4 +20,6 @@ public interface AdminService {
     //获取所有管理员信息
     List<Admin> getAllAdmin();
 
+    //根据管理员用户名获取一条管理员信息
+    Admin getOneAdminByName(String name);
 }
