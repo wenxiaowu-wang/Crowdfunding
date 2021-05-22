@@ -1,9 +1,10 @@
 body{
-    min-width: 950px;
+    min-width: 900px;
+    height: 700px;
     background-color: #f5efff;
-    background-image: url("../images/icon/shaohua-ps.png"),url("../images/admin.png");/*no-repeat不重复*/
-    background-size: 12% 28%,32% 50%;
-    background-position: left top,left bottom -50%;
+    background-image: url("../../static/img/background/logo.png"),url("../../static/img/background/logBanner.png");/*no-repeat不重复*/
+    background-size: 5% 10%,100% 90%;
+    background-position: left 2.5% top 3%,left top 10%;
     background-repeat: no-repeat,no-repeat;
     /*background-color: #8c939d;*/
 }
