@@ -32,4 +32,9 @@ public class controlController {
         return "html/UserLogin";
     }
 
+    @RequestMapping("/adminLogin")
+    public String adminLogin(){
+        return "html/adminLoginInterface";
+    }
+
 }

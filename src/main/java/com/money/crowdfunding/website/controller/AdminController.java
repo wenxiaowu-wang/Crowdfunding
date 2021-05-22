@@ -20,17 +20,17 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("/isAdmin")
-    HttpResult isAdmin(@Param("userName")String userName, @Param("password")String password){
+    public HttpResult isAdmin(@Param("userName")String userName, @Param("password")String password){
         return HttpResult.ok().setData(adminService.isAdmin(userName, password));
     }
 
     @GetMapping("/getAll")
-    HttpResult getAll(){
+    public HttpResult getAll(){
         return HttpResult.ok().setData(adminService.getAllAdmin());
     }
 
     @PostMapping("/addOne")
-    HttpResult addOne(@RequestBody Admin admin){
+    public HttpResult addOne(@RequestBody Admin admin){
         return HttpResult.ok().setData(adminService.addOneAdmin(admin));
     }
 }
