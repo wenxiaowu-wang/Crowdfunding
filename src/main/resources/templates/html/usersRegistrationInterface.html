@@ -30,19 +30,19 @@
 
             <div class="form">
                 <span class="label">密码：</span>
-                <el-input class="pwd1" type="password" placeholder="设置登录密码" v-model="mima"
+                <el-input class="pwd1"  placeholder="设置登录密码" v-model="mima"
                           show-password></el-input>
             </div>
             <div class="form">
                 <span class="label">确认密码：</span>
-                <el-input class="pwd2" type="password" placeholder="再次确认密码" v-model="password"
+                <el-input class="pwd2"  placeholder="再次确认密码" v-model="password"
                           show-password></el-input>
             </div>
 
             <div class="form">
                 <span class="label">姓名：</span>
-                <el-input class="pwd2" type="password" placeholder="请输入姓名" v-model="xingming"
-                          show-password></el-input>
+                <el-input class="pwd2"  placeholder="请输入姓名" v-model="xingming"
+                          ></el-input>
             </div>
             <div class="form">
                 <span class="label">性别：</span>
@@ -61,21 +61,50 @@
                 </el-date-picker>
             </div>
             <div class="form">
-                <span class="label">确认密码：</span>
-                <el-input class="pwd2" type="password" placeholder="再次确认密码" v-model="password"
-                          show-password></el-input>
+                <span class="label">QQ：</span>
+                <el-input class="pwd2"  placeholder="请输入QQ" v-model="qq"
+                          ></el-input>
             </div>
             <div class="form">
-                <span class="label">确认密码：</span>
-                <el-input class="pwd2" type="password" placeholder="再次确认密码" v-model="password"
-                          show-password></el-input>
+                <span class="label">邮箱：</span>
+                <el-input class="pwd2"  placeholder="请输入邮箱" v-model="youxiang"
+                          ></el-input>
             </div>
 
+            <div class="form">
+                <span class="label">手机号：</span>
+                <el-input class="pwd2"  placeholder="请输入手机号" v-model="dianhua"
+                          ></el-input>
+            </div>
+            <div class="form">
+                <span class="label">身份证：</span>
+                <el-input class="pwd2"  placeholder="请输入身份证" v-model="shenfenzheng"
+                          ></el-input>
+            </div>
+            <div class="form">
+                <span class="label">地址：</span>
+                <el-input class="pwd2"  placeholder="请输入地址" v-model="dizhi"
+                          ></el-input>
+            </div>
 
+            <div class="form">
+                <span class="label">备注：</span>
+                <div style="margin-left: 20%;">
+                    <el-input
+                            type="textarea"
+                            :rows="3"
+                            placeholder="请输入备注内容"
+                            v-model="beizhu">
+                    </el-input>
+                </div>
+
+            </div>
         </div>
+        <div style="margin-top: 3%">
         <el-row>
             <el-button style="margin-left: 39%" @click="save()">立即注册</el-button>
         </el-row>
+        </div>
     </form>
 
 </div>

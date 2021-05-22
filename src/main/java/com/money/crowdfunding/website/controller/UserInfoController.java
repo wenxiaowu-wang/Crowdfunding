@@ -26,4 +26,13 @@ public class UserInfoController {
         System.out.println(userInfo);
         return userInfo;
     }
+
+    @GetMapping("/getRegisterResult")
+    public Boolean getRegisterResult(UserInfo userInfo){
+        boolean result = false;
+        result = userInfoService.getRegisterResult(userInfo);
+        return result;
+    }
+
+
 }

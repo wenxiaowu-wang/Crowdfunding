@@ -24,4 +24,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         return userInfoMapper.selectUserInfoByName(name);
     }
+
+    @Override
+    public Boolean getRegisterResult(UserInfo userInfo) {
+
+        return null;
+    }
 }

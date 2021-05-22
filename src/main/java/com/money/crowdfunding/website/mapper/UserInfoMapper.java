@@ -16,4 +16,6 @@ public interface UserInfoMapper {
     @Select("select * from yonghuzhuce where yonghuming = #{name}")
     UserInfo selectUserInfoByName(@Param("name") String name);
 
+
+
 }
