@@ -41,7 +41,12 @@ public class controlController {
 
     @RequestMapping("/toHome")
     public String toHome(){
-        return "html/home";
+        return "html/homePage";
+    }
+
+    @RequestMapping("/toProject")
+    public String toProject(){
+        return "html/project";
     }
 
     @RequestMapping("/userRegister")

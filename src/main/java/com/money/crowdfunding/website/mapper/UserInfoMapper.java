@@ -32,4 +32,9 @@ public interface UserInfoMapper {
 
     @Select("select * from yonghuzhuce")
     List<UserInfo> selectAllUser();
+
+    @Select("select count(*) from yonghuzhuce where yonghuming = #{name}")
+    boolean selectUserInfoIsExistByName(@Param("name") String name);
+
+
 }
