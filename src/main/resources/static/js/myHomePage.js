@@ -42,12 +42,26 @@ let myHomePage_vm = new Vue({
         //用户session
         axios.get("/user/getUserSession").then(res => {
 
-            console.log(res.data.data)
             let data = res.data.data;
+            console.log(res.data)
+            console.log(res.data.data)
+            console.log(data)
+            // if(data === "null"){
+            //     console.log(666)
+            // }
             this.user_name2 = data.yonghuming;
 
         }).catch(error => {
             console.log("获取session信息失败！" + error);
+            this.$confirm('请先登录！', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                window.location.assign("userLogin");
+            }).catch(() => {
+                window.location.assign("userLogin");
+            });
         });
 
     }
