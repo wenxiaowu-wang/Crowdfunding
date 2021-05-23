@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="css/common/layui.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <script src="js/common/jquery.js"></script>
+</head>
+<body>
+<div>
+    <!-- 头部工具栏 -->
+    <div>
+        <blockquote class="layui-elem-quote">
+            <span >注册用户管理</span>
+            <div style="float:right;margin-top: -7px">
+                <!--  <a class="layui-btn layui-btn-normal layui-btn-sm" onclick="openAdd()">汇总上报</a>-->
+
+                <div class="layui-input-inline">
+                    <input type="text" name="level1" id="level1" placeholder="请输入标题关键字" autocomplete="off" class="layui-input">
+                </div>
+                <a class="layui-btn  layui-btn-sm" name="dataSearch" type="reset" id="dataSearch1">搜索</a>
+                <a class="layui-btn  layui-btn-sm" id="search2" type="reset">更多搜索</a>
+            </div>
+        </blockquote>
+        <table  class="layui-hide" id="test" lay-filter="test"></table>
+    </div>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn  layui-btn-normal layui-btn-xs" lay-event="look">查看</a>
+        <a class="layui-btn  layui-btn-danger layui-btn-xs" lay-event="assign">交办</a>
+        {{#  if(d.handleState === "未签收"){ }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="upload">领导批示</a>
+        {{# }else if(d.handleState === "办理中"){ }}
+        &nbsp;&nbsp;
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="end">结束</a>&nbsp;&nbsp;&nbsp;
+        {{# } }}
+        {{#  if(d.dealAssess === "" || d.dealAssess === null){ }}
+        &nbsp;
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="assess">评价</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        {{# }else{ }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="look_assess">查看评价</a>&nbsp;&nbsp;&nbsp;
+        {{# } }}
+
+
+        <!--        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="no">不采纳</a>-->
+    </script>
+    <script type="text/html" id="evname">
+        <a  onclick="skip('{{ d.unitID }}')" class="layui-table-link" target="_blank">{{ d.name}}</a>
+    </script>
+</div>
+<script src="js/common/layui.js"></script>
+</body>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/userInfoManagement.js"></script>
+
+</html>

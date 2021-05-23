@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -64,5 +65,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public boolean getLoginResult(String yonghuming, String mima) {
         return userInfoMapper.getLoginResult(yonghuming,mima);
+    }
+
+    @Override
+    public List<UserInfo> getAllUser() {
+        return userInfoMapper.selectAllUser();
     }
 }

@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * 包:com.money.crowdfunding.website.mapper
  * 项目:website
@@ -27,4 +29,7 @@ public interface UserInfoMapper {
 
     @Select("select * from yonghuzhuce where yonghuming = #{yonghuming} and mima =#{mima}")
     UserInfo getUserInfoByIDM(@Param("yonghuming") String yonghuming,@Param("mima") String mima);
+
+    @Select("select * from yonghuzhuce")
+    List<UserInfo> selectAllUser();
 }

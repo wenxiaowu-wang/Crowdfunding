@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 包:com.money.crowdfunding.website.controller
@@ -52,6 +53,11 @@ public class UserInfoController {
     public HttpResult getUserSession(HttpSession httpSession){
         UserInfo userInfo = (UserInfo) httpSession.getAttribute("userInfo");
         return HttpResult.ok().setData(userInfo);
+    }
+
+    @GetMapping("/getAllUser")
+    public HttpResult getAllUser(){
+        return HttpResult.ok().setData(userInfoService.getAllUser());
     }
 
 

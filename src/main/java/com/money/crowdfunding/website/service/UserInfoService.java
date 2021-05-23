@@ -2,6 +2,8 @@ package com.money.crowdfunding.website.service;
 
 import com.money.crowdfunding.website.model.UserInfo;
 
+import java.util.List;
+
 /**
  * 包:com.money.crowdfunding.website.service
  * 作者:王洪斌
@@ -18,4 +20,6 @@ public interface UserInfoService {
     public boolean getRegisterResult(UserInfo userInfo);
 
     public boolean getLoginResult(String yonghuming, String mima);
+
+    public List<UserInfo> getAllUser();
 }
