@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网首页</title>
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <link rel="stylesheet" href="css/myHomePage.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/userAgreement.css" />
+    <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/basic.min.css"/>
+    <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/home.min.css"/>
+    <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/order.min.css"/>
+</head>
+<body>
+
+<div id="myHomePage">
+    <div class="top1">
+        <div class="top_img"></div>
+        <div class="top_content">
+            <div class="top_tips">
+                <el-button type="text" ></el-button>
+            </div>
+            <div class="top_menu">
+                <el-menu
+                        :default-active="activeIndex"
+                        class="el-menu-demo"
+                        mode="horizontal"
+                        @select="handleSelect"
+                        background-color="#545c64"
+                        text-color="#fff"
+                        active-text-color="#ffd04b">
+                    <el-menu-item index="1"><i class="el-icon-s-home"></i>首页</el-menu-item>
+                    <el-menu-item index="2"><i class="el-icon-reading"></i>众筹须知</el-menu-item>
+                    <el-menu-item index="3"><i class="el-icon-s-order"></i>众筹项目</el-menu-item>
+                    <el-menu-item index="4"><i class="el-icon-chat-line-round"></i>在线留言</el-menu-item>
+                </el-menu>
+            </div>
+
+            <div class="top_data">
+                <br/>
+                用户：{{user_name2}}，您好<br/>
+                <el-button type="text">退出登录</el-button>
+            </div>
+        </div>
+    </div>
+
+    <div class="body_left1">
+
+        <div class="home-main">
+            <!-- 列表箱体 -->
+            <div class="home_innerwrap">
+                <div class="shelf_list_tit listType_a">
+
+                    <div class="catName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编号</div>
+                    <div class="bookName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题</div>
+                    <div class="author">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别</div>
+                    <div class="upDateChapter">众筹金额（元）</div>
+                    <div class="bookStatus">期限（年）</div>
+                    <div class="updateTime">收益人</div>
+                    <div class="updateTime">发布人</div>
+                    <div></div>
+                    <div class="ctrlBook">操作</div>
+                </div>
+
+                <template v-if=" book_num == 0 ">
+                    <div class="no-data"><img src="../images/no-book.png">
+                        <p>书架空了，快去添加吧~ </p></div>
+                </template>
+                <template v-else>
+                    <li class="shelf_bookLine listType_a" v-for="work in tableData">
+                        <div class="catName">&nbsp;&nbsp;&nbsp;{{work.pId}}</div>
+                        <div class="bookName">
+                            <a class="txtove">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{work.biaoti}}</a>
+                        </div>
+                        <div class="author">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{work.type}}</div>
+                        <div class="upDateChapter">{{work.money}}</div>
+                        <div class="bookStatus">{{work.qixian}}</div>
+                        <div class="updateTime">{{work.shouP}}</div>
+                        <div class="updateTime">{{work.faP}}</div>
+                        <div></div>
+                        <div class="ctrlBook"><a target="_blank"  class="redbtn" @click="goToInterface(work.pId)">详细信息</a>
+                        </div>
+                    </li>
+                </template>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="footing">
+    <div class="address">地址:山东省烟台市莱山区山东工商学院软件2017级 邮编：264003 电话：123-123-1234 传真：123-1234567</div>
+    <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
+</div>
+</div>
+
+
+
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/project.js"></script>
+</body>
+</html>

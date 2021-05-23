@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网首页</title>
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <link rel="stylesheet" href="css/myHomePage.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/userAgreement.css" />
+</head>
+<body>
+
+<div id="myHomePage">
+    <div class="top1">
+        <div class="top_img"></div>
+        <div class="top_content">
+            <div class="top_tips">
+                <el-button type="text"  ></el-button>
+            </div>
+            <div class="top_menu">
+                <el-menu
+                        :default-active="activeIndex"
+                        class="el-menu-demo"
+                        mode="horizontal"
+                        @select="handleSelect"
+                        background-color="#545c64"
+                        text-color="#fff"
+                        active-text-color="#ffd04b">
+                    <el-menu-item index="1"><i class="el-icon-s-home"></i>首页</el-menu-item>
+                    <el-menu-item index="2"><i class="el-icon-reading"></i>众筹须知</el-menu-item>
+                    <el-menu-item index="3"><i class="el-icon-s-order"></i>众筹项目</el-menu-item>
+                    <el-menu-item index="4"><i class="el-icon-chat-line-round"></i>在线留言</el-menu-item>
+                </el-menu>
+            </div>
+
+            <div class="top_data">
+                <br/>
+                用户：{{user_name2}}，您好<br/>
+                <el-button type="text">退出登录</el-button>
+            </div>
+        </div>
+    </div>
+
+    <div class="body_left1">
+        <div style="margin-left: 11%;font-family: 黑体;font-size: 20px"> 欢迎登陆本站,愿您可以有个好心情! </div>
+        <div style="margin-left: 42%;color: #0C6C27;font-family: 黑体;font-size:42px;margin-top: 5%">--众筹网站--</div><br>
+        <div style="margin-left: 30%;font-family: 宋体;color: #8D8D8D" > 运用互联网金融解决问题，提升工作效率,提高生活质量! <br>
+            欢迎大家登陆我站，我站主要是为广大朋友精心制作的一个系统，希望大家能够在我站获得一个好心情，谢谢！<br>
+            美丽的军功章有你的一半，也有我的一半！ </div>
+
+    </div>
+</div>
+<div class="footing">
+    <div class="address">地址:山东省烟台市莱山区山东工商学院软件2017级 邮编：264003 电话：123-123-1234 传真：123-1234567</div>
+    <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
+</div>
+</div>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/myHomePage.js"></script>
+</body>
+</html>

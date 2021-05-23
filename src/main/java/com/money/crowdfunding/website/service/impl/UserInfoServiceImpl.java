@@ -40,8 +40,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public boolean getRegisterResult(UserInfo userInfo) {
 
-        userInfo.setIssh("是");
+        if(userInfoMapper.selectUserInfoIsExistByName(userInfo.getYonghuming())){
+            return false;
+        }
 
+        userInfo.setIssh("是");
         Random random = new Random();
         int headCode = random.nextInt(15);
         String headCode1 = String.valueOf(headCode);

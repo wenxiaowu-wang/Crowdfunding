@@ -27,4 +27,9 @@ public interface UserInfoMapper {
 
     @Select("select * from yonghuzhuce where yonghuming = #{yonghuming} and mima =#{mima}")
     UserInfo getUserInfoByIDM(@Param("yonghuming") String yonghuming,@Param("mima") String mima);
+
+    @Select("select count(*) from yonghuzhuce where yonghuming = #{name}")
+    boolean selectUserInfoIsExistByName(@Param("name") String name);
+
+
 }
