@@ -1,5 +1,5 @@
 var npid = ''
-
+alert("js执行");
 layui.use(['table'], function () {
     var table = layui.table,
         $ = layui.jquery;   //申明jquery
@@ -7,6 +7,8 @@ layui.use(['table'], function () {
     $('#close').click(function () {
         layer.close(layer.index);
     });
+
+    alert("表格渲染");
 
     //表格渲染
     table.render({

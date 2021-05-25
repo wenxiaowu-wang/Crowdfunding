@@ -53,4 +53,9 @@ public class controlController {
     public String userRegister(){
         return "html/usersRegistrationInterface";
     }
+
+    @RequestMapping("/admin/userManagement")
+    public String userManagement(){
+        return "html/userInfoManagement";
+    }
 }

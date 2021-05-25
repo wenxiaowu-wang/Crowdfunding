@@ -58,12 +58,16 @@ let adminFrame_vm = new Vue({
             //     content: ['/home/page/organ/organNew/organEdit.html?id='+data.id + '&unitID='+data.unitID, 'yes']  //调到编辑页面
             // });
             layer.msg("即将进入管理员登录页面",{icon:5});
-            alert("num="+num);
+            // alert("num="+num);
             switch (num){
                 case 0:{
-                    $("#content_div").load("/adminLogin");
+                    $("#content_div").load("/admin/userManagement");
                     break;
                 }case 1:{
+                    // $("#content_div").load("/adminLogin");
+                    alert("待更新···");
+                    break;
+                }case 2:{
                     $.ajax({
                         url: "/admin/getSession",
                         type: "GET",
