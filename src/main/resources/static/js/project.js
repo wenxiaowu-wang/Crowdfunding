@@ -12,6 +12,7 @@ let myHomePage_vm = new Vue({
         user_name2:'测试用户',//用户昵称2
 
         tableData: [{
+            id:'1',
             pId:'001',
             biaoti:'测试项目',
             type:'医疗',
@@ -89,6 +90,7 @@ let myHomePage_vm = new Vue({
             data.forEach(function (value) {
 
                 let list = {
+                    id: value["id"],
                     pId: value["xiangmubianhao"],
                     biaoti: value["biaoti"],
                     type: value["leibie"],

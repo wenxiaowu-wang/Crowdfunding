@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/myHomePage.css">
     <link rel="stylesheet" href="css/common/theme-chalk.css">
     <link rel="stylesheet" href="css/userAgreement.css"/>
+    <link rel="stylesheet" href="css/projectDetail.css"/>
 </head>
 <body>
 
@@ -46,11 +47,42 @@
         </div>
     </div>
 
-    <div class="body_left1">
-        <br><br><br><br><br><br>
-        <div style="margin-left: 30%;font-family: 宋体;color: #8D8D8D" > 众筹项目详情! <br>
-            众筹项目详情众筹项目详情众筹项目详情众筹项目详情众筹项目详情!<br>
-            众筹项目详情众筹项目详情众筹项目详情众筹项目详情众筹项目详情众筹项目详情!
+    <div class="body_left3">
+        <div class="P_all_top" >
+            <div class="el-image P_all_top_img">
+<!--                <div class="el-image__error"></div>-->
+                <img :src="'img/background/'+picture+'.png'" class="el-image__inner" style="object-fit: contain;">
+            </div>
+            <div class="P_all_top_text">
+                <div class="P_all_top_text_a">
+                    <div class="P_all_top_text_a_text">{{biaoti}}</div>
+                    <div class="P_all_top_text_a_text_a">{{addtime}}</div>
+                    <div class="P_all_top_text_a_text_b">328阅读量</div> <!----> <!----> <!----></div>
+                <div class="P_all_top_text_xx">
+                    <div class="P_all_top_text_xx_a">
+                        <div class="P_all_top_text_xx_a_box">项目类型: <span>独资/投资建厂,参股合作,其它合作方式   </span></div>
+                        <div class="P_all_top_text_xx_a_box">资金类型: <span> {{leibie}} </span></div>
+                        <div class="P_all_top_text_xx_a_box">投资阶段: <span> 种子期,初创期,成长期,扩张期,成熟期,Pre-IPO  </span></div>
+                        <div class="P_all_top_text_xx_a_box">作者: <span> {{faburen}} </span></div>
+                    </div>
+                    <div class="P_all_top_text_xx_a" style="margin: 0px 0px 0px 13px;">
+                        <div class="P_all_top_text_xx_a_box">投资金额: <span> {{zhongchoujine}} </span></div>
+                        <div class="P_all_top_text_xx_a_box">投递次数: <span> 5次 </span></div>
+                        <div class="P_all_top_text_xx_a_box">投资期限: <span> {{qixian}}年</span></div>
+                        <div class="P_all_top_text_xx_a_box">时间: <span> {{addtime}} </span></div>
+                    </div>
+                </div> <!----></div>
+        </div>
+        <br>
+        <div style="margin:0 auto; text-align:center;font-size:25px;">
+            项目介绍：
+        </div>
+        <br>
+        <div style="margin:0 auto; font-family: 宋体;color: #8D8D8D; width:900px;">
+            &nbsp;&nbsp;{{xiangqing}}
+        </div>
+        <div style="margin-left: 45%">
+            <el-button type="primary" plain>投资</el-button> <el-button type="primary" plain>评论</el-button>
         </div>
 
     </div>
@@ -59,7 +91,7 @@
     <div class="address">地址:山东省东营市北二路271号中国石油大学胜利学院 邮编：257000 电话：123-123-1234 传真：123-1234567</div>
     <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
 </div>
-</div>
+
 <script src="js/common/vue.js"></script>
 <script src="js/common/elementui.js"></script>
 <script src="js/common/index.js"></script>

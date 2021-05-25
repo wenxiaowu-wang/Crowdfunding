@@ -23,6 +23,7 @@ public class ZhongChouXiangMu implements Serializable {
     private String faburen;
     private String issh;
     private String addtime;
+    private String picture;
 
     public Integer getId() {
         return id;
@@ -112,6 +113,14 @@ public class ZhongChouXiangMu implements Serializable {
         this.addtime = addtime;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     @Override
     public String toString() {
         return "ZhongChouXiangMu{" +
@@ -126,6 +135,7 @@ public class ZhongChouXiangMu implements Serializable {
                 ", faburen='" + faburen + '\'' +
                 ", issh='" + issh + '\'' +
                 ", addtime='" + addtime + '\'' +
+                ", picture='" + picture + '\'' +
                 '}';
     }
 }

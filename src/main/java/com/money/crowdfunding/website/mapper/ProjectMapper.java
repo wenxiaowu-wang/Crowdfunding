@@ -22,4 +22,7 @@ public interface ProjectMapper {
     @Select("select * from xinwentongzhi where shouyetupian !='delete' and  ID = #{id}")
     XinWenTongZhi getZhongChouXuZhiDetail(@Param("id") String id);
 
+    @Select("select * from zhongchouxiangmu where issh ='是' and  ID = #{id}")
+    ZhongChouXiangMu getZhongChouDetail(@Param("id") String id);
+
 }

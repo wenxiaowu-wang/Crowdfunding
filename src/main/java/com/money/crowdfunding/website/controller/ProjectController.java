@@ -54,4 +54,9 @@ public class ProjectController {
     public HttpResult getZhongChouXuZhiDetail(@PathVariable("id") String id){
         return HttpResult.ok().setData(projectService.getZhongChouXuZhiDetail(id));
     }
+
+    @GetMapping("/getZhongChouDetail/{id}")
+    public HttpResult getZhongChouDetail(@PathVariable("id") String id){
+        return HttpResult.ok().setData(projectService.getZhongChouDetail(id));
+    }
 }

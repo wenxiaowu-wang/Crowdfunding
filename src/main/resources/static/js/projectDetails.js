@@ -12,6 +12,15 @@ let myHomePage_vm = new Vue({
 
         user_name2:'测试用户',//用户昵称2
 
+        biaoti:'',
+        leibie:'',
+        zhongchoujine:'',
+        qixian:'',
+        shouyi:'',//
+        addtime:'',
+        faburen:'',
+        xiangqing:'',
+        picture:'001',
 
     },
 
@@ -41,7 +50,7 @@ let myHomePage_vm = new Vue({
         },
         personally(){
             alert("代码未实现")
-        }
+        },
     },
     mounted() {
 
@@ -71,6 +80,28 @@ let myHomePage_vm = new Vue({
             let data = res.data.data;
 
             console.log(data)
+
+            axios.get('/project/getZhongChouDetail/' +
+                data ).then(ress => {
+
+                let data =ress.data.data;
+
+                this.biaoti = data.biaoti;
+                this.leibie =data.leibie;
+                this.zhongchoujine =data.zhongchoujine;
+                this.qixian =data.qixian;
+                this.shouyi =data.shouyi;
+                this.addtime =data.addtime;
+                this.faburen =data.faburen;
+                this.xiangqing =data.xiangqing;
+                this.picture=data.picture;
+
+            }).catch(error => {
+                this.$message({
+                    type: 'error',
+                    message: '网络错误！'
+                });
+            });
 
         }).catch(error => {
             console.log("获取session信息失败！" + error);

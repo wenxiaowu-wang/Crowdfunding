@@ -12,4 +12,6 @@ public interface ProjectService {
     List<XinWenTongZhi> getZhongChouXuZhi();
 
     XinWenTongZhi getZhongChouXuZhiDetail(String id);
+
+    ZhongChouXiangMu getZhongChouDetail(String id);
 }
