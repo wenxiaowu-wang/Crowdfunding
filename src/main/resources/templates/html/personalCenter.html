@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网首页</title>
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <link rel="stylesheet" href="css/myHomePage.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/userAgreement.css"/>
+</head>
+<body>
+
+<div id="myHomePage">
+    <div class="top1">
+        <div class="top_img"></div>
+        <div class="top_content">
+            <div class="top_menu">
+                <el-menu
+                        :default-active="activeIndex"
+                        class="el-menu-demo"
+                        mode="horizontal"
+                        @select="handleSelect"
+                        background-color="#545c64"
+                        text-color="#fff"
+                        active-text-color="#ffd04b">
+                    <el-menu-item index="1"><i class="el-icon-s-home"></i>首页</el-menu-item>
+                    <el-menu-item index="2"><i class="el-icon-reading"></i>众筹须知</el-menu-item>
+                    <el-menu-item index="3"><i class="el-icon-s-order"></i>众筹项目</el-menu-item>
+                    <!--                    <el-menu-item index="4"><i class="el-icon-chat-line-round"></i>在线留言</el-menu-item>-->
+                    <el-menu-item index="4"><i class="el-icon-setting"></i>管理员端</el-menu-item>
+                </el-menu>
+            </div>
+
+            <div class="top_data">
+                <div>
+
+                    <el-avatar :src="imageURL_header+avatar+imageURL_suffix"></el-avatar>
+                    用户:{{user_name2}}，您好<br>
+                    <el-button type="text" @click="personally()">个人中心</el-button>
+                    <el-button type="text" @click="signOut()">退出登录</el-button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="body_left2">
+
+        <div class="body_left_carousel">
+            <!--            <el-carousel :interval="4000" type="card" height="200px">-->
+            <el-carousel indicator-position="outside" height="700px" :interval="4000">
+                <el-carousel-item v-for="item in carouselFigures">
+                    <!--                    <h3 class="medium">{{ item }}</h3>-->
+                    <a :href="item.hyperlink" target="_blank"><img :src="'../images/carousel/'+item.figureUrl+'.png'"/></a>
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+    </div>
+
+    <div class="body">
+
+        <div class="body_header">
+            <div class="body_img">
+                <div class="body_img_img">
+                    <img id="avatar" :src="imageURL_header+user_avatar+imageURL_suffix">
+                </div>
+                <div class="body_img_content">
+                    <label>{{user_name2}}<br/>&nbsp;&nbsp;&nbsp;<span>互相关注：{{eachAttentionNum}} </span>&nbsp;&nbsp;
+                        <span>关注：{{attentionNum}}</span>&nbsp;&nbsp;<span>粉丝：{{fans}} </span>&nbsp;&nbsp;</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <el-button type="text" @click="toMyConcerned">查看详情</el-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="body_center">
+            <el-tabs type="border-card">
+
+                <el-tab-pane label="基本资料">
+                    <div class="form-box">
+                        <div class="form">
+                            <span class="label">昵称：</span>
+                            <span class="text">
+                                <input class="Nickname" v-model="user_name">
+                             </span>
+                        </div>
+                        <div class="form">
+                            <span class="label">韶华ID：</span>
+                            <span class="text">
+                                <input class="Nickname" :value="'shaohuashuwu-'+user_id" disabled>
+                            </span>
+                        </div>
+                        <div class="form">
+                            <span class="label">性别：</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <template>
+                                <el-radio v-model="gender" label="男">男</el-radio>
+                                <el-radio v-model="gender" label="女">女</el-radio>
+                            </template>
+                        </div>
+                        <div class="form">
+                            <span class="label">生日：</span>
+                            <el-date-picker
+                                    v-model="dateValue"
+                                    type="date"
+                                    placeholder="选择日期">
+                            </el-date-picker>
+                        </div>
+                        <div class="form">
+                            <span class="label">地区：</span>
+                            <el-cascader
+                                    ref="cascaderAddr"
+                                    v-model="value"
+                                    :options="CityInfo"
+                                    placeholder="请选择地区"
+                                    @change="handleChange"></el-cascader>
+
+                        </div>
+                        <div>
+                            <button class="modifyPassword-btn" @click="test()">保存修改</button>
+                        </div>
+                    </div>
+                </el-tab-pane>
+
+                <el-tab-pane label="修改密码">
+                    <div class="form-box">
+                        <div class="form">
+                            <span class="label">原密码：</span>
+                            <span class="text">
+                                <input type="password" class="Nickname" v-model="oldPwd">
+                             </span>
+                        </div>
+                        <div class="form">
+                            <span class="label">新密码：</span>
+                            <span class="text">
+                                <input type="password" class="Nickname" v-model="newPwd">
+                            </span>
+                        </div>
+                        <div class="form">
+                            <span class="label">重复新密码：</span>
+                            <span class="text">
+                                <input type="password" class="Nickname" v-model="newPwd2">
+                            </span>
+                        </div>
+                        <div>
+                            <button class="modifyPassword-btn" @click="handleChange">确认修改</button>
+                        </div>
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+    </div>
+
+</div>
+<div class="footing">
+    <div class="address">地址:山东省烟台市莱山区山东工商学院软件2017级 邮编：264003 电话：123-123-1234 传真：123-1234567</div>
+    <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
+</div>
+</div>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/personalCenter.js"></script>
+</body>
+</html>

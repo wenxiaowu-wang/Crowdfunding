@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/common/elementui.css">
     <link rel="stylesheet" href="css/myHomePage.css">
     <link rel="stylesheet" href="css/common/theme-chalk.css">
-    <link rel="stylesheet" href="css/userAgreement.css" />
+    <link rel="stylesheet" href="css/userAgreement.css"/>
     <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/basic.min.css"/>
     <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/home.min.css"/>
     <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/order.min.css"/>
@@ -35,30 +35,29 @@
             </div>
 
             <div class="top_data">
-                <div style="width: 200px">
+                <div>
                     <el-avatar :src="imageURL_header+avatar+imageURL_suffix"></el-avatar>
                     用户:{{user_name2}}，您好<br>
                     <el-button type="text" @click="personally()">个人中心</el-button>
                     <el-button type="text" @click="signOut()">退出登录</el-button>
                 </div>
             </div>
+
         </div>
     </div>
 
     <div class="body_left1">
-
         <div class="home-main">
             <!-- 列表箱体 -->
             <div class="home_innerwrap">
                 <div class="shelf_list_tit listType_a">
 
-                    <div class="catName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编号</div>
+                    <div class="catName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编号</div>
                     <div class="bookName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题</div>
                     <div class="author">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别</div>
-                    <div class="upDateChapter">众筹金额（元）</div>
-                    <div class="bookStatus">&nbsp;&nbsp;&nbsp;期限（年）</div>
-                    <div class="updateTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收益</div>
-                    <div class="updateTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布人</div>
+                    <div class="upDateChapter">发布人</div>
+                    <div class="bookStatus">点击率</div>
+                    <div class="updateTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加时间</div>
                     <div></div>
                     <div class="ctrlBook">操作</div>
                 </div>
@@ -69,17 +68,16 @@
                 </template>
                 <template v-else>
                     <li class="shelf_bookLine listType_a" v-for="work in tableData">
-                        <div class="catName">&nbsp;&nbsp;&nbsp;{{work.pId}}</div>
+                        <div class="catName">&nbsp;&nbsp;&nbsp;{{work.ID}}</div>
                         <div class="bookName">
                             <a class="txtove">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{work.biaoti}}</a>
                         </div>
-                        <div class="author">{{work.type}}</div>
-                        <div class="upDateChapter">{{work.money}}</div>
-                        <div class="bookStatus">{{work.qixian}}</div>
-                        <div class="updateTime">{{work.shouP}}</div>
-                        <div class="updateTime">{{work.faP}}</div>
+                        <div class="author">{{work.leibie}}</div>
+                        <div class="upDateChapter">{{work.tianjiaren}}</div>
+                        <div class="bookStatus">&nbsp;&nbsp;{{work.dianjilv}}</div>
+                        <div class="updateTime">{{work.addtime}}</div>
                         <div></div>
-                        <div class="ctrlBook"><a target="_blank"  class="redbtn"  @click="goToDetails(work.pId)">详细信息</a>
+                        <div class="ctrlBook"><a target="_blank"  class="redbtn"  @click="goToDetails(work.ID)">详细信息</a>
                         </div>
                     </li>
                 </template>
@@ -94,13 +92,10 @@
     <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
 </div>
 </div>
-
-
-
 <script src="js/common/vue.js"></script>
 <script src="js/common/elementui.js"></script>
 <script src="js/common/index.js"></script>
 <script src="js/common/axios.js"></script>
-<script src="js/project.js"></script>
+<script src="js/projectXuZhi.js"></script>
 </body>
 </html>

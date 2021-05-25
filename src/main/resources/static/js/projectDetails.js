@@ -2,13 +2,16 @@ let myHomePage_vm = new Vue({
     el: "#myHomePage",
     data: {
 
+        reloadTest:"",
         topTips: "返回首页",
-        activeIndex: '1',
+        activeIndex: '3',
         imageURL_header: "img/avatar/",
         imageURL_suffix: ".jpg",
         avatar:"001",
         city: "火星",
+
         user_name2:'测试用户',//用户昵称2
+
 
     },
 
@@ -17,18 +20,21 @@ let myHomePage_vm = new Vue({
         handleSelect(key, keyPath) {
             console.log("当前导航在:(key,keyPath)"+key, keyPath);
             switch (key){
-                case "1":{
+                case "1":window.location.assign("toHome");break;
+                case "2":window.location.assign("toProjectXuZhi");break;
+                case "3":{
                     this.$message({
                         type:'info',
-                        message:'您已经在【首页】，不必跳转。'
+                        message:'您已经在【众筹项目详情】，不必跳转。'
                     });
                     break;
                 }
-                case "2":window.location.assign("toProjectXuZhi");break;
-                case "3":window.location.assign("toProject");break;
                 case "4":window.location.assign("adminLogin");break;
                 default:break;
             }
+        },
+        backProject(){
+            window.location.assign("toProject");
         },
         signOut(){
             window.location.assign("userLogin");
@@ -58,6 +64,18 @@ let myHomePage_vm = new Vue({
             //     window.location.assign("userLogin");
             // });
         });
+
+        //用户众筹项目的ID
+        axios.get("/project/getProjectDetailSession").then(res => {
+
+            let data = res.data.data;
+
+            console.log(data)
+
+        }).catch(error => {
+            console.log("获取session信息失败！" + error);
+        });
+
 
     }
 });
