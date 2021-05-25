@@ -61,6 +61,7 @@ let adminFrame_vm = new Vue({
             // alert("num="+num);
             switch (num){
                 case 0:{
+                    layer.msg("即将进入注册用户管理页面",{icon:5});
                     $("#content_div").load("/admin/userManagement");
                     break;
                 }case 1:{

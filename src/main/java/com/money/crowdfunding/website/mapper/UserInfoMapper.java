@@ -2,10 +2,7 @@ package com.money.crowdfunding.website.mapper;
 
 
 import com.money.crowdfunding.website.model.UserInfo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -36,5 +33,7 @@ public interface UserInfoMapper {
     @Select("select count(*) from yonghuzhuce where yonghuming = #{name}")
     boolean selectUserInfoIsExistByName(@Param("name") String name);
 
+    @Update("update yonghuzhuce set issh = #{issh} where id = #{id}")
+    int updateIsshById(@Param("id")int id,@Param("issh")String issh);
 
 }

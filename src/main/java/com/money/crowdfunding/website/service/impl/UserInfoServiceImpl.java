@@ -74,4 +74,14 @@ public class UserInfoServiceImpl implements UserInfoService {
     public List<UserInfo> getAllUser() {
         return userInfoMapper.selectAllUser();
     }
+
+    @Override
+    public boolean disableUserAccount(Integer id) {
+        return userInfoMapper.updateIsshById(id,"D") > 0;
+    }
+
+    @Override
+    public boolean openUserAccount(Integer id) {
+        return userInfoMapper.updateIsshById(id,"O") > 0;
+    }
 }

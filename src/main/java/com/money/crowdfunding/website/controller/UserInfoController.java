@@ -60,5 +60,16 @@ public class UserInfoController {
         return HttpResult.ok().setData(userInfoService.getAllUser());
     }
 
+    //禁用用户账号
+    @PostMapping("/disableUserAccount")
+    public HttpResult disableUserAccount(@Param("id")Integer id){
+        return HttpResult.ok().setData(userInfoService.disableUserAccount(id));
+    }
+
+    //解封用户账号
+    @PostMapping("/openUserAccount")
+    public HttpResult openUserAccount(@Param("id")Integer id){
+        return HttpResult.ok().setData(userInfoService.openUserAccount(id));
+    }
 
 }

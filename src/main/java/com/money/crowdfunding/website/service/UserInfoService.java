@@ -6,8 +6,6 @@ import java.util.List;
 
 /**
  * 包:com.money.crowdfunding.website.service
- * 作者:王洪斌
- * 日期:2021/5/21
  * 项目:website
  * 描述:
  */
@@ -22,4 +20,8 @@ public interface UserInfoService {
     public boolean getLoginResult(String yonghuming, String mima);
 
     public List<UserInfo> getAllUser();
+
+    boolean disableUserAccount(Integer id);
+
+    boolean openUserAccount(Integer id);
 }

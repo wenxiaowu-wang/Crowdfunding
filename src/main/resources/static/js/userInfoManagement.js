@@ -1,5 +1,4 @@
 var npid = ''
-alert("js执行");
 layui.use(['table'], function () {
     var table = layui.table,
         $ = layui.jquery;   //申明jquery
@@ -8,9 +7,8 @@ layui.use(['table'], function () {
         layer.close(layer.index);
     });
 
-    alert("表格渲染");
 
-    //表格渲染
+    // 表格渲染
     table.render({
         elem: '#test'    //渲染
         , method: 'get'   //请求方式
@@ -19,34 +17,29 @@ layui.use(['table'], function () {
         ,url:'/user/getAllUser'
         , defaultToolbar: []     //工具栏右侧隐藏
         , title: '用户信息表'
-        , response: {statusCode: 200}
         , parseData: function (res) {  //res 即为原始返回的数据
             return {
-                "code": res.code, //解析接口状态
-                "msg": res.msg, //解析提示文本
-                "count": res.data.total, //解析数据长度
-                "data": res.data.records //解析数据列表
+                "code": 0, //解析接口状态
+                // "msg": res.msg, //解析提示文本
+                "count": res.data.length, //解析数据长度
+                "data": res.data //解析数据列表
             };
         }
         , cols: [[   //表格绑数据
-            {type: 'checkbox'}
-            , {field: 'id', title: '编号', align: 'center', width: 150}
-            , { field: 'yonghuming', title: '标题', align: 'center',width: 470,
-                templet: function (d) {
-                        // console.log("this is data[d]:"+JSON.stringify(d));
-                    return "<a style='color:#1b8eeb' onclick=\"viewcl('" + d.id + "')\">"+d.yonghuming+"</a>";
-                }}
-            , {field: 'xingming', title: '类别',hide:true, align: 'center'}
-            , {field: 'xingbie', title: '报送时间 ', align: 'center'}
-            , {field: 'chushengnianyue', title: '报送单位 ', align: 'center'}
-            , {field: 'qq', title: '报送单位 ', align: 'center'}
-            , {field: 'youxiang', title: '报送单位 ', align: 'center'}
-            , {field: 'dianhua', title: '报送单位 ', align: 'center'}
-            , {field: 'shenfenzheng', title: '报送单位 ', align: 'center'}
-            , {field: 'touxiang', title: '报送单位 ', align: 'center'}
-            , {field: 'dizhi', title: '报送单位 ', align: 'center'}
-            , {field: 'beizhu', title: '报送单位 ', align: 'center'}
-            , {field: 'addtime', title: '报送单位 ', align: 'center'}
+            // {type: 'checkbox'}
+            , {field: 'id', title: '编号', align: 'center', width: 25}
+            , {field: 'yonghuming', title: '用户名', align: 'center'}
+            , {field: 'xingming', title: '姓名', align: 'center'}
+            , {field: 'xingbie', title: '性别 ', align: 'center'}
+            , {field: 'chushengnianyue', title: '出生年月 ', align: 'center'}
+            , {field: 'qq', title: 'qq ', align: 'center'}
+            , {field: 'youxiang', title: '邮箱 ', align: 'center'}
+            , {field: 'dianhua', title: '电话 ', align: 'center'}
+            , {field: 'shenfenzheng', title: '身份证 ', align: 'center'}
+            , {field: 'touxiang', title: '头像 ', align: 'center'}
+            , {field: 'dizhi', title: '地址 ', align: 'center'}
+            , {field: 'beizhu', title: '备注 ', align: 'center'}
+            , {field: 'addtime', title: '创建时间 ', align: 'center'}
             // , {field: 'handleState', title: '签收情况 ', align: 'center',
             //     templet: function (d) {
             //         // console.log("this is data[d]:"+JSON.stringify(d));
@@ -56,37 +49,33 @@ layui.use(['table'], function () {
             //             return "<span style='color: #262424;'>"+d.handleState+"</span>";
             //         }
             //     }}
-            , {field:'operation', title: '操作', toolbar: '#barDemo', align: 'center',width: 360}
+            , {field:'operation', title: '操作', toolbar: '#barDemo', align: 'center',width: 200}
         ]],
-        request: {
-            page: 'pageCurrent' //页码的参数名称，默认：page
-            , limit: 'pageSize' //每页数据量的参数名，默认：limit
-        },
-        contentType: "application/json" //格式
+        // request: {
+        //     page: 'pageCurrent' //页码的参数名称，默认：page
+        //     , limit: 'pageSize' //每页数据量的参数名，默认：limit
+        // },
+        // contentType: "application/json" //格式
         // , headers: config.headers('getAllUser')
         // , error: config.error()
-        , page: true   //开启分页
-        , limits:[20,50,100,200] //控制多少行一页（默认五条一页）
-        , limit: 20
-        , where: {
-            // sysUnitInfoCondition: sysUnitInfoCondition
-        },    //给后台传数据
-        done: function (res, curr, count) {
-        }//回调
+        // , page: true   //开启分页
+        // , limits:[20,50,100,200] //控制多少行一页（默认五条一页）
+        // , limit: 20
+        // , where: {
+        //     // sysUnitInfoCondition: sysUnitInfoCondition
+        // }    //给后台传数据
+        // ,done: function (res, curr, count) {
+        // }//回调s
     });
+
 
 
     //监听行工具事件
     table.on('tool(test)', function(obj){
         npid = obj.data.id;
-        if (obj.event === 'assign'){
-            assignUnit();   //交办页面显示以及渲染和监听事件
-        }else if (obj.event === 'upload'){
-            uploadLeaderOpinion(npid);
-        }else if (obj.event === 'look'){
-            viewcl(npid);
-        }else if (obj.event === 'end'){
-            layer.confirm('确认结束该条工作流？', {
+        let userName = obj.data.yonghuming;
+        if (obj.event === 'open'){
+            layer.confirm('确认启用【'+userName+'】用户账号？', {
                 time: 20000, //20s后自动关闭
                 btn: ['确认', '取消']
                 ,btn2: function(index, layero){
@@ -94,14 +83,23 @@ layui.use(['table'], function () {
                 }
             }, function(index, layero){
                 //按钮【按钮一】的回调
-                endProcess(npid);
+                openAccount(npid);   //启用用户账号
             });
-        }else if (obj.event === 'assess'){
-            //处理人评论发起人的报送内容
-            assess(npid);
-        }else if (obj.event === 'look_assess'){
-            //查看处理人对发起人的报送内容的评论内容
-            lookAssess(npid);
+        }else if (obj.event === 'upload'){
+            uploadLeaderOpinion(npid);  //修改用户账号信息
+        }else if (obj.event === 'look'){
+            viewcl(npid);       //查看用户详情信息
+        }else if (obj.event === 'end'){
+            layer.confirm('确认禁用【'+userName+'】用户账号？', {
+                time: 20000, //20s后自动关闭
+                btn: ['确认', '取消']
+                ,btn2: function(index, layero){
+                    //按钮【按钮二】的回调
+                }
+            }, function(index, layero){
+                //按钮【按钮一】的回调
+                endAccount(npid);   //禁用对应用户账号
+            });
         }
     });
 
@@ -337,35 +335,54 @@ function uploadLeaderOpinion(npid){
 
     });
 }
-//结束该npid对应的办公厅处理流程
-function endProcess(npid){
-    config.post_ajax(config.occ_url() + "/occ-deal/endBgtProcess", {
-        async: false,
-        // contentType:"application/json;charset=UTF-8",
-        data: {
-            npid:npid
-        },
+//禁用id对应的用户账号
+function endAccount(id){
+    $.ajax({
+        url: "/user/disableUserAccount",
+        type: "POST",
+        data: {'id':id},
+        dataType: 'json',
         success: function (res) {
-            layer.closeAll('page');    //关闭所有页面层
-            if (res.code === 200) {
-                let getData = res.data;
-                if (getData){
-                    layer.msg("报告处理完成", {
-                        icon: 6,
-                        time: 1500, //1.5s后自动关闭
-                    }, function () {
-                        // refreshBgtDbTable();    //刷新表格
-                        window.location.reload();
-                    });
-                }else {
-                    layer.msg('报告处理失败！', {
-                        icon: 5,
-                        time: 2000, //2s后自动关闭
-                    });
-                }
+            // console.log(res);
+            let theResult = res.data;
+            if (theResult) {
+                //登录成功，进行的操作:在当前界面跳进入管理员主界面；
+                //跳转界面
+                // window.location.assign("toAdminMain");
+                window.location.reload();
+            } else {
+                layer.msg('禁用账号失败！', {
+                    icon: 5,
+                    time: 1500, //1.5s后自动关闭
+                });
             }
         }
-    }, "endBgtProcess");
+    });
+}
+
+//启用id对应的用户账号
+function openAccount(id){
+    $.ajax({
+        url: "/user/disableUserAccount",
+        type: "POST",
+        data: {'id':id},
+        dataType: 'json',
+        success: function (res) {
+            // console.log(res);
+            let theResult = res.data;
+            if (theResult) {
+                //登录成功，进行的操作:在当前界面跳进入管理员主界面；
+                //跳转界面
+                // window.location.assign("toAdminMain");
+                window.location.reload();
+            } else {
+                layer.msg('禁用账号失败！', {
+                    icon: 5,
+                    time: 1500, //1.5s后自动关闭
+                });
+            }
+        }
+    });
 }
 
 // 填写评价

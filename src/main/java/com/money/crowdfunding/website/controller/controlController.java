@@ -2,6 +2,7 @@ package com.money.crowdfunding.website.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 包:com.money.crowdfunding.website.controller
@@ -55,7 +56,10 @@ public class controlController {
     }
 
     @RequestMapping("/admin/userManagement")
-    public String userManagement(){
-        return "html/userInfoManagement";
+    public ModelAndView userManagement(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("html/userInfoManagement");
+        modelAndView.addObject("key","注册用户信息");
+        return modelAndView;
     }
 }

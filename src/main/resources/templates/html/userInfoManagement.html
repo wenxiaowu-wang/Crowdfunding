@@ -14,7 +14,7 @@
     <!-- 头部工具栏 -->
     <div>
         <blockquote class="layui-elem-quote">
-            <span >注册用户管理</span>
+            <span th:text="${key}">注册用户管理</span>
             <div style="float:right;margin-top: -7px">
                 <!--  <a class="layui-btn layui-btn-normal layui-btn-sm" onclick="openAdd()">汇总上报</a>-->
 
@@ -29,25 +29,40 @@
     </div>
     <script type="text/html" id="barDemo">
         <a class="layui-btn  layui-btn-normal layui-btn-xs" lay-event="look">查看</a>
-        <a class="layui-btn  layui-btn-danger layui-btn-xs" lay-event="assign">交办</a>
-        {{#  if(d.handleState === "未签收"){ }}
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="upload">领导批示</a>
-        {{# }else if(d.handleState === "办理中"){ }}
-        &nbsp;&nbsp;
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="end">结束</a>&nbsp;&nbsp;&nbsp;
-        {{# } }}
-        {{#  if(d.dealAssess === "" || d.dealAssess === null){ }}
-        &nbsp;
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="assess">评价</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<!--        {{#  if(d.handleState === "未签收"){ }}-->
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="upload">修改</a>
+<!--        {{# }else if(d.handleState === "办理中"){ }}-->
+        {{#  if(d.issh === "D"){ }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="end">禁用</a>
         {{# }else{ }}
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="look_assess">查看评价</a>&nbsp;&nbsp;&nbsp;
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="open">启用</a>
         {{# } }}
 
-
-        <!--        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="no">不采纳</a>-->
     </script>
     <script type="text/html" id="evname">
         <a  onclick="skip('{{ d.unitID }}')" class="layui-table-link" target="_blank">{{ d.name}}</a>
+    </script>
+    <script type="text/javascript">
+        // var attachmentIDs="";
+        // var attachmentfjIDS="";
+        // var myuploader = new uploader();
+        // var NPID = Utils.getUrlParam("npid");
+        // alert(npid);
+        // layui.use(['table', 'layer', 'form', 'element'], function (exports) {
+        //     var $ = layui.$;
+        //     config.post_ajax(config.url() + "/GetSysAttachmentbytp", {
+        //         data: {TableName: "occ_nspaper", Primarykey: NPID},
+        //         success: function (res) {
+        //             myuploader.init({
+        //                 server: config.url() + '/upload',
+        //                 swf: '/home/common/js/Uploader.swf'
+        //             }, {
+        //                 container: '#uploadfj',
+        //             }, res.data);
+        //         }
+        //     }, "GetSysAttachmentbytp");
+        // });
+
     </script>
 </div>
 <script src="js/common/layui.js"></script>
