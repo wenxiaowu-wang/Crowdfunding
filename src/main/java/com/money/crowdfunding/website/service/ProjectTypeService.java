@@ -1,6 +1,8 @@
 package com.money.crowdfunding.website.service;
 
+import com.money.crowdfunding.website.model.TouZiDingDan;
 import com.money.crowdfunding.website.model.XiangMuLeiBie;
+import com.money.crowdfunding.website.model.ZhongChouXiangMu;
 
 import java.util.List;
 import java.util.Map;
@@ -21,4 +23,10 @@ public interface ProjectTypeService {
 
     //解封一条类别记录
     Map<String,Object> openOne(Integer id);
+
+    //getAllProject
+    List<ZhongChouXiangMu> getAllProjectList();
+
+    //getAllOrder
+    List<TouZiDingDan> getAllOrderList();
 }

@@ -1,7 +1,9 @@
 package com.money.crowdfunding.website.service.impl;
 
 import com.money.crowdfunding.website.mapper.ProjectTypeMapper;
+import com.money.crowdfunding.website.model.TouZiDingDan;
 import com.money.crowdfunding.website.model.XiangMuLeiBie;
+import com.money.crowdfunding.website.model.ZhongChouXiangMu;
 import com.money.crowdfunding.website.service.ProjectTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,6 +95,16 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
                 return map;
             }
         }
+    }
+
+    @Override
+    public List<ZhongChouXiangMu> getAllProjectList() {
+        return projectTypeMapper.getAllProjectList();
+    }
+
+    @Override
+    public List<TouZiDingDan> getAllOrderList() {
+        return projectTypeMapper.getAllOrderList();
     }
 
     //查重

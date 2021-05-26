@@ -52,6 +52,14 @@ public class ProjectTypeController {
         return HttpResult.ok().setData(data).setMsg((String) map.get("msg"));
     }
 
+    @GetMapping("/getAllProjectList")
+    public HttpResult getAllProjectList() {
+        return HttpResult.ok().setData(projectTypeService.getAllProjectList());
+    }
 
+    @GetMapping("/getAllOrderList")
+    public HttpResult getAllOrderList() {
+        return HttpResult.ok().setData(projectTypeService.getAllOrderList());
+    }
 
 }

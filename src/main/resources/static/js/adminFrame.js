@@ -70,6 +70,16 @@ let adminFrame_vm = new Vue({
                     $("#content_div").load("/admin/crowdfundingTypeManagement");
                     break;
                 }case 2:{
+                    // $("#content_div").load("/adminLogin");
+                    layer.msg("即将进入众筹项目管理页面",{icon:5});
+                    $("#content_div").load("/admin/crowdfundingProjectManagement");
+                    break;
+                }case 3:{
+                    // $("#content_div").load("/adminLogin");
+                    layer.msg("即将进入众筹项目订单管理页面",{icon:5});
+                    $("#content_div").load("/admin/crowdfundingOrderManagement");
+                    break;
+                }case 4:{
                     $.ajax({
                         url: "/admin/getSession",
                         type: "GET",

@@ -1,6 +1,8 @@
 package com.money.crowdfunding.website.mapper;
 
+import com.money.crowdfunding.website.model.TouZiDingDan;
 import com.money.crowdfunding.website.model.XiangMuLeiBie;
+import com.money.crowdfunding.website.model.ZhongChouXiangMu;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public interface ProjectTypeMapper {
     @Update("update xiangmuleibie set leibie = #{leibie} where id = #{id}")
     int updateOneAdminById(@Param("leibie")String type,@Param("id")int id);
 
-    //getAll
+    //getAllType
     @Select("select * from xiangmuleibie")
     List<XiangMuLeiBie> getAllList();
 
@@ -34,6 +36,11 @@ public interface ProjectTypeMapper {
     @Update("update xiangmuleibie set isdelete = #{isdelete} where id = #{id}")
     int updateOneIsDeleteById(@Param("isdelete")String isdelete,@Param("id")int id);
 
+    //getAllProject
+    @Select("select * from zhongchouxiangmu limit 12")
+    List<ZhongChouXiangMu> getAllProjectList();
 
-
+    //getAllOrder
+    @Select("select * from touzidingdan limit 12")
+    List<TouZiDingDan> getAllOrderList();
 }

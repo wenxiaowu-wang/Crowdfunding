@@ -106,5 +106,19 @@ public class controlController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/crowdfundingProjectManagement")
+    public ModelAndView crowdfundingProjectManagement() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("html/crowdfundingProjectManage");
+        modelAndView.addObject("key", "众筹项目");
+        return modelAndView;
+    }
 
+    @RequestMapping("/admin/crowdfundingOrderManagement")
+    public ModelAndView crowdfundingOrderManagement() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("html/crowdfundingOrderManage");
+        modelAndView.addObject("key", "众筹项目订单");
+        return modelAndView;
+    }
 }
