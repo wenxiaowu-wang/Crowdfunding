@@ -25,6 +25,10 @@ public interface UserInfoService {
 
     boolean openUserAccount(Integer id);
 
+    boolean updateUser(String xingbie,String chushengnianyue,String qq,String youxiang,String dianhua,String dizhi,String yonghuming);
+
+    boolean updatePwd(String mima,String yonghuming);
+
     UserInfo getUserInfoById(Integer id);
 
     boolean updateUserInfoById(UserInfo userInfo);

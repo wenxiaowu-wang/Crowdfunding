@@ -73,6 +73,11 @@ public class controlController {
         return "html/usersRegistrationInterface";
     }
 
+    @RequestMapping("/toPersonalCenter")
+    public String toPersonalCenter() {
+        return "html/personalCenter";
+    }
+
     @RequestMapping("/admin/userManagement")
     public ModelAndView userManagement() {
         ModelAndView modelAndView = new ModelAndView();
