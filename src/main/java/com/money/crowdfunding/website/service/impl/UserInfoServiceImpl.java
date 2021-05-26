@@ -84,4 +84,16 @@ public class UserInfoServiceImpl implements UserInfoService {
     public boolean openUserAccount(Integer id) {
         return userInfoMapper.updateIsshById(id,"O") > 0;
     }
+
+    @Override
+    public UserInfo getUserInfoById(Integer id) {
+        return userInfoMapper.selectUserById(id);
+    }
+
+    @Override
+    public boolean updateUserInfoById(UserInfo userInfo) {
+        return userInfoMapper.updateUserInfoById(userInfo.getId(),userInfo.getIssh(), userInfo.getXingming(), userInfo.getQq(), userInfo.getYouxiang(), userInfo.getDianhua(), userInfo.getTouxiang(), userInfo.getDizhi(), userInfo.getChushengnianyue()) > 0;
+    }
+
+
 }

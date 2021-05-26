@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>用户编辑</title>
+    <link rel="stylesheet" href="css/common/layui.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <script src="js/common/jquery.js"></script>
+</head>
+<body>
+<div id="userEditOfManage" style="max-width: 50%;text-align: center;margin-left:25%; margin-top: 20px;" >
+    <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="用户名">
+            <el-input v-model="form.yonghuming" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+            <el-input v-model="form.mima" show-password :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="姓名">
+            <el-input v-model="form.xingming"></el-input>
+        </el-form-item>
+        <el-form-item label="QQ">
+            <el-input v-model="form.qq"></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱">
+            <el-input v-model="form.youxiang"></el-input>
+        </el-form-item>
+        <el-form-item label="电话">
+            <el-input v-model="form.dianhua"></el-input>
+        </el-form-item>
+        <el-form-item label="身份证">
+            <el-input v-model="form.shenfenzheng" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="头像">
+            <el-input v-model="form.touxiang"></el-input>
+        </el-form-item>
+        <el-form-item label="地址">
+            <el-input v-model="form.dizhi"></el-input>
+        </el-form-item>
+        <el-form-item label="注册时间">
+            <el-input v-model="form.name" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="出生年月">
+            <el-col :span="11">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form.chushengnianyue" style="width: 100%;"></el-date-picker>
+            </el-col>
+<!--            <el-col class="line" :span="2">-</el-col>-->
+<!--            <el-col :span="11">-->
+<!--                <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>-->
+<!--            </el-col>-->
+        </el-form-item>
+        <el-form-item label="是否禁用">
+            <el-switch v-model="form.issh"></el-switch>
+        </el-form-item>
+        <el-form-item label="性别">
+            <el-radio-group v-model="form.xingbie">
+                <el-radio label="男"></el-radio>
+                <el-radio label="女"></el-radio>
+            </el-radio-group>
+        </el-form-item>
+        <el-form-item label="备注">
+            <el-input type="textarea" v-model="form.beizhu"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit()">修改</el-button>
+            <el-button @click="cancel()">取消</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+<script src="js/common/layui.js"></script>
+</body>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/userEditOfManage.js"></script>
+
+</html>

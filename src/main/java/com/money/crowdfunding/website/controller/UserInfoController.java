@@ -72,4 +72,19 @@ public class UserInfoController {
         return HttpResult.ok().setData(userInfoService.openUserAccount(id));
     }
 
+    //获取跳转到userEditOfManage的缓存id对应的用户信息
+    @GetMapping("/getUserBySessionId")
+    public HttpResult getUserByName(HttpSession httpSession){
+        Integer id = (Integer) httpSession.getAttribute("userEditId");
+        UserInfo userInfo = userInfoService.getUserInfoById(id);
+        return HttpResult.ok().setData(userInfo);
+    }
+
+    //修改信息
+    @PostMapping("/updateUserById")
+    public HttpResult updateUserById(UserInfo userInfo){
+        return HttpResult.ok().setData(userInfoService.updateUserInfoById(userInfo));
+    }
+
+
 }

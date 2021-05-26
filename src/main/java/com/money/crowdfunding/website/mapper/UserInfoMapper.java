@@ -36,4 +36,10 @@ public interface UserInfoMapper {
     @Update("update yonghuzhuce set issh = #{issh} where id = #{id}")
     int updateIsshById(@Param("id")int id,@Param("issh")String issh);
 
+    @Select("select * from yonghuzhuce where id = #{id}")
+    UserInfo selectUserById(@Param("id")int id);
+
+    @Update("update yonghuzhuce set xingming = #{xingming},qq=#{qq},youxiang=#{youxiang},dianhua=#{dianhua},touxiang=#{touxiang},dizhi=#{dizhi},chushengnianyue=#{chushengnianyue},issh = #{issh} where id = #{id}")
+    int updateUserInfoById(@Param("id")int id,@Param("issh")String issh,@Param("xingming")String xingming,@Param("qq")String qq,@Param("youxiang")String youxiang,@Param("dianhua")String dianhua,@Param("touxiang")String touxiang,@Param("dizhi")String dizhi,@Param("chushengnianyue")String chushengnianyue);
+
 }

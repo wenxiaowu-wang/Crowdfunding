@@ -24,4 +24,8 @@ public interface UserInfoService {
     boolean disableUserAccount(Integer id);
 
     boolean openUserAccount(Integer id);
+
+    UserInfo getUserInfoById(Integer id);
+
+    boolean updateUserInfoById(UserInfo userInfo);
 }

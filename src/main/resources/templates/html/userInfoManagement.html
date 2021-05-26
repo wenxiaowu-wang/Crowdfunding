@@ -28,16 +28,12 @@
         <table  class="layui-hide" id="test" lay-filter="test"></table>
     </div>
     <script type="text/html" id="barDemo">
-        <a class="layui-btn  layui-btn-normal layui-btn-xs" lay-event="look">查看</a>
-<!--        {{#  if(d.handleState === "未签收"){ }}-->
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="upload">修改</a>
-<!--        {{# }else if(d.handleState === "办理中"){ }}-->
-        {{#  if(d.issh === "D"){ }}
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="end">禁用</a>
-        {{# }else{ }}
+<!--        {{# if (d.issh === "D"){ }}-->
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="open">启用</a>
-        {{# } }}
-
+<!--        {{# }else{ }}-->
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="end">禁用</a>
+<!--        {{# } }}-->
     </script>
     <script type="text/html" id="evname">
         <a  onclick="skip('{{ d.unitID }}')" class="layui-table-link" target="_blank">{{ d.name}}</a>
@@ -64,6 +60,42 @@
         // });
 
     </script>
+</div>
+<!--修改弹窗-->
+<div id="uploadPanel" style="display: none;text-align: center;" class="layui-fluid">
+    <!--头部工具栏-->
+    <form class="layui-form" action="" id="uploadForm" lay-filter="uploadForm" style="padding-top: 10px;">
+        <div class="layui-form-item layui-form-text layui-row">
+            <label class="layui-form-label layui-col-xs1" style="padding-top: 10px;">领导意见：</label>
+            <div class="layui-input-block" style="text-align: left;width: 70%;margin-bottom: 10px;">
+                <textarea placeholder="请输入内容" class="layui-textarea" id="feedback"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text layui-row">
+            <label class="layui-form-label layui-col-xs1" style="padding-top: 10px;">领导姓名：</label>
+            <div class="layui-input-block" style="text-align: left;width: 70%;margin-bottom: 10px;">
+                <input type="text" name="leaderName" id="leaderName" placeholder="请输入领导名字" autocomplete="off" class="layui-input" required>
+            </div>
+        </div>
+        <!--下面的不需修改-->
+        <div class="layui-form-item layui-row">
+            <label class="layui-form-label layui-col-xs1" style="padding-top: 10px;">附件：</label>
+            <div class="layui-input-inline divwidth">
+                <div id="uploadfj" class="layui-upload" style="text-align: left;width: 600px;">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row" style="height: 20px;"></div>
+
+    </form>
+    <div class="layui-row" style="padding-bottom: 30px;">
+        <div class="layui-input-block layui-col-xs1 layui-col-xs-offset4" style="margin-left: 300px;">
+            <button  class="layui-btn" id="submit_now">立即提交</button>
+        </div>
+    </div>
+    <div>
+
+    </div>
 </div>
 <script src="js/common/layui.js"></script>
 </body>

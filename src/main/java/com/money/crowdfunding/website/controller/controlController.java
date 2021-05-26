@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 包:com.money.crowdfunding.website.controller
  * 作者:
@@ -62,4 +64,18 @@ public class controlController {
         modelAndView.addObject("key","注册用户信息");
         return modelAndView;
     }
+
+    @RequestMapping("/userEditOfManage")
+    public String userEditOfManage(){
+        return "html/userEditOfManagement";
+    }
+
+    @RequestMapping("/setUserEditIdToSession/{id}")
+    @ResponseBody
+    public int setUserEditIdToSession(@PathVariable("id")Integer id,HttpSession httpSession){
+        httpSession.setAttribute("userEditId",id);
+        return (int) httpSession.getAttribute("userEditId");
+    }
+
+
 }

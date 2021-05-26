@@ -48,4 +48,6 @@ public class AdminController {
         System.out.println(admin);
         return HttpResult.ok().setData(admin);
     }
+
+
 }

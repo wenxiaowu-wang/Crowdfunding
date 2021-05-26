@@ -28,15 +28,15 @@ layui.use(['table'], function () {
         , cols: [[   //表格绑数据
             // {type: 'checkbox'}
             , {field: 'id', title: '编号', align: 'center', width: 25}
-            , {field: 'yonghuming', title: '用户名', align: 'center'}
-            , {field: 'xingming', title: '姓名', align: 'center'}
-            , {field: 'xingbie', title: '性别 ', align: 'center'}
+            , {field: 'yonghuming', title: '用户名', align: 'center',width: 30}
+            , {field: 'xingming', title: '姓名', align: 'center',width: 25}
+            , {field: 'xingbie', title: '性别 ', align: 'center',width: 25}
             , {field: 'chushengnianyue', title: '出生年月 ', align: 'center'}
             , {field: 'qq', title: 'qq ', align: 'center'}
             , {field: 'youxiang', title: '邮箱 ', align: 'center'}
             , {field: 'dianhua', title: '电话 ', align: 'center'}
             , {field: 'shenfenzheng', title: '身份证 ', align: 'center'}
-            , {field: 'touxiang', title: '头像 ', align: 'center'}
+            , {field: 'touxiang', title: '头像 ',hide:true, align: 'center'}
             , {field: 'dizhi', title: '地址 ', align: 'center'}
             , {field: 'beizhu', title: '备注 ', align: 'center'}
             , {field: 'addtime', title: '创建时间 ', align: 'center'}
@@ -75,31 +75,61 @@ layui.use(['table'], function () {
         npid = obj.data.id;
         let userName = obj.data.yonghuming;
         if (obj.event === 'open'){
-            layer.confirm('确认启用【'+userName+'】用户账号？', {
-                time: 20000, //20s后自动关闭
-                btn: ['确认', '取消']
-                ,btn2: function(index, layero){
-                    //按钮【按钮二】的回调
-                }
-            }, function(index, layero){
-                //按钮【按钮一】的回调
-                openAccount(npid);   //启用用户账号
-            });
+            openAccount(npid);   //启用用户账号
+            // layer.confirm('确认启用【'+userName+'】用户账号？', {
+            //     time: 20000, //20s后自动关闭
+            //     btn: ['确认', '取消']
+            //     ,btn2: function(index, layero){
+            //         //按钮【按钮二】的回调
+            //     }
+            // }, function(index, layero){
+            //     //按钮【按钮一】的回调
+            //     openAccount(npid);   //启用用户账号
+            // });
         }else if (obj.event === 'upload'){
-            uploadLeaderOpinion(npid);  //修改用户账号信息
+            axios.post("/setUserEditIdToSession/" +
+                npid).then(response =>{
+                //response.data本身即为字符串格式，JSON处理是为了将整个response对象解析成字符串，否则直接打印response为Object
+                let theResult = response.data;
+                if (theResult) {
+                    //登录成功，进行的操作:在当前界面跳进入管理员主界面；
+                    //跳转界面
+                    window.open("/userEditOfManage"); //修改用户账号信息界面
+                } else {
+                    this.$message({
+                        type: 'error',
+                        message: '系统错误'
+                    });
+                }
+            }).catch(error =>{
+                console.log("跳转失败+" + error);
+            });
         }else if (obj.event === 'look'){
             viewcl(npid);       //查看用户详情信息
         }else if (obj.event === 'end'){
-            layer.confirm('确认禁用【'+userName+'】用户账号？', {
-                time: 20000, //20s后自动关闭
-                btn: ['确认', '取消']
-                ,btn2: function(index, layero){
-                    //按钮【按钮二】的回调
-                }
-            }, function(index, layero){
-                //按钮【按钮一】的回调
-                endAccount(npid);   //禁用对应用户账号
-            });
+            endAccount(npid);   //禁用对应用户账号
+            // alert("选中禁用按钮");
+            // this.$confirm('确认禁用【'+userName+'】用户账号？', '提示', {
+            //     confirmButtonText: '确定',
+            //     cancelButtonText: '取消',
+            //     type: 'warning'
+            // }).then(() => {
+            //     endAccount(npid);   //禁用对应用户账号
+            // }).catch(() => {
+            //
+            // });
+
+            // layer.confirm('确认禁用【'+userName+'】用户账号？', {
+            //     zIndex:1,
+            //     time: 20000, //20s后自动关闭
+            //     btn: ['确认', '取消']
+            //     ,btn2: function(index, layero){
+            //         //按钮【按钮二】的回调
+            //     }
+            // }, function(index, layero){
+            //     //按钮【按钮一】的回调
+            //     endAccount(npid);   //禁用对应用户账号
+            // });
         }
     });
 
@@ -349,7 +379,9 @@ function endAccount(id){
                 //登录成功，进行的操作:在当前界面跳进入管理员主界面；
                 //跳转界面
                 // window.location.assign("toAdminMain");
-                window.location.reload();
+                // window.location.reload();
+
+                refreshBgtDbTable();
             } else {
                 layer.msg('禁用账号失败！', {
                     icon: 5,
@@ -363,7 +395,7 @@ function endAccount(id){
 //启用id对应的用户账号
 function openAccount(id){
     $.ajax({
-        url: "/user/disableUserAccount",
+        url: "/user/openUserAccount",
         type: "POST",
         data: {'id':id},
         dataType: 'json',
@@ -374,9 +406,11 @@ function openAccount(id){
                 //登录成功，进行的操作:在当前界面跳进入管理员主界面；
                 //跳转界面
                 // window.location.assign("toAdminMain");
-                window.location.reload();
+                // window.location.reload();
+
+                refreshBgtDbTable();
             } else {
-                layer.msg('禁用账号失败！', {
+                layer.msg('启用账号失败！', {
                     icon: 5,
                     time: 1500, //1.5s后自动关闭
                 });
@@ -474,21 +508,21 @@ function refreshBgtDbTable(){
             {
                 reload: function () {
                     //执行重载
-                    sysUnitInfoCondition_value = {
-                        dateRange: $('#dateRange').val(),
-                        personName: "%" + $('#personName').val() + "%",
-                        unitName: "%" + $('#unitName').val() + "%",
-                        titleKey: "%" + $('#titleKey').val() + "%"  //大搜索框
-                    };
+                    // sysUnitInfoCondition_value = {
+                    //     dateRange: $('#dateRange').val(),
+                    //     personName: "%" + $('#personName').val() + "%",
+                    //     unitName: "%" + $('#unitName').val() + "%",
+                    //     titleKey: "%" + $('#titleKey').val() + "%"  //大搜索框
+                    // };
                     // console.log("执行重载");
                     table.reload('idTest',
                         {
                             page: {
                                 curr: 1
                             },//重新从第 1 页开始
-                            where: {
-                                sysUnitInfoCondition: sysUnitInfoCondition_value
-                            }
+                            // where: {
+                            //     sysUnitInfoCondition: sysUnitInfoCondition_value
+                            // }
                         });
                     layer.close(layer.index);
                 }
