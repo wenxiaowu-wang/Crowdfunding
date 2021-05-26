@@ -2,54 +2,172 @@ let myHomePage_vm = new Vue({
     el: "#myHomePage",
     data: {
 
-        reloadTest:"",
+        reloadTest: "",
         topTips: "返回首页",
         activeIndex: '3',
         imageURL_header: "img/avatar/",
         imageURL_suffix: ".jpg",
-        avatar:"001",
+        avatar: "001",
         city: "火星",
 
-        user_name2:'测试用户',//用户昵称2
+        user_name2: '测试用户',//用户昵称2
 
-        biaoti:'',
-        leibie:'',
-        zhongchoujine:'',
-        qixian:'',
-        shouyi:'',//
-        addtime:'',
-        faburen:'',
-        xiangqing:'',
-        picture:'001',
+        biaoti: '',
+        leibie: '',
+        zhongchoujine: '',
+        qixian: '',
+        shouyi: '',//
+        addtime: '',
+        faburen: '',
+        xiangqing: '',
+        picture: '001',
+
+        projectId:'',
+
+        dialogFormVisible: false,
+        dialogVisible: false,
+
+
+        textarea:'',//评论内容
+        commentData: [{
+            user_id: '1',
+            user_name: 'fu测试1',
+            head_portrait: '001',//用户头像
+            comment_time: '2020-12-12',
+            comment_content: '测试评论内容',
+            comment_id: '1',
+        }],
+
+
+        //投资
+        alipayVisible: false,
+        weChatVisible: false,
+        paymentCheck: "",
+        form: {
+            name: "汪汪汪",
+            method:"0",
+            money:10
+        },
+        formLabelWidth: '120px',
+        alipayImg: "../img/pay/支付宝.png",
+        weChatImg: "../img/pay/微信.png",
 
     },
 
     methods: {
         //导航栏切换
         handleSelect(key, keyPath) {
-            console.log("当前导航在:(key,keyPath)"+key, keyPath);
-            switch (key){
-                case "1":window.location.assign("toHome");break;
-                case "2":window.location.assign("toProjectXuZhi");break;
-                case "3":{
+            console.log("当前导航在:(key,keyPath)" + key, keyPath);
+            switch (key) {
+                case "1":
+                    window.location.assign("toHome");
+                    break;
+                case "2":
+                    window.location.assign("toProjectXuZhi");
+                    break;
+                case "3": {
                     this.$message({
-                        type:'info',
-                        message:'您已经在【众筹项目详情】，不必跳转。'
+                        type: 'info',
+                        message: '您已经在【众筹项目详情】，不必跳转。'
                     });
                     break;
                 }
-                case "4":window.location.assign("adminLogin");break;
-                default:break;
+                case "4":
+                    window.location.assign("adminLogin");
+                    break;
+                default:
+                    break;
             }
         },
-        backProject(){
+        backProject() {
             window.location.assign("toProject");
         },
-        signOut(){
+        signOut() {
             window.location.assign("userLogin");
         },
-        personally(){
+        personally() {
             alert("代码未实现")
+        },
+        comment() {
+            this.dialogFormVisible = true;
+            // alert(this.projectId)
+        },
+        investment(){
+            this.dialogVisible = true;
+            // alert(this.projectId)
+        },
+        submit_comment() {
+            if (this.textarea === "") {
+                this.$message({
+                    type: 'error',
+                    message: '请输入评论信息！'
+                });
+            } else {
+                axios.post("/project/setComment/"
+                    + this.user_name2 + "/" + this.textarea + "/" + this.projectId).then(response => {
+                    let result = response.data.data;
+                    console.log(result);
+                    console.log(result);
+                    console.log(result);
+                    console.log(result);
+                    if (result === true) {
+                        this.$message({
+                            type: 'success',
+                            message: '回复评论成功！'
+                        });
+                        this.textarea = '';
+                    }
+                }).catch(error => {
+                    this.$message({
+                        type: 'error',
+                        message: '网络异常！'
+                    });
+                    console.log(error);
+                });
+            }
+        },
+
+        paymentCommit(){
+            if (this.paymentCheck === "1234"){
+                this.topUpsCommit();
+            }else{
+                this.$message({
+                    type:"error",
+                    message:"付款接收码错误，请重试!"
+                });
+            }
+        },
+        topUpsCommit(){
+            let method = parseInt(this.form.method);//将表单数据中的支付方式数据类型由string转为number
+            axios.post("/shaohuashuwu/transactionInfoController/topUpsGoldBean/"
+                +method+"/"
+                +this.form.money
+            ).then(response => {
+                if (response.data){
+                    this.dialogVisible = false;
+                    this.alipayVisible = false;
+                    this.weChatVisible = false;
+                    this.paymentCheck = "";
+                    this.$message({
+                        type:"success",
+                        message:"充值成功！"
+                    });
+                    //重定向本界面
+                    window.location.assign("../pages/personalAccountInterface.html");
+                }else{
+                    this.paymentCheck = "";
+                    this.$message({
+                        type:"error",
+                        message:"充值失败！"
+                    });
+                }
+            }).catch(error => {
+                this.paymentCheck = "";
+                this.dialogFormVisible = false;
+                this.alipayVisible = false;
+                this.weChatVisible = false;
+                alert("系统错误"+error);
+            });
         },
     },
     mounted() {
@@ -60,6 +178,7 @@ let myHomePage_vm = new Vue({
             let data = res.data.data;
             this.user_name2 = data.yonghuming;
             this.avatar = data.touxiang;
+            form.name = data.yonghuming;
 
         }).catch(error => {
             console.log("获取session信息失败！" + error);
@@ -78,23 +197,47 @@ let myHomePage_vm = new Vue({
         axios.get("/project/getProjectDetailSession").then(res => {
 
             let data = res.data.data;
-
             console.log(data)
 
+            this.projectId = data;
             axios.get('/project/getZhongChouDetail/' +
-                data ).then(ress => {
+                data).then(ress => {
 
-                let data =ress.data.data;
-
+                let data = ress.data.data;
                 this.biaoti = data.biaoti;
-                this.leibie =data.leibie;
-                this.zhongchoujine =data.zhongchoujine;
-                this.qixian =data.qixian;
-                this.shouyi =data.shouyi;
-                this.addtime =data.addtime;
-                this.faburen =data.faburen;
-                this.xiangqing =data.xiangqing;
-                this.picture=data.picture;
+                this.leibie = data.leibie;
+                this.zhongchoujine = data.zhongchoujine;
+                this.qixian = data.qixian;
+                this.shouyi = data.shouyi;
+                this.addtime = data.addtime;
+                this.faburen = data.faburen;
+                this.xiangqing = data.xiangqing;
+                this.picture = data.picture;
+
+            }).catch(error => {
+                this.$message({
+                    type: 'error',
+                    message: '网络错误！'
+                });
+            });
+
+            axios.get('/project/getComment/' +
+                data).then(resss => {
+                let data=resss.data.data
+                let tableData=[];
+                data.forEach(function (value) {
+
+                    let list = {
+                        user_id: value["pinglunren"],
+                        user_name: value["yonghuming"],
+                        head_portrait: value["touxiang"],
+                        comment_time: value["addtime"],
+                        comment_content: value["pinglunneirong"],
+                        comment_id: value["xinwenid"],
+                    };
+                    tableData.push(list);
+                });
+                this.commentData = tableData;
 
             }).catch(error => {
                 this.$message({

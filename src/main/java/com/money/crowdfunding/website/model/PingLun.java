@@ -3,6 +3,7 @@ package com.money.crowdfunding.website.model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * 包:com.money.crowdfunding.website.model
@@ -13,12 +14,12 @@ import java.io.Serializable;
 public class PingLun implements Serializable {
 
     private Integer id;
-    private String xinweiid;
+    private String xinwenid;
     private String pinglunneirong;
     private String pinglunren;
     private String pingfen;
     private String biao;
-    private String addtime;
+    private Timestamp addtime;
 
     public Integer getId() {
         return id;
@@ -28,12 +29,12 @@ public class PingLun implements Serializable {
         this.id = id;
     }
 
-    public String getXinweiid() {
-        return xinweiid;
+    public String getXinwenid() {
+        return xinwenid;
     }
 
-    public void setXinweiid(String xinweiid) {
-        this.xinweiid = xinweiid;
+    public void setXinwenid(String xinweiid) {
+        this.xinwenid = xinwenid;
     }
 
     public String getPinglunneirong() {
@@ -68,11 +69,11 @@ public class PingLun implements Serializable {
         this.biao = biao;
     }
 
-    public String getAddtime() {
+    public Timestamp getAddtime() {
         return addtime;
     }
 
-    public void setAddtime(String addtime) {
+    public void setAddtime(Timestamp addtime) {
         this.addtime = addtime;
     }
 
@@ -80,12 +81,12 @@ public class PingLun implements Serializable {
     public String toString() {
         return "PingLun{" +
                 "id=" + id +
-                ", xinweiid='" + xinweiid + '\'' +
+                ", xinwenid='" + xinwenid + '\'' +
                 ", pinglunneirong='" + pinglunneirong + '\'' +
                 ", pinglunren='" + pinglunren + '\'' +
                 ", pingfen='" + pingfen + '\'' +
                 ", biao='" + biao + '\'' +
-                ", addtime='" + addtime + '\'' +
+                ", addtime=" + addtime +
                 '}';
     }
 }

@@ -67,4 +67,6 @@ public class UserInfoController {
         return HttpResult.ok().setData(userInfoService.openUserAccount(id));
     }
 
+
+
 }
