@@ -46,7 +46,7 @@ let myHomePage_vm = new Vue({
         form: {
             name: "测试用户",
             method: "0",
-            money: 10
+            money: 0
         },
         formLabelWidth: '120px',
         alipayImg: "../img/pay/支付宝.png",
@@ -144,14 +144,20 @@ let myHomePage_vm = new Vue({
                     type: 'error',
                     message: '请输入投资金额！'
                 });
-            } else {
+            } else if(this.form.money<0){
+                this.$message({
+                    type: 'error',
+                    message: '投资金额不得小于0！'
+                });
+            }else{
                 axios.post("/project/setInvestment/"
-                    + this.form.money + "/" + this.form.name + "/" + this.projectId).then(response => {
+                    + this.form.money + "/" + this.user_name2 + "/" + this.projectId).then(response => {
                     let result = response.data.data;
                     if (result === true) {
                         this.alipayVisible = false;
                         this.weChatVisible = false;
                         this.paymentCheck = "";
+                        this.form.money=0;
                         this.$message({
                             type: 'success',
                             message: '投资成功！'
