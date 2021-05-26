@@ -3,6 +3,7 @@ package com.money.crowdfunding.website.model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * 包:com.money.crowdfunding.website.model
@@ -22,8 +23,9 @@ public class ZhongChouXiangMu implements Serializable {
     private String xiangqing;
     private String faburen;
     private String issh;
-    private String addtime;
+    private Timestamp addtime;
     private String picture;
+    private String timmmme;
 
     public Integer getId() {
         return id;
@@ -105,11 +107,11 @@ public class ZhongChouXiangMu implements Serializable {
         this.issh = issh;
     }
 
-    public String getAddtime() {
+    public Timestamp getAddtime() {
         return addtime;
     }
 
-    public void setAddtime(String addtime) {
+    public void setAddtime(Timestamp addtime) {
         this.addtime = addtime;
     }
 
@@ -119,6 +121,14 @@ public class ZhongChouXiangMu implements Serializable {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getTimmmme() {
+        return timmmme;
+    }
+
+    public void setTimmmme(String timmmme) {
+        this.timmmme = timmmme;
     }
 
     @Override
@@ -134,8 +144,9 @@ public class ZhongChouXiangMu implements Serializable {
                 ", xiangqing='" + xiangqing + '\'' +
                 ", faburen='" + faburen + '\'' +
                 ", issh='" + issh + '\'' +
-                ", addtime='" + addtime + '\'' +
+                ", addtime=" + addtime +
                 ", picture='" + picture + '\'' +
+                ", timmmme='" + timmmme + '\'' +
                 '}';
     }
 }

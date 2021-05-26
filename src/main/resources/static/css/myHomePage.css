@@ -80,6 +80,14 @@ body{
     float: left;
 }
 
+.body_left4{
+    width: 100%;
+    height: 650px;/*  因为没有内容撑开，所以指定高度为px，如果有内容撑开高度，就不需要指定了*/
+    border-right: 2px solid #fcd7d7;
+    margin-top: 20px;
+    float: left;
+}
+
 
 .body_left2{
     width: 18%;

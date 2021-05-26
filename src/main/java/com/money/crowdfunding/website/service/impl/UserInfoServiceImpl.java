@@ -40,11 +40,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public boolean getRegisterResult(UserInfo userInfo) {
-
         if(userInfoMapper.selectUserInfoIsExistByName(userInfo.getYonghuming())){
             return false;
         }
-
         userInfo.setIssh("是");
         Random random = new Random();
         int headCode = random.nextInt(15);
@@ -56,12 +54,9 @@ public class UserInfoServiceImpl implements UserInfoService {
             headCode2 = "00" + headCode1;
         }
         userInfo.setTouxiang(headCode2);
-
         Date currentTime = new Date();
         Timestamp timestamp = new Timestamp(currentTime.getTime());
-
         userInfo.setAddtime(timestamp);
-
         return userInfoMapper.insertOneAdmin(userInfo);
     }
 

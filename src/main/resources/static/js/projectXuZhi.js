@@ -89,6 +89,7 @@ let myHomePage_vm = new Vue({
         //众筹项目列表
         axios.get("/project/getZhongChouXuZhi").then(res => {
             let data=res.data.data
+            this.book_num = data.length;
             console.log(data)
             let tableData=[];
             data.forEach(function (value) {

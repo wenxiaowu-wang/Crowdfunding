@@ -19,7 +19,7 @@ let myHomePage_vm = new Vue({
             money:'50000',
             qixian:'2',
             shouP:'张三',
-            faP:'李四'
+            faP:'李四',
         }],
 
     },
@@ -85,10 +85,9 @@ let myHomePage_vm = new Vue({
         //众筹项目列表
         axios.get("/project/getZhongChouXiangMu").then(res => {
             let data=res.data.data
-            console.log(data)
+            this.book_num = data.length;
             let tableData=[];
             data.forEach(function (value) {
-
                 let list = {
                     id: value["id"],
                     pId: value["xiangmubianhao"],
@@ -107,7 +106,7 @@ let myHomePage_vm = new Vue({
         }).catch(error => {
             this.$message({
                 type: 'error',
-                message: '网络错误！'
+                message: '网络错误6666！'
             });
         });
 

@@ -6,7 +6,9 @@ import com.money.crowdfunding.website.model.ZhongChouXiangMu;
 import com.money.crowdfunding.website.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,6 +34,7 @@ public class ProjectServiceImpl implements ProjectService {
     public XinWenTongZhi getZhongChouXuZhiDetail(String id) {
         return projectMapper.getZhongChouXuZhiDetail(id);
     }
+
     @Override
     public ZhongChouXiangMu getZhongChouDetail(String id) {
 
@@ -44,8 +47,12 @@ public class ProjectServiceImpl implements ProjectService {
         String code = String.valueOf(num);
         String picture = "00"+code;
         zhongChouXiangMu.setPicture(picture);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //获得年月日
+        String time = formatter.format(zhongChouXiangMu.getAddtime());
+        zhongChouXiangMu.setTimmmme(time);
         return zhongChouXiangMu;
     }
+
 
 
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/common/elementui.css">
     <link rel="stylesheet" href="css/myHomePage.css">
     <link rel="stylesheet" href="css/common/theme-chalk.css">
-    <link rel="stylesheet" href="css/userAgreement.css" />
+    <link rel="stylesheet" href="css/userAgreement.css"/>
     <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/basic.min.css"/>
     <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/home.min.css"/>
     <link rel="stylesheet" href="http://rcode.zongheng.com/v2018/css/order.min.css"/>
@@ -17,6 +17,9 @@
     <div class="top1">
         <div class="top_img"></div>
         <div class="top_content">
+            <div class="top_tips">
+                <el-button type="text" icon="el-icon-back" @click="backHome()">返回首页</el-button>
+            </div>
             <div class="top_menu">
                 <el-menu
                         :default-active="activeIndex"
@@ -26,19 +29,23 @@
                         background-color="#545c64"
                         text-color="#fff"
                         active-text-color="#ffd04b">
-                    <el-menu-item index="1"><i class="el-icon-s-home"></i>首页</el-menu-item>
-                    <el-menu-item index="2"><i class="el-icon-reading"></i>众筹须知</el-menu-item>
-                    <el-menu-item index="3"><i class="el-icon-s-order"></i>众筹项目</el-menu-item>
-<!--                    <el-menu-item index="4"><i class="el-icon-chat-line-round"></i>在线留言</el-menu-item>-->
-                    <el-menu-item index="4"><i class="el-icon-setting"></i>管理员端</el-menu-item>
+                    <el-menu-item index="1"><i class="el-icon-s-custom"></i>个人资料</el-menu-item>
+
+                    <!--                    <el-menu-item index="2"><i class="el-icon-s-tools"></i>众筹项目管理</el-menu-item>-->
+                    <el-submenu index="2">
+                        <template slot="title"><i class="el-icon-s-tools"></i>众筹项目管理</template>
+                        <el-menu-item index="2-1">众筹项目发布</el-menu-item>
+                        <el-menu-item index="2-2">我的众筹项目</el-menu-item>
+                        <el-menu-item index="2-3">投资订单</el-menu-item>
+                    </el-submenu>
+                    <el-menu-item index="3"><i class="el-icon-s-order"></i>我的投资项目</el-menu-item>
                 </el-menu>
             </div>
 
             <div class="top_data">
-                <div style="width: 200px">
-                    <el-avatar :src="imageURL_header+avatar+imageURL_suffix"></el-avatar>
-                    用户:{{user_name2}}，您好<br>
-                    <el-button type="text" @click="personally()">个人中心</el-button>
+                <div>
+                    <el-avatar :src="imageURL_header+user_avatar+imageURL_suffix"></el-avatar>
+                    用户:{{user_name}}，您好<br>
                     <el-button type="text" @click="signOut()">退出登录</el-button>
                 </div>
             </div>
@@ -46,7 +53,6 @@
     </div>
 
     <div class="body_left1">
-
         <div class="home-main">
             <!-- 列表箱体 -->
             <div class="home_innerwrap">
@@ -86,7 +92,6 @@
 
             </div>
         </div>
-
     </div>
 </div>
 <div class="footing">
@@ -94,13 +99,10 @@
     <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
 </div>
 </div>
-
-
-
 <script src="js/common/vue.js"></script>
 <script src="js/common/elementui.js"></script>
 <script src="js/common/index.js"></script>
 <script src="js/common/axios.js"></script>
-<script src="js/project.js"></script>
+<script src="js/myTouzi.js"></script>
 </body>
 </html>

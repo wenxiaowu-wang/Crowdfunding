@@ -28,18 +28,13 @@
                         active-text-color="#ffd04b">
                     <el-menu-item index="1"><i class="el-icon-s-custom"></i>个人资料</el-menu-item>
 
-<!--                    <el-menu-item index="2"><i class="el-icon-s-tools"></i>众筹项目管理</el-menu-item>-->
-
                     <el-submenu index="2">
                         <template slot="title"><i class="el-icon-s-tools"></i>众筹项目管理</template>
                         <el-menu-item index="2-1">众筹项目发布</el-menu-item>
                         <el-menu-item index="2-2">我的众筹项目</el-menu-item>
-                        <el-menu-item index="2-3">我的投资</el-menu-item>
+                        <el-menu-item index="2-3">投资订单</el-menu-item>
                     </el-submenu>
-
-
-                    <el-menu-item index="3"><i class="el-icon-s-order"></i>我的投资</el-menu-item>
-                    <el-menu-item index="4"><i class="el-icon-s-custom"></i>个人中心</el-menu-item>
+                    <el-menu-item index="3"><i class="el-icon-s-order"></i>我的投资项目</el-menu-item>
                 </el-menu>
             </div>
 
@@ -54,9 +49,7 @@
 
         </div>
     </div>
-
     <div class="body_left2">
-
         <div class="body_left_carousel">
             <el-carousel indicator-position="outside" height="700px" :interval="4000">
                 <el-carousel-item v-for="item in carouselFigures">
