@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网首页</title>
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <link rel="stylesheet" href="css/myHomePage.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/userAgreement.css"/>
+    <style>
+        .register {
+            margin-left: 20%;
+            margin-top: 5%;
+            width: 70%;
+            height: 50%;
+        }
+
+        .label {
+            height: 50px;
+            outline-color: #2EA5E6;
+            display: inline-block;
+            width: 140px;
+            text-align: right;
+            color: #666;
+        }
+
+        .label2 {
+            outline-color: #2EA5E6;
+            display: inline-block;
+            text-align: right;
+            margin-left: 5%;
+            color: #666;
+        }
+        .pwd2 {
+            width: 223px;
+        }
+        .center {
+            margin: auto;
+            width: 55%;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+
+<div id="myHomePage">
+    <div class="top1">
+        <div class="top_img"></div>
+        <div class="top_content">
+            <div class="top_tips">
+                <el-button type="text" icon="el-icon-back" @click="backHome()">返回首页</el-button>
+            </div>
+            <div class="top_menu">
+                <el-menu
+                        :default-active="activeIndex"
+                        class="el-menu-demo"
+                        mode="horizontal"
+                        @select="handleSelect"
+                        background-color="#545c64"
+                        text-color="#fff"
+                        active-text-color="#ffd04b">
+                    <el-menu-item index="1"><i class="el-icon-s-custom"></i>个人资料</el-menu-item>
+
+                    <!--                    <el-menu-item index="2"><i class="el-icon-s-tools"></i>众筹项目管理</el-menu-item>-->
+                    <el-submenu index="2">
+                        <template slot="title"><i class="el-icon-s-tools"></i>众筹项目管理</template>
+                        <el-menu-item index="2-1">众筹项目发布</el-menu-item>
+                        <el-menu-item index="2-2">我的众筹项目</el-menu-item>
+                        <el-menu-item index="2-3">投资订单</el-menu-item>
+                    </el-submenu>
+                    <el-menu-item index="3"><i class="el-icon-s-order"></i>我的投资项目</el-menu-item>
+                </el-menu>
+            </div>
+
+            <div class="top_data">
+                <div>
+                    <el-avatar :src="imageURL_header+user_avatar+imageURL_suffix"></el-avatar>
+                    用户:{{user_name}}，您好<br>
+                    <el-button type="text" @click="signOut()">退出登录</el-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body_left4">
+        <div class="center">
+            <form class="register" name="one">
+                <div class="form-box">
+                    <div class="form">
+                        <span class="label">标题：</span>
+                        <el-input class="pwd2" placeholder="请输入标题" v-model="biaoti"
+                        ></el-input>
+                    </div>
+                    <div class="form">
+                        <span class="label">类别：</span>
+<!--                        <el-input class="pwd2" placeholder="请输入手机号" v-model="leibie"-->
+<!--                        ></el-input>-->
+                        <el-select v-model="value" placeholder="请选择">
+                            <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="form">
+                        <span class="label">众筹金额（元）：</span>
+                        <el-input class="pwd2" placeholder="请输入众筹金额" v-model="money"
+                        ></el-input>
+                    </div>
+                    <div class="form">
+                        <span class="label">期限（年）：</span>
+                        <el-input class="pwd2" placeholder="请输入期限" v-model="time"
+                        ></el-input>
+                    </div>
+
+                    <div>
+                        <span class="label2">项目描述：</span>
+                        <div style="margin-left: 3%;">
+                            <el-input
+                                    type="textarea"
+                                    :rows="5"
+                                    placeholder="请输入项目描述内容"
+                                    v-model="xiangqing">
+                            </el-input>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 3%">
+                    <el-row>
+                        <el-button style="margin-left: 36%" @click="publishProject()">发布项目</el-button>
+                    </el-row>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="footing">
+    <div class="address">地址:山东省东营市北二路271号中国石油大学胜利学院 邮编：257000 电话：123-123-1234 传真：123-1234567</div>
+    <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
+</div>
+</div>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/projectFaBu.js"></script>
+</body>
+</html>

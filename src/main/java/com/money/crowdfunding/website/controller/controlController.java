@@ -73,9 +73,27 @@ public class controlController {
         return "html/usersRegistrationInterface";
     }
 
+    @RequestMapping("/toProjectFaBu")
+    public String toProjectFaBu() {
+        return "html/projectFaBu";
+    }
+
     @RequestMapping("/toPersonalCenter")
     public String toPersonalCenter() {
         return "html/personalCenter";
+    }
+
+    @RequestMapping("/myProject")
+    public String myProject() {
+        return "html/myProject";
+    }
+    @RequestMapping("/myTouzi")
+    public String myTouzi() {
+        return "html/myTouzi";
+    }
+    @RequestMapping("/touziMy")
+    public String touziMy() {
+        return "html/touziMy";
     }
 
     @RequestMapping("/admin/userManagement")

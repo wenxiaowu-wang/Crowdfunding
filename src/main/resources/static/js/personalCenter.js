@@ -51,19 +51,16 @@ let myHomePage_vm = new Vue({
                 case "2":
                     break;
                 case "2-1":
-                    alert("2-1");
+                    window.location.assign("toProjectFaBu");
                     break;
                 case "2-2":
-                    alert("2-1");
+                    window.location.assign("myProject");
                     break;
                 case "2-3":
-                    alert("2-1");
+                    window.location.assign("touziMy");
                     break;
                 case "3":
-                    // window.location.assign("");
-                    break;
-                case "4":
-                    // window.location.assign("");
+                    window.location.assign("myTouzi");
                     break;
                 default:
                     break;
