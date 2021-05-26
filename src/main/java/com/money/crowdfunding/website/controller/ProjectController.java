@@ -2,10 +2,7 @@ package com.money.crowdfunding.website.controller;
 
 
 import com.money.crowdfunding.website.mapper.ProjectMapper;
-import com.money.crowdfunding.website.model.PingLun;
-import com.money.crowdfunding.website.model.UserInfo;
-import com.money.crowdfunding.website.model.XinWenTongZhi;
-import com.money.crowdfunding.website.model.ZhongChouXiangMu;
+import com.money.crowdfunding.website.model.*;
 import com.money.crowdfunding.website.service.ProjectService;
 
 import com.money.crowdfunding.website.utils.httpUtils.HttpResult;
@@ -76,6 +73,40 @@ public class ProjectController {
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
         return HttpResult.ok().setData(projectMapper.insertComment(xinwenid,pinglunneirong,yonghuming,timestamp));
+
+    }
+
+    @PostMapping("/setInvestment/{shouyi}/{touziren}/{xiangmubianhao}")
+    public HttpResult setInvestment(@PathVariable("shouyi") String shouyi, @PathVariable("touziren") String touziren, @PathVariable("xiangmubianhao") String xiangmubianhao) {
+        Date date = new Date();
+        Timestamp addtime = new Timestamp(date.getTime());
+
+        ZhongChouXiangMu zhongChouXiangMu = projectMapper.getZhongChouDetail(xiangmubianhao);
+
+        TouZiDingDan touZiDingDan = new TouZiDingDan();
+        touZiDingDan.setXiangmubianhao(zhongChouXiangMu.getXiangmubianhao());
+        touZiDingDan.setBiaoti(zhongChouXiangMu.getBiaoti());
+        touZiDingDan.setLeibie(zhongChouXiangMu.getLeibie());
+        touZiDingDan.setZhongchoujine(zhongChouXiangMu.getZhongchoujine());
+        touZiDingDan.setQixian(zhongChouXiangMu.getQixian());
+        touZiDingDan.setShouyi(shouyi);
+        touZiDingDan.setFaburen(zhongChouXiangMu.getFaburen());
+        touZiDingDan.setTouziren(touziren);
+        touZiDingDan.setIssh(zhongChouXiangMu.getIssh());
+        touZiDingDan.setAddtime(addtime);
+
+        int allMoney = Integer.parseInt(projectMapper.getshouyi(xiangmubianhao));
+        int touzi = Integer.parseInt(shouyi);
+        int totle = allMoney+touzi;
+
+        String fi = String.valueOf(totle);
+
+        boolean update = projectMapper.updateJine(fi,xiangmubianhao);
+        boolean insert = projectMapper.insertInvestment(touZiDingDan);
+        if (update&&insert){
+            return HttpResult.ok().setData(true);
+        }
+        return HttpResult.ok().setData(false);
 
     }
 

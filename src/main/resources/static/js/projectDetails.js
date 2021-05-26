@@ -22,13 +22,13 @@ let myHomePage_vm = new Vue({
         xiangqing: '',
         picture: '001',
 
-        projectId:'',
+        projectId: '',
 
         dialogFormVisible: false,
         dialogVisible: false,
 
 
-        textarea:'',//评论内容
+        textarea: '',//评论内容
         commentData: [{
             user_id: '1',
             user_name: 'fu测试1',
@@ -44,9 +44,9 @@ let myHomePage_vm = new Vue({
         weChatVisible: false,
         paymentCheck: "",
         form: {
-            name: "汪汪汪",
-            method:"0",
-            money:10
+            name: "测试用户",
+            method: "0",
+            money: 10
         },
         formLabelWidth: '120px',
         alipayImg: "../img/pay/支付宝.png",
@@ -92,7 +92,7 @@ let myHomePage_vm = new Vue({
             this.dialogFormVisible = true;
             // alert(this.projectId)
         },
-        investment(){
+        investment() {
             this.dialogVisible = true;
             // alert(this.projectId)
         },
@@ -106,10 +106,6 @@ let myHomePage_vm = new Vue({
                 axios.post("/project/setComment/"
                     + this.user_name2 + "/" + this.textarea + "/" + this.projectId).then(response => {
                     let result = response.data.data;
-                    console.log(result);
-                    console.log(result);
-                    console.log(result);
-                    console.log(result);
                     if (result === true) {
                         this.$message({
                             type: 'success',
@@ -127,47 +123,75 @@ let myHomePage_vm = new Vue({
             }
         },
 
-        paymentCommit(){
-            if (this.paymentCheck === "1234"){
+        paymentCommit() {
+            if (this.paymentCheck === "1234") {
                 this.topUpsCommit();
-            }else{
+            } else {
                 this.$message({
-                    type:"error",
-                    message:"付款接收码错误，请重试!"
+                    type: "error",
+                    message: "付款接收码错误，请重试!"
                 });
             }
         },
-        topUpsCommit(){
+        topUpsCommit() {
+
+            console.log("投资金额" + this.form.money);
+            console.log("投资人" + this.form.name);
+            console.log("投资项目ID" + this.projectId);
+
+            if (this.form.money === "") {
+                this.$message({
+                    type: 'error',
+                    message: '请输入投资金额！'
+                });
+            } else {
+                axios.post("/project/setInvestment/"
+                    + this.form.money + "/" + this.form.name + "/" + this.projectId).then(response => {
+                    let result = response.data.data;
+                    if (result === true) {
+                        this.alipayVisible = false;
+                        this.weChatVisible = false;
+                        this.paymentCheck = "";
+                        this.$message({
+                            type: 'success',
+                            message: '投资成功！'
+                        });
+                    }
+                }).catch(error => {
+                    this.$message({
+                        type: 'error',
+                        message: '网络异常！'
+                    });
+                    console.log(error);
+                });
+            }
+
+        },
+        topUpsCheck() {
+            //校验提交信息
             let method = parseInt(this.form.method);//将表单数据中的支付方式数据类型由string转为number
-            axios.post("/shaohuashuwu/transactionInfoController/topUpsGoldBean/"
-                +method+"/"
-                +this.form.money
-            ).then(response => {
-                if (response.data){
-                    this.dialogVisible = false;
-                    this.alipayVisible = false;
-                    this.weChatVisible = false;
-                    this.paymentCheck = "";
-                    this.$message({
-                        type:"success",
-                        message:"充值成功！"
-                    });
-                    //重定向本界面
-                    window.location.assign("../pages/personalAccountInterface.html");
-                }else{
-                    this.paymentCheck = "";
-                    this.$message({
-                        type:"error",
-                        message:"充值失败！"
-                    });
-                }
-            }).catch(error => {
-                this.paymentCheck = "";
-                this.dialogFormVisible = false;
-                this.alipayVisible = false;
-                this.weChatVisible = false;
-                alert("系统错误"+error);
-            });
+            if (method === 0) {
+                this.$message({
+                    type: "info",
+                    message: "请用支付宝扫一扫支付"
+                });
+                //支付宝方式付款
+                this.alipayVisible = true;
+            } else if (method === 1) {
+                //微信方式付款
+                this.$message({
+                    type: "info",
+                    message: "请用微信扫一扫支付"
+                });
+                this.weChatVisible = true;
+            } else {
+                this.$message({
+                    type: "error",
+                    message: "系统出错"
+                });
+                // alert("money type ="+typeof (this.form.money)+"值为【"+this.form.money+"】"+" method type ="+typeof (this.form.method)+"值为【"+this.form.method+"】");
+            }
+
         },
     },
     mounted() {
@@ -223,8 +247,8 @@ let myHomePage_vm = new Vue({
 
             axios.get('/project/getComment/' +
                 data).then(resss => {
-                let data=resss.data.data
-                let tableData=[];
+                let data = resss.data.data
+                let tableData = [];
                 data.forEach(function (value) {
 
                     let list = {
