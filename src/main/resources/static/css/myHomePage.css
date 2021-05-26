@@ -24,7 +24,7 @@ body{
     float: left;
 }
 .top_content{
-    width: 73%;
+    width: 66%;
     height: 70px;
     margin: 0px 5px;/*  上下为0px，左右自适应，自适应有默认居中的效果  */
     /*border: 2px solid #3a8ee6;*/
@@ -34,9 +34,8 @@ body{
 
 }
 .top_tips{
-    width: 15%;
+    width: 5%;
     height: 100%;
-    padding-left: 15px;
     padding-top: 10px;
     font-size: 25px;
     font-weight: bolder;
@@ -44,7 +43,9 @@ body{
     float: left;
 }
 .top_menu{
-    width: 60%;/*  所占其父级元素的70% 即占top_contend宽度的70%*/
+
+    margin-left: 15%;
+    width: 55%;/*  所占其父级元素的70% 即占top_contend宽度的70%*/
     height: 100%;
     padding-left: 10px;
     /*border: 2px solid red;*/
@@ -71,13 +72,32 @@ body{
     float: left;
 }
 
-/*.body{*/
-/*    margin: 20px auto;*/
-/*    width: 55%;!*  若为100%会充满全屏  *!*/
-/*    height: 800px;!*  因为没有内容撑开，所以指定高度为px，如果有内容撑开高度，就不需要指定了*!*/
-/*    !*border: 1px solid blue;*!*/
-/*    float: left;*/
-/*}*/
+.body_left3{
+    width: 100%;
+    height: 800px;/*  因为没有内容撑开，所以指定高度为px，如果有内容撑开高度，就不需要指定了*/
+    border-right: 2px solid #fcd7d7;
+    margin-top: 20px;
+    float: left;
+}
+
+
+.body_left2{
+    width: 18%;
+    height: 800px;/*  因为没有内容撑开，所以指定高度为px，如果有内容撑开高度，就不需要指定了*/
+    border-right: 2px solid #fcd7d7;
+    margin-left: 12.5%;
+    margin-right: 20px;
+    margin-top: 20px;
+    float: left;
+}
+
+.body{
+    margin: 20px auto;
+    width: 55%;/*  若为100%会充满全屏  */
+    height: 800px;/*  因为没有内容撑开，所以指定高度为px，如果有内容撑开高度，就不需要指定了*/
+    /*border: 1px solid blue;*/
+    float: left;
+}
 
 /*头部css*/
 header {

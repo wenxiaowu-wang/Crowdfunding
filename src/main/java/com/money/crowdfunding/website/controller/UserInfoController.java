@@ -1,18 +1,13 @@
 package com.money.crowdfunding.website.controller;
 
-import com.money.crowdfunding.website.model.Admin;
 import com.money.crowdfunding.website.model.UserInfo;
 import com.money.crowdfunding.website.service.UserInfoService;
 import com.money.crowdfunding.website.utils.httpUtils.HttpResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * 包:com.money.crowdfunding.website.controller

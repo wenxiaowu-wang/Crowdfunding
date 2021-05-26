@@ -1,5 +1,6 @@
 package com.money.crowdfunding.website.controller;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,52 +17,67 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class controlController {
 
-    public controlController(){
+    public controlController() {
 //        System.out.println("hello");
     }
 
     @RequestMapping("/hello")
-    public String sayHello(){
+    public String sayHello() {
         System.out.println("进来了");
         return "html/helloo";
     }
 
 
     @RequestMapping("/userLogin")
-    public String UserLogin(){
+    public String UserLogin() {
         return "html/UserLogin";
     }
 
     @RequestMapping("/adminLogin")
-    public String adminLogin(){
+    public String adminLogin() {
         return "html/adminLoginInterface";
     }
 
     @RequestMapping("/toAdminMain")
-    public String toAdminMain(){
+    public String toAdminMain() {
         return "html/adminFrame";
     }
 
     @RequestMapping("/toHome")
-    public String toHome(){
+    public String toHome() {
         return "html/homePage";
     }
 
+    @RequestMapping("/toProjectXuZhi")
+    public String toProjectXuZhi() {
+        return "html/projectXuZhi";
+    }
+
     @RequestMapping("/toProject")
-    public String toProject(){
+    public String toProject() {
         return "html/project";
     }
 
+    @RequestMapping("/toProjectDetails")
+    public String toProjectDetails() {
+        return "html/projectDetails";
+    }
+
+    @RequestMapping("/toProjectXuZhiDetail")
+    public String toProjectXuZhiDetail() {
+        return "html/projectXuZhiDetail";
+    }
+
     @RequestMapping("/userRegister")
-    public String userRegister(){
+    public String userRegister() {
         return "html/usersRegistrationInterface";
     }
 
     @RequestMapping("/admin/userManagement")
-    public ModelAndView userManagement(){
+    public ModelAndView userManagement() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("html/userInfoManagement");
-        modelAndView.addObject("key","注册用户信息");
+        modelAndView.addObject("key", "注册用户信息");
         return modelAndView;
     }
 

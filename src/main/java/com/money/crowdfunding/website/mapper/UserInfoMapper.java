@@ -21,7 +21,7 @@ public interface UserInfoMapper {
             "(#{yonghuming},#{mima},#{xingming},#{xingbie},#{chushengnianyue},#{qq},#{youxiang},#{dianhua},#{shenfenzheng},#{touxiang},#{dizhi},#{addtime},#{beizhu},#{issh})")
     boolean insertOneAdmin(UserInfo userInfo);
 
-    @Select("select count(*) from yonghuzhuce where yonghuming = #{yonghuming} and mima =#{mima}")
+    @Select("select count(*) from yonghuzhuce where yonghuming = #{yonghuming} and mima =#{mima} and issh!='D'")
     boolean getLoginResult(@Param("yonghuming") String yonghuming,@Param("mima") String mima);
 
     @Select("select * from yonghuzhuce where yonghuming = #{yonghuming} and mima =#{mima}")
