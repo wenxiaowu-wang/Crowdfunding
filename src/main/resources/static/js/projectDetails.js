@@ -4,7 +4,7 @@ let myHomePage_vm = new Vue({
 
         reloadTest: "",
         topTips: "返回首页",
-        activeIndex: '3',
+        activeIndex: '1',
         imageURL_header: "img/avatar/",
         imageURL_suffix: ".jpg",
         avatar: "001",
@@ -86,7 +86,7 @@ let myHomePage_vm = new Vue({
             window.location.assign("userLogin");
         },
         personally() {
-            alert("代码未实现")
+            window.location.assign("toPersonalCenter");
         },
         comment() {
             this.dialogFormVisible = true;

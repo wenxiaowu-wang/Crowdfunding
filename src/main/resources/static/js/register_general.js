@@ -17,10 +17,8 @@ let register_vm = new Vue({
     },
     methods: {
         save() {
-            const d = new Date(this.chushengnianyue)
-            const resDate = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate())
-
-
+            // const d = new Date(this.chushengnianyue)
+            const resDate = this.chushengnianyue.getFullYear() + '-' + this.p((this.chushengnianyue.getMonth() + 1)) + '-' + this.p(this.chushengnianyue.getDate())
 
             if (this.yonghuming === "") {
                 this.$message({

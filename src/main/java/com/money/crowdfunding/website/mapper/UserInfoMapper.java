@@ -42,4 +42,14 @@ public interface UserInfoMapper {
     @Update("update yonghuzhuce set xingming = #{xingming},qq=#{qq},youxiang=#{youxiang},dianhua=#{dianhua},touxiang=#{touxiang},dizhi=#{dizhi},chushengnianyue=#{chushengnianyue},issh = #{issh} where id = #{id}")
     int updateUserInfoById(@Param("id")int id,@Param("issh")String issh,@Param("xingming")String xingming,@Param("qq")String qq,@Param("youxiang")String youxiang,@Param("dianhua")String dianhua,@Param("touxiang")String touxiang,@Param("dizhi")String dizhi,@Param("chushengnianyue")String chushengnianyue);
 
+
+    @Update("update yonghuzhuce set xingbie = #{xingbie} , chushengnianyue = #{chushengnianyue} , qq = #{qq} , youxiang = #{youxiang} , dianhua = #{dianhua} , dizhi = #{dizhi} where yonghuming = #{yonghuming}")
+    boolean updateUser(@Param("xingbie")String xingbie,@Param("chushengnianyue")String chushengnianyue,@Param("qq")String qq,@Param("youxiang")String youxiang,@Param("dianhua")String dianhua,@Param("dizhi")String dizhi,@Param("yonghuming")String yonghuming);
+
+    @Update("update yonghuzhuce set  mima = #{mima} where yonghuming = #{yonghuming}")
+    boolean updatePwd(@Param("mima")String mima,@Param("yonghuming")String yonghuming);
+
+    @Select("select * from yonghuzhuce where yonghuming = #{yonghuming} ")
+    UserInfo getUserInfoByYonghuming(@Param("yonghuming") String yonghuming);
+
 }

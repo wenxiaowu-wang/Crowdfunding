@@ -1,5 +1,6 @@
 package com.money.crowdfunding.website.controller;
 
+import com.money.crowdfunding.website.mapper.UserInfoMapper;
 import com.money.crowdfunding.website.model.UserInfo;
 import com.money.crowdfunding.website.service.UserInfoService;
 import com.money.crowdfunding.website.utils.httpUtils.HttpResult;
@@ -20,6 +21,9 @@ public class UserInfoController {
 
     @Autowired
     UserInfoService userInfoService;
+
+    @Autowired
+    UserInfoMapper userInfoMapper;
 
     @GetMapping("/getUserByName")
     public UserInfo getUserByName(@Param("userName") String name){
@@ -42,6 +46,29 @@ public class UserInfoController {
         return HttpResult.ok().setData(userInfoService.getLoginResult(yonghuming,mima));
     }
 
+    //用户修改资料
+    @PostMapping("/updateUser")
+    public HttpResult updateUser(@Param("yonghuming")String yonghuming,@Param("xingbie")String xingbie,@Param("chushengnianyue")String chushengnianyue,@Param("qq")String qq,@Param("youxiang")String youxiang,@Param("dianhua")String dianhua,@Param("dizhi")String dizhi,HttpSession httpSession){
+
+        if (userInfoService.updateUser(xingbie,chushengnianyue,qq,youxiang,dianhua,dizhi,yonghuming)){
+            UserInfo userInfo = userInfoMapper.getUserInfoByYonghuming(yonghuming);
+            httpSession.setAttribute("userInfo",userInfo);
+            return HttpResult.ok().setData(true);
+        }
+        return HttpResult.ok().setData(false);
+    }
+
+    //用户修改密码
+    @PostMapping("/updatePwd")
+    public HttpResult updatePwd(@Param("yonghuming")String yonghuming,@Param("mima")String mima,HttpSession httpSession){
+
+        if (userInfoService.updatePwd(mima,yonghuming)){
+            UserInfo userInfo = userInfoMapper.getUserInfoByYonghuming(yonghuming);
+            httpSession.setAttribute("userInfo",userInfo);
+            return HttpResult.ok().setData(true);
+        }
+        return HttpResult.ok().setData(false);
+    }
 
 
     @GetMapping("/getUserSession")

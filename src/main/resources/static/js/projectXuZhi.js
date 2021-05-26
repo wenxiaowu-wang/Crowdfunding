@@ -47,7 +47,7 @@ let myHomePage_vm = new Vue({
             window.location.assign("userLogin");
         },
         personally(){
-            alert("代码未实现")
+            window.location.assign("toPersonalCenter");
         },
         goToDetails(id){
             axios.get('/project/setProjectDetailSession/' +

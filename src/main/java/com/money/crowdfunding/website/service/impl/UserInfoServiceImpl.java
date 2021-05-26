@@ -59,6 +59,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         Date currentTime = new Date();
         Timestamp timestamp = new Timestamp(currentTime.getTime());
+
         userInfo.setAddtime(timestamp);
 
         return userInfoMapper.insertOneAdmin(userInfo);
@@ -83,6 +84,16 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public boolean openUserAccount(Integer id) {
         return userInfoMapper.updateIsshById(id,"O") > 0;
+    }
+
+    @Override
+    public boolean updateUser(String xingbie,String chushengnianyue,String qq,String youxiang,String dianhua,String dizhi,String yonghuming) {
+        return userInfoMapper.updateUser(xingbie,chushengnianyue,qq,youxiang,dianhua,dizhi,yonghuming);
+    }
+
+    @Override
+    public boolean updatePwd(String mima, String yonghuming) {
+        return userInfoMapper.updatePwd(mima, yonghuming);
     }
 
     @Override
