@@ -93,5 +93,13 @@ public class controlController {
         return (int) httpSession.getAttribute("userEditId");
     }
 
+    @RequestMapping("/admin/crowdfundingTypeManagement")
+    public ModelAndView crowdfundingTypeManagement() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("html/crowdfundingTypeManage");
+        modelAndView.addObject("key", "众筹类别");
+        return modelAndView;
+    }
+
 
 }

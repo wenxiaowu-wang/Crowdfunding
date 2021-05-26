@@ -15,6 +15,7 @@ public class XiangMuLeiBie implements Serializable {
     private Integer id;
     private String leibie;
     private String addtime;
+    private String isdelete;
 
     public Integer getId() {
         return id;
@@ -40,12 +41,21 @@ public class XiangMuLeiBie implements Serializable {
         this.addtime = addtime;
     }
 
+    public String getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(String isdelete) {
+        this.isdelete = isdelete;
+    }
+
     @Override
     public String toString() {
         return "XiangMuLeiBie{" +
                 "id=" + id +
                 ", leibie='" + leibie + '\'' +
                 ", addtime='" + addtime + '\'' +
+                ", isdelete='" + isdelete + '\'' +
                 '}';
     }
 }

@@ -51,19 +51,13 @@ let userEditOfManage_vm = new Vue({
                 dataType: 'json'
                 , headers: 'updateUserById',
                 success: function (msg) {
-                    let theResult = res.data;
+                    let theResult = msg.data;
                     if (theResult){
-                        this.$message({
-                            type:'success',
-                            message:"修改信息成功！"
-                        });
-                        refreshBgtDbTable();
+                        alert("修改信息成功！");
+                        // refreshBgtDbTable();
                         window.close();
                     }else{
-                        this.$message({
-                            type:'error',
-                            message:"修改信息失败！"
-                        });
+                        alert("修改信息失败!");
                     }
                 }
             });

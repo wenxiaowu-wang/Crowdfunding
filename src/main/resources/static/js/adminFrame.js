@@ -66,7 +66,8 @@ let adminFrame_vm = new Vue({
                     break;
                 }case 1:{
                     // $("#content_div").load("/adminLogin");
-                    alert("待更新···");
+                    layer.msg("即将进入众筹类别管理页面",{icon:5});
+                    $("#content_div").load("/admin/crowdfundingTypeManagement");
                     break;
                 }case 2:{
                     $.ajax({
@@ -77,7 +78,7 @@ let adminFrame_vm = new Vue({
                         success: function (res) {
                             // console.log(res);
                             let theResult = res.data;
-                            $("#content_div div").html(theResult);
+                            $("#content_div div").html(theResult+"待更新···");
                         }
                     });
                     break;

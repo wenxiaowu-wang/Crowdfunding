@@ -49,7 +49,7 @@ layui.use(['table'], function () {
             //             return "<span style='color: #262424;'>"+d.handleState+"</span>";
             //         }
             //     }}
-            , {field:'operation', title: '操作', toolbar: '#barDemo', align: 'center',width: 200}
+            , {field:'operation', title: '操作', toolbar: '#barDemo', align: 'center',width: 130}
         ]],
         // request: {
         //     page: 'pageCurrent' //页码的参数名称，默认：page
@@ -144,6 +144,10 @@ layui.use(['table'], function () {
         })
     });
 
+});
+
+$("#refresh").click(function () {
+    this.refreshBgtDbTable();
 });
 
 //打开报告详情页面
@@ -532,6 +536,13 @@ function refreshBgtDbTable(){
     });
 }
 
+
+
+window.addEventListener('visibilitychange',()=>{
+    if(!document.hidden){
+        this.refreshBgtDbTable();
+    }
+});
 //执行搜索，表格重载$("[name='dataSearch']")
 $("#dataSearch1").click(function (e) {
     layui.use(['table'], function () {
