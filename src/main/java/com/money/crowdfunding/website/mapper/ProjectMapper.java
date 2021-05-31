@@ -30,7 +30,7 @@ public interface ProjectMapper {
     @Select("select * from xinwentongzhi where shouyetupian !='delete' and  ID = #{id}")
     XinWenTongZhi getZhongChouXuZhiDetail(@Param("id") String id);
 
-    @Select("select * from zhongchouxiangmu where issh ='已通过' and  xiangmubianhao = #{xiangmubianhao}")
+    @Select("select * from zhongchouxiangmu where  xiangmubianhao = #{xiangmubianhao}")
     ZhongChouXiangMu getZhongChouDetail(@Param("xiangmubianhao") String xiangmubianhao);
 
     @Select("select shouyi from zhongchouxiangmu where issh ='已通过' and  ID = #{id}")
