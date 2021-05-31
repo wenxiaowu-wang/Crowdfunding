@@ -107,6 +107,16 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
         return projectTypeMapper.getAllOrderList();
     }
 
+    @Override
+    public ZhongChouXiangMu getOneProjectInfoById(int id) {
+        return projectTypeMapper.getOneProjectById(id);
+    }
+
+    @Override
+    public boolean updateOneProjectInfoById(ZhongChouXiangMu zhongChouXiangMu) {
+        return projectTypeMapper.updateOneIsshById(zhongChouXiangMu.getIssh(), zhongChouXiangMu.getId()) > 0;
+    }
+
     //查重
     public boolean isAlreadyHas(String type){
         return projectTypeMapper.selectOneByType(type) != null;

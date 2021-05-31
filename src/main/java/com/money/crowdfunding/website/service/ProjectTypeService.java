@@ -29,4 +29,10 @@ public interface ProjectTypeService {
 
     //getAllOrder
     List<TouZiDingDan> getAllOrderList();
+
+    //根据id获取一条众筹项目信息
+    ZhongChouXiangMu getOneProjectInfoById(int id);
+
+    //根据id修改对应project信息
+    boolean updateOneProjectInfoById(ZhongChouXiangMu zhongChouXiangMu);
 }

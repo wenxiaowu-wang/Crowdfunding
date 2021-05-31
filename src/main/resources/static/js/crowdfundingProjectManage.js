@@ -68,7 +68,25 @@ layui.use(['table'], function () {
         }else if (obj.event === 'end'){
             endAccount(npid);   //禁用对应用户账号
         }else if (obj.event === 'audit' || obj.event === 'changeAudit') {
-            alert("审核功能尚未开放，阁下过段时间再来");   //审核
+            // alert("审核功能尚未开放，阁下过段时间再来");   //审核
+            axios.post("/setProjectIdToSession/" +
+                npid).then(response =>{
+                //response.data本身即为字符串格式，JSON处理是为了将整个response对象解析成字符串，否则直接打印response为Object
+                let theResult = response.data;
+                if (theResult) {
+                    //登录成功，进行的操作:在当前界面跳进入管理员主界面；
+                    //跳转界面
+                    window.open("/auditProjectInterface"); //修改众筹项目审核状态界面
+                } else {
+                    this.$message({
+                        type: 'error',
+                        message: '系统错误'
+                    });
+                }
+            }).catch(error =>{
+                console.log("跳转失败+" + error);
+            });
+
         }
     });
 
@@ -258,7 +276,7 @@ function refreshBgtDbTable(){
 }
 
 
-
+//窗口定位到本界面时，触发监听事件
 window.addEventListener('visibilitychange',()=>{
     if(!document.hidden){
         refreshBgtDbTable();
