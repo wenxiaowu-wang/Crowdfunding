@@ -80,7 +80,7 @@ let myHomePage_vm = new Vue({
             }
         },
         backProject() {
-            window.location.assign("toProject");
+            window.history.back();
         },
         signOut() {
             window.location.assign("userLogin");
@@ -228,7 +228,6 @@ let myHomePage_vm = new Vue({
 
             let data = res.data.data;
             console.log(data)
-
             this.projectId = data;
             axios.get('/project/getZhongChouDetail/' +
                 data).then(ress => {

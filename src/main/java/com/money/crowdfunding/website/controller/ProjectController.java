@@ -33,19 +33,19 @@ public class ProjectController {
         return HttpResult.ok().setData(zhongChouXiangMu);
     }
 
-    @GetMapping("/getMyZhongChouXiangMu//{yonghuming}")
+    @GetMapping("/getMyZhongChouXiangMu/{yonghuming}")
     public HttpResult getMyZhongChouXiangMu(@PathVariable(value = "yonghuming") String yonghuming) {
         List<ZhongChouXiangMu> zhongChouXiangMu = projectMapper.getMyZhongChouXiangMu(yonghuming);
         return HttpResult.ok().setData(zhongChouXiangMu);
     }
 
-    @GetMapping("/getTouziMyXiangMu//{yonghuming}")
+    @GetMapping("/getTouziMyXiangMu/{yonghuming}")
     public HttpResult getTouziMyXiangMu(@PathVariable(value = "yonghuming") String yonghuming) {
         List<TouZiDingDan> zhongChouXiangMu = projectMapper.getTouziMyXiangMu(yonghuming);
         return HttpResult.ok().setData(zhongChouXiangMu);
     }
 
-    @GetMapping("/getMyTouziXiangMu//{yonghuming}")
+    @GetMapping("/getMyTouziXiangMu/{yonghuming}")
     public HttpResult getMyTouziXiangMu(@PathVariable(value = "yonghuming") String yonghuming) {
         List<TouZiDingDan> zhongChouXiangMu = projectMapper.getMyTouziXiangMu(yonghuming);
         return HttpResult.ok().setData(zhongChouXiangMu);

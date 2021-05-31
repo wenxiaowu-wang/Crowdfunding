@@ -56,10 +56,20 @@ let myHomePage_vm = new Vue({
         },
         signOut() {
             window.location.assign("userLogin");
-        },
+        },goToDetails(id) {
+            axios.get('/project/setProjectDetailSession/' +
+                id).then(response => {
+                let data = response.data;
+                window.location.assign("toProjectDetails");
+            }).catch(error => {
+                this.$message({
+                    type: 'error',
+                    message: '网络错误！'
+                });
+            });
+        }
     },
     mounted() {
-
         //用户session
         axios.get("/user/getUserSession").then(res => {
             let data = res.data.data;
