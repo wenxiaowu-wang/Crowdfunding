@@ -137,15 +137,15 @@ let myHomePage_vm = new Vue({
             this.user_avatar = data.touxiang;
         }).catch(error => {
             console.log("获取session信息失败！" + error);
-            // this.$confirm('请先登录！', '提示', {
-            //     confirmButtonText: '确定',
-            //     cancelButtonText: '取消',
-            //     type: 'warning'
-            // }).then(() => {
-            //     window.location.assign("userLogin");
-            // }).catch(() => {
-            //     window.location.assign("userLogin");
-            // });
+            this.$confirm('请先登录！', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                window.location.assign("userLogin");
+            }).catch(() => {
+                window.location.assign("userLogin");
+            });
         });
 
     }
