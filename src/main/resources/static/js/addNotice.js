@@ -64,38 +64,38 @@ let addNotice_vm = new Vue({
         },
     },
     mounted(){
-        //获取缓存id，根据id获取信息
-        axios.get("/pType/getOrderBySessionId").then(response =>{
-            //进行添加关注信息操作
-            if (response.data !== null){
-                let order = response.data.data;
-                this.form.id = order.id;
-                this.form.xiangmubianhao = order.xiangmubianhao;
-                this.form.biaoti = order.biaoti;
-                this.form.leibie = order.leibie;
-                this.form.zhongchoujine = order.zhongchoujine;
-                this.form.qixian = order.qixian;
-                this.form.shouji = order.shouji;
-                this.form.faburen = order.faburen;
-                this.form.touziren = order.touziren;
-                this.form.iszf = order.iszf;
-                this.form.addtime = order.addtime;
-                this.form.issh = order.issh;
-            }else{
-                console.log("信息获取不匹配！");
-                this.$message({
-                    type:'error',
-                    message:'未选中目标或系统故障，获取信息失败！'
-                });
-            }
-            // let object = JSON.stringify(response.data);
-            // let object_int = parseInt(object);
-        }).catch(error =>{
-            this.$message({
-                type:'error',
-                message:"信息响应失败！"
-            });
-            console.log("信息响应失败");
-        });
+        // //获取缓存id，根据id获取信息
+        // axios.get("/pType/getOrderBySessionId").then(response =>{
+        //     //进行添加关注信息操作
+        //     if (response.data !== null){
+        //         let order = response.data.data;
+        //         this.form.id = order.id;
+        //         this.form.xiangmubianhao = order.xiangmubianhao;
+        //         this.form.biaoti = order.biaoti;
+        //         this.form.leibie = order.leibie;
+        //         this.form.zhongchoujine = order.zhongchoujine;
+        //         this.form.qixian = order.qixian;
+        //         this.form.shouji = order.shouji;
+        //         this.form.faburen = order.faburen;
+        //         this.form.touziren = order.touziren;
+        //         this.form.iszf = order.iszf;
+        //         this.form.addtime = order.addtime;
+        //         this.form.issh = order.issh;
+        //     }else{
+        //         console.log("信息获取不匹配！");
+        //         this.$message({
+        //             type:'error',
+        //             message:'未选中目标或系统故障，获取信息失败！'
+        //         });
+        //     }
+        //     // let object = JSON.stringify(response.data);
+        //     // let object_int = parseInt(object);
+        // }).catch(error =>{
+        //     this.$message({
+        //         type:'error',
+        //         message:"信息响应失败！"
+        //     });
+        //     console.log("信息响应失败");
+        // });
     }
 })

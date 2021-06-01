@@ -134,7 +134,7 @@ $("#dataSearch1").click(function (e) {
 });
 
 $("#refresh").click(function () {
-    this.refreshBgtDbTable();
+    refreshBgtDbTable();
 });
 
 //打开报告详情页面

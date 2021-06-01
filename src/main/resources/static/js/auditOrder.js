@@ -8,7 +8,7 @@ let userEditOfManage_vm = new Vue({
             leibie:"",
             zhongchoujine:"",
             qixian:"",
-            shouji:"",
+            shouyi:"",
             faburen:"",
             touziren:"",
             iszf:"",
@@ -75,7 +75,7 @@ let userEditOfManage_vm = new Vue({
                 this.form.leibie = order.leibie;
                 this.form.zhongchoujine = order.zhongchoujine;
                 this.form.qixian = order.qixian;
-                this.form.shouji = order.shouji;
+                this.form.shouyi = order.shouyi;
                 this.form.faburen = order.faburen;
                 this.form.touziren = order.touziren;
                 this.form.iszf = order.iszf;

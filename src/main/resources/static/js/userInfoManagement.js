@@ -38,8 +38,8 @@ layui.use(['table'], function () {
             , {field: 'shenfenzheng', title: '身份证 ', align: 'center'}
             , {field: 'touxiang', title: '头像 ',hide:true, align: 'center'}
             , {field: 'dizhi', title: '地址 ', align: 'center'}
-            , {field: 'beizhu', title: '备注 ', align: 'center'}
-            , {field: 'addtime', title: '创建时间 ', align: 'center'}
+            , {field: 'beizhu', title: '备注 ',hide:true, align: 'center'}
+            , {field: 'addtime', title: '创建时间 ',hide:true, align: 'center'}
             // , {field: 'handleState', title: '签收情况 ', align: 'center',
             //     templet: function (d) {
             //         // console.log("this is data[d]:"+JSON.stringify(d));

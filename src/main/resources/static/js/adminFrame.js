@@ -2,7 +2,7 @@ let adminFrame_vm = new Vue({
     el:"#adminFrame",
     data:{
         user_id:0,
-        user_name:"我系成龙",
+        user_name:"管理员",
         activeIndex: "1",
         user_avatar:"avatar",
         displayDivs:{
