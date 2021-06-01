@@ -7,7 +7,6 @@ import com.money.crowdfunding.website.service.ProjectService;
 
 import com.money.crowdfunding.website.utils.httpUtils.HttpResult;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -133,6 +132,7 @@ public class ProjectController {
         touZiDingDan.setTouziren(touziren);
         touZiDingDan.setIssh(zhongChouXiangMu.getIssh());
         touZiDingDan.setAddtime(addtime);
+        touZiDingDan.setIszf("是");
         int allMoney = Integer.parseInt(projectMapper.getshouyi(xiangmubianhao));
         int touzi = Integer.parseInt(shouyi);
         int totle = allMoney+touzi;
@@ -144,6 +144,4 @@ public class ProjectController {
         }
         return HttpResult.ok().setData(false);
     }
-
-
 }

@@ -23,7 +23,7 @@ public interface ProjectMapper {
 
 
     @Select("select  * from touzidingdan where issh = '已通过' and touziren = #{touziren}  order by addtime DESC limit 6")
-    List<TouZiDingDan> getMyTouziXiangMu(@Param("touziren") MysqlxDatatypes.Scalar.String touziren);
+    List<TouZiDingDan> getMyTouziXiangMu(@Param("touziren") String touziren);
 
     @Select("select  * from xinwentongzhi where shouyetupian !='delete' order by addtime DESC limit 6")
     List<XinWenTongZhi> getZhongChouXuZhi();
