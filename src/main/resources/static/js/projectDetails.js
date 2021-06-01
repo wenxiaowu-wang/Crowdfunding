@@ -144,12 +144,12 @@ let myHomePage_vm = new Vue({
                     type: 'error',
                     message: '请输入投资金额！'
                 });
-            } else if(this.form.money<0){
+            } else if (this.form.money < 0) {
                 this.$message({
                     type: 'error',
                     message: '投资金额不得小于0！'
                 });
-            }else{
+            } else {
                 axios.post("/project/setInvestment/"
                     + this.form.money + "/" + this.user_name2 + "/" + this.projectId).then(response => {
                     let result = response.data.data;
@@ -157,7 +157,7 @@ let myHomePage_vm = new Vue({
                         this.alipayVisible = false;
                         this.weChatVisible = false;
                         this.paymentCheck = "";
-                        this.form.money=0;
+                        this.form.money = 0;
                         this.$message({
                             type: 'success',
                             message: '投资成功！'
@@ -175,30 +175,47 @@ let myHomePage_vm = new Vue({
         },
         topUpsCheck() {
             //校验提交信息
-            let method = parseInt(this.form.method);//将表单数据中的支付方式数据类型由string转为number
-            if (method === 0) {
+            if (this.form.money === "") {
                 this.$message({
-                    type: "info",
-                    message: "请用支付宝扫一扫支付"
+                    type: 'error',
+                    message: '请输入投资金额！'
                 });
-                //支付宝方式付款
-                this.alipayVisible = true;
-            } else if (method === 1) {
-                //微信方式付款
+            } else if (this.form.money < 0) {
                 this.$message({
-                    type: "info",
-                    message: "请用微信扫一扫支付"
+                    type: 'error',
+                    message: '投资金额不得小于0！'
                 });
-                this.weChatVisible = true;
+            }else if (this.form.money === 0) {
+                this.$message({
+                    type: 'error',
+                    message: '投资金额不得为0！'
+                });
             } else {
-                this.$message({
-                    type: "error",
-                    message: "系统出错"
-                });
-                // alert("money type ="+typeof (this.form.money)+"值为【"+this.form.money+"】"+" method type ="+typeof (this.form.method)+"值为【"+this.form.method+"】");
-            }
+                let method = parseInt(this.form.method);//将表单数据中的支付方式数据类型由string转为number
+                if (method === 0) {
+                    this.$message({
+                        type: "info",
+                        message: "请用支付宝扫一扫支付"
+                    });
+                    //支付宝方式付款
+                    this.alipayVisible = true;
+                } else if (method === 1) {
+                    //微信方式付款
+                    this.$message({
+                        type: "info",
+                        message: "请用微信扫一扫支付"
+                    });
+                    this.weChatVisible = true;
+                } else {
+                    this.$message({
+                        type: "error",
+                        message: "系统出错"
+                    });
+                    // alert("money type ="+typeof (this.form.money)+"值为【"+this.form.money+"】"+" method type ="+typeof (this.form.method)+"值为【"+this.form.method+"】");
+                }
 
-        },
+            }
+        }
     },
     mounted() {
 
