@@ -3,6 +3,7 @@ package com.money.crowdfunding.website.mapper;
 
 
 import com.money.crowdfunding.website.model.*;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.Timestamp;
@@ -56,8 +57,4 @@ public interface ProjectMapper {
     @Insert("insert into zhongchouxiangmu(xiangmubianhao,biaoti,leibie,zhongchoujine,qixian,shouyi,xiangqing,faburen,issh,addtime)values" +
             "(#{xiangmubianhao},#{biaoti},#{leibie},#{zhongchoujine},#{qixian},#{shouyi},#{xiangqing},#{faburen},#{issh},#{addtime})")
     boolean publishProject(ZhongChouXiangMu zhongChouXiangMu);
-
-    @Select("select xiangmubianhao from touzidingdan where   ID = #{id}")
-    String getXiangmubianhao(@Param("id") String id);
-
 }
