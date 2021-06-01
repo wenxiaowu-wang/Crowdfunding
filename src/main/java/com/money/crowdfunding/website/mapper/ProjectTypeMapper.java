@@ -43,4 +43,12 @@ public interface ProjectTypeMapper {
     //getAllOrder
     @Select("select * from touzidingdan limit 12")
     List<TouZiDingDan> getAllOrderList();
+
+    //getOneProjectById
+    @Select("select * from zhongchouxiangmu where id = #{id}")
+    ZhongChouXiangMu getOneProjectById(@Param("id")int id);
+
+    //根据id修改zhongchouxiangmu表中的issh
+    @Update("update zhongchouxiangmu set issh = #{issh} where id = #{id}")
+    int updateOneIsshById(@Param("issh")String issh,@Param("id")int id);
 }

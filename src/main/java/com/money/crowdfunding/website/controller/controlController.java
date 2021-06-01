@@ -139,4 +139,17 @@ public class controlController {
         modelAndView.addObject("key", "众筹项目订单");
         return modelAndView;
     }
+
+    //添加项目id到session
+    @RequestMapping("/setProjectIdToSession/{id}")
+    @ResponseBody
+    public int setProjectIdToSession(@PathVariable("id")Integer id,HttpSession httpSession){
+        httpSession.setAttribute("projectId",id);
+        return (int) httpSession.getAttribute("projectId");
+    }
+
+    @RequestMapping("/auditProjectInterface")
+    public String auditProjectInterface(){
+        return "html/auditProjectInterface";
+    }
 }
