@@ -80,6 +80,11 @@ let adminFrame_vm = new Vue({
                     $("#content_div").load("/admin/crowdfundingOrderManagement");
                     break;
                 }case 4:{
+                    // $("#content_div").load("/adminLogin");
+                    layer.msg("即将进入通知信息管理页面",{icon:5});
+                    $("#content_div").load("/admin/crowdfundingNoticeManagement");
+                    break;
+                }case 10:{
                     $.ajax({
                         url: "/admin/getSession",
                         type: "GET",
@@ -150,6 +155,22 @@ let adminFrame_vm = new Vue({
         },
     },
     mounted(){
-
+        $.ajax({
+            url: "/admin/getSession",
+            type: "GET",
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                // console.log(res);
+                let theResult = res.data;
+                if (theResult == null){
+                    alert("未登录，返回管理员登录界面");
+                    window.location.assign("adminLogin");
+                }else{
+                    this.user_name = theResult.username;
+                }
+                // $("#content_div div").html(theResult+"待更新···");
+            }
+        });
     },
 })

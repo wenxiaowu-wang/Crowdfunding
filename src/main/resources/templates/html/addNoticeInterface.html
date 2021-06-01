@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>项目审核</title>
+    <link rel="stylesheet" href="css/common/layui.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <script src="js/common/jquery.js"></script>
+</head>
+<body>
+<div id="userEditOfManage" style="max-width: 50%;text-align: center;margin-left:25%; margin-top: 20px;" >
+    <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="标题">
+<!--            <el-input v-model="form.mima" show-password :disabled="true"></el-input>-->
+            <el-input v-model="form.biaoti"></el-input>
+        </el-form-item>
+        <el-form-item label="内容">
+            <el-input v-model="form.neirong"></el-input>
+        </el-form-item>
+<!--        <el-form-item label="添加人">-->
+<!--            <el-input v-model="form.tianjiaren" :disabled="true"></el-input>-->
+<!--        </el-form-item>-->
+        <el-form-item label="通知类型">
+            <el-radio-group v-model="form.leibie">
+                <el-radio label="系统通知"></el-radio>
+                <el-radio label="推荐通知"></el-radio>
+                <el-radio label="其它通知"></el-radio>
+            </el-radio-group>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit()">确定</el-button>
+            <el-button @click="cancel()">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+<script src="js/common/layui.js"></script>
+</body>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/addNotice.js"></script>
+
+</html>

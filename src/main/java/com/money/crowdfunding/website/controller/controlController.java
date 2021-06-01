@@ -140,6 +140,14 @@ public class controlController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/crowdfundingNoticeManagement")
+    public ModelAndView crowdfundingNoticeManagement() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("html/crowdfundingNoticeManage");
+        modelAndView.addObject("key", "通知消息");
+        return modelAndView;
+    }
+
     //添加项目id到session
     @RequestMapping("/setProjectIdToSession/{id}")
     @ResponseBody
@@ -151,5 +159,23 @@ public class controlController {
     @RequestMapping("/auditProjectInterface")
     public String auditProjectInterface(){
         return "html/auditProjectInterface";
+    }
+
+    //添加订单id到session
+    @RequestMapping("/setOrderIdToSession/{id}")
+    @ResponseBody
+    public int v(@PathVariable("id")Integer id,HttpSession httpSession){
+        httpSession.setAttribute("orderId",id);
+        return (int) httpSession.getAttribute("orderId");
+    }
+
+    @RequestMapping("/auditOrderInterface")
+    public String auditOrderInterface(){
+        return "html/auditOrderInterface";
+    }
+
+    @RequestMapping("/addNoticeInterface")
+    public String addNoticeInterface(){
+        return "html/addNoticeInterface";
     }
 }

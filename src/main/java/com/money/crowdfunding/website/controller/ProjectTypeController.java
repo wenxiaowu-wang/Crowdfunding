@@ -1,6 +1,7 @@
 package com.money.crowdfunding.website.controller;
 
 
+import com.money.crowdfunding.website.model.TouZiDingDan;
 import com.money.crowdfunding.website.model.UserInfo;
 import com.money.crowdfunding.website.model.XiangMuLeiBie;
 import com.money.crowdfunding.website.model.ZhongChouXiangMu;
@@ -67,7 +68,7 @@ public class ProjectTypeController {
 
     //获取跳转到auditProjectInterface的缓存id对应的项目信息
     @GetMapping("/getProjectBySessionId")
-    public HttpResult getUserByName(HttpSession httpSession){
+    public HttpResult getProjectBySessionId(HttpSession httpSession){
         Integer id = (Integer) httpSession.getAttribute("projectId");
         ZhongChouXiangMu zhongChouXiangMu = projectTypeService.getOneProjectInfoById(id);
         return HttpResult.ok().setData(zhongChouXiangMu);
@@ -77,6 +78,14 @@ public class ProjectTypeController {
     @PostMapping("/updateProjectById")
     public HttpResult updateProjectById(ZhongChouXiangMu zhongChouXiangMu){
         return HttpResult.ok().setData(projectTypeService.updateOneProjectInfoById(zhongChouXiangMu));
+    }
+
+    //获取跳转到auditOrderInterface的缓存id对应的项目信息
+    @GetMapping("/getOrderBySessionId")
+    public HttpResult getOrderBySessionId(HttpSession httpSession){
+        Integer id = (Integer) httpSession.getAttribute("orderId");
+        TouZiDingDan touZiDingDan = projectTypeService.getOneOrderById(id);
+        return HttpResult.ok().setData(touZiDingDan);
     }
 
 }
