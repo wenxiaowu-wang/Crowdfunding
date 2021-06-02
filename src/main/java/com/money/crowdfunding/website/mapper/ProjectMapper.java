@@ -21,7 +21,7 @@ public interface ProjectMapper {
     List<TouZiDingDan> getTouziMyXiangMu(@Param("faburen") String faburen);
 
 
-    @Select("select  * from touzidingdan where issh = '已通过' and touziren = #{touziren}  order by addtime DESC limit 6")
+    @Select("select  * from touzidingdan where  touziren = #{touziren}  order by addtime DESC limit 6")
     List<TouZiDingDan> getMyTouziXiangMu(@Param("touziren") String touziren);
 
     @Select("select  * from xinwentongzhi where shouyetupian !='delete' order by addtime DESC limit 6")
@@ -35,6 +35,9 @@ public interface ProjectMapper {
 
     @Select("select shouyi from zhongchouxiangmu where issh ='已通过' and  xiangmubianhao = #{id}")
     String getshouyi(@Param("id") String id);
+
+    @Select("select zhongchoujine from zhongchouxiangmu where issh ='已通过' and  xiangmubianhao = #{id}")
+    String getZhongChouJine(@Param("id") String id);
 
 
     @Select("select u.yonghuming,u.touxiang,c.addtime,c.xinwenid,c.pinglunneirong,c.pinglunren from yonghuzhuce u LEFT JOIN pinglun c on  u.yonghuming = c. pinglunren where c.xinwenid = #{id} order by addtime DESC")
@@ -60,4 +63,7 @@ public interface ProjectMapper {
 
     @Update("UPDATE xinwentongzhi SET dianjilv = dianjilv+1 WHERE ID = #{id} ")
     boolean updateDJL(@Param("id") String id);
+
+    @Update("UPDATE zhongchouxiangmu SET issh = '已完成' WHERE xiangmubianhao = #{id} ")
+    boolean updateJIN(@Param("id") String id);
 }
