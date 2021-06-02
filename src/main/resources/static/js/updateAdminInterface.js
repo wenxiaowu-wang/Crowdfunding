@@ -7,11 +7,6 @@ let addNotice_vm = new Vue({
             newPwd:"",
             doublePwd:"",
         },
-        labelPosition:"right",
-        formLabel:{
-            admin_id: "",
-            admin_password: ""
-        }
     },
     methods: {
         onSubmit(){

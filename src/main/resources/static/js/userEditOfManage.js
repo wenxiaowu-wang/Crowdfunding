@@ -18,35 +18,32 @@ let userEditOfManage_vm = new Vue({
             addtime:"",
             issh:"",
         },
-        labelPosition:"right",
-        formLabel:{
-            admin_id: "",
-            admin_password: ""
-        }
+        time:""
     },
     methods: {
         onSubmit(){
             //提交修改
             let user = {};
+            let this_ = this;
             $.ajax({
                 url: "/user/updateUserById",
                 type: "post",
                 data: {
-                    id:this.form.id,
-                    yonghuming:this.formatString(this.form.yonghuming),
-                    mima:this.formatString(this.form.mima),
-                    xingming:this.formatString(this.form.xingming),
-                    xingbie:this.formatString(this.form.xingbie),
-                    chushengnianyue:this.formatString(this.form.chushengnianyue),
-                    qq:this.formatString(this.form.qq),
-                    youxiang:this.formatString(this.form.youxiang),
-                    dianhua:this.formatString(this.form.dianhua),
-                    shenfenzheng:this.formatString(this.form.shenfenzheng),
-                    touxiang:this.formatString(this.form.touxiang),
-                    dizhi:this.formatString(this.form.dizhi),
-                    beizhu:this.formatString(this.form.beizhu),
-                    // addtime:this.formatString(this.form.addtime),
-                    issh:this.formatString(this.form.issh),
+                    id:this_.form.id,
+                    yonghuming:this_.formatString(this_.form.yonghuming),
+                    mima:this_.formatString(this_.form.mima),
+                    xingming:this_.formatString(this_.form.xingming),
+                    xingbie:this_.formatString(this_.form.xingbie),
+                    chushengnianyue:this_.formatString(this_.form.chushengnianyue),
+                    qq:this_.formatString(this_.form.qq),
+                    youxiang:this_.formatString(this_.form.youxiang),
+                    dianhua:this_.formatString(this_.form.dianhua),
+                    shenfenzheng:this_.formatString(this_.form.shenfenzheng),
+                    touxiang:this_.formatString(this_.form.touxiang),
+                    dizhi:this_.formatString(this_.form.dizhi),
+                    beizhu:this_.formatString(this_.form.beizhu),
+                    // addtime:this_.formatString(this_.form.addtime),
+                    // issh:this_.formatString(this_.form.issh),
                 },
                 dataType: 'json'
                 , headers: 'updateUserById',
@@ -61,42 +58,6 @@ let userEditOfManage_vm = new Vue({
                     }
                 }
             });
-            // $.ajax({
-            //     url: "/user/updateUserById",
-            //     type: "POST",
-            //     data: {
-            //         id:this.form.id,
-            //         yonghuming:this.formatString(this.form.yonghuming),
-            //         mima:this.formatString(this.form.mima),
-            //         xingming:this.formatString(this.form.xingming),
-            //         xingbie:this.formatString(this.form.xingbie),
-            //         chushengnianyue:this.formatString(this.form.chushengnianyue),
-            //         qq:this.formatString(this.form.qq),
-            //         youxiang:this.formatString(this.form.youxiang),
-            //         dianhua:this.formatString(this.form.dianhua),
-            //         shenfenzheng:this.formatString(this.form.shenfenzheng),
-            //         touxiang:this.formatString(this.form.touxiang),
-            //         dizhi:this.formatString(this.form.dizhi),
-            //         beizhu:this.formatString(this.form.beizhu),
-            //         addtime:this.formatString(this.form.addtime),
-            //         issh:this.formatString(this.form.issh),
-            //     },
-            //     dataType: 'json',
-            //     headers: 'updateUserById',
-            //     // contentType:"application/json;charset=UTF-8",
-            //     success: function (res) {
-            //         // console.log(res);
-            //         let theResult = res.data;
-            //         if (theResult){
-            //             this.$message({
-            //                 type:'success',
-            //                 message:"修改信息成功！"
-            //             });
-            //             refreshBgtDbTable();
-            //             window.close();
-            //         }
-            //     }
-            // });
         },
         cancel(){
             window.close();
@@ -111,56 +72,6 @@ let userEditOfManage_vm = new Vue({
         findData() {
             return {
                 adminData: []
-            }
-        },
-        adminLogin() {
-            if (this.formLabel.admin_id === "" || this.formLabel.admin_password === "") {
-                this.$message({
-                    type: 'error',
-                    message: '输入不可为空！'
-                });
-            } else {
-                let userName = this.formLabel.admin_id;
-                let password = this.formLabel.admin_password;
-                this.$message({
-                    type: 'success',
-                    message: '登录请求发送成功！'
-                });
-                $.ajax({
-                    url: "/admin/isAdmin",
-                    type: "POST",
-                    data: {'userName':userName,
-                        "password":password},
-                    dataType: 'json',
-                    success: function (res) {
-                        // console.log(res);
-                        let theResult = res.data;
-                        if (theResult) {
-                            //登录成功，进行的操作:在当前界面跳进入管理员主界面；
-                            //跳转界面
-                            window.location.assign("toAdminMain");
-                        } else {
-                            alert("用户名或密码输入错误！");
-                        }
-                    }
-                });
-                // axios.post("/admin/isAdmin/" +
-                //     userName + "/" + password).then(response =>{
-                //     //response.data本身即为字符串格式，JSON处理是为了将整个response对象解析成字符串，否则直接打印response为Object
-                //     let theResult = response.data;
-                //     if (theResult) {
-                //         //登录成功，进行的操作:在当前界面跳进入管理员主界面；
-                //         //跳转界面
-                //         window.location.assign("http://www.baidu.com");
-                //     } else {
-                //         this.$message({
-                //             type: 'error',
-                //             message: '账号或密码错误！'
-                //         });
-                //     }
-                // }).catch(error =>{
-                //     console.log("登录失败+" + error);
-                // });
             }
         },
     },
