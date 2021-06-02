@@ -144,4 +144,11 @@ public class ProjectController {
         }
         return HttpResult.ok().setData(false);
     }
+
+    @PostMapping("/updateDJL/{id}")
+    public HttpResult updateDJL(@PathVariable("id") String id) {
+        boolean update = false;
+        update = projectMapper.updateDJL(id);
+        return HttpResult.ok().setData(update);
+    }
 }

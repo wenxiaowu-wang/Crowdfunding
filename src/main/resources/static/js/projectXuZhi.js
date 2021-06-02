@@ -50,13 +50,25 @@ let myHomePage_vm = new Vue({
             window.location.assign("toPersonalCenter");
         },
         goToDetails(id){
+
+            axios.post('/project/updateDJL/' +
+                id).then(response => {
+                let data = response.data;
+            }).catch(error => {
+                console.log("更改点击率失败："+error);
+                this.$message({
+                    type: 'error',
+                    message: '网络错误！'
+                });
+            });
+
             axios.get('/project/setProjectDetailSession/' +
                 id).then(response => {
                 let data = response.data;
                 console.log("项目编号ID:"+data.data)
                 window.location.assign("toProjectXuZhiDetail");
             }).catch(error => {
-                console.log("登录失败"+error);
+                console.log("存入众筹须知ID失败："+error);
                 this.$message({
                     type: 'error',
                     message: '网络错误！'
