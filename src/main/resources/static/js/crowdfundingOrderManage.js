@@ -172,6 +172,7 @@ $("#submit_update").click(function () {
 });
 
 function displayAdd() {
+    console.log("添加窗口展示");
     $("#addPanel").css("display","block");
     $(".div_update").css("display","none");
     $(".div_add").css("display","block");
