@@ -27,17 +27,17 @@ layui.use(['table'], function () {
         }
         , cols: [[   //表格绑数据
             // {type: 'checkbox'}
-            {field: 'id', title: '编号',  width: "6%"}
-            , {field: 'yonghuming', title: '用户名',width: "8%"}
-            , {field: 'xingming', title: '姓名', width: "8%"}
-            , {field: 'xingbie', title: '性别 ', width: "6%"}
+            {field: 'id', title: '编号',  width: "5%"}
+            , {field: 'yonghuming', title: '用户名',width: "7%"}
+            , {field: 'xingming', title: '姓名', width: "6%"}
+            , {field: 'xingbie', title: '性别 ', width: "5%"}
             , {field: 'chushengnianyue', title: '出生年月 '}
-            , {field: 'qq', title: 'qq ', }
+            , {field: 'qq', title: 'qq ', width: "10%"}
             , {field: 'youxiang', title: '邮箱 ',width: "12%" }
-            , {field: 'dianhua', title: '电话 ', }
+            , {field: 'dianhua', title: '电话 ', width: "10%"}
             , {field: 'shenfenzheng', title: '身份证 ', }
             // , {field: 'touxiang', title: '头像 ',hide:true, }
-            , {field: 'dizhi', title: '地址 ',width: "15%"}
+            , {field: 'dizhi', title: '地址 ',width: "13%"}
             // , {field: 'beizhu', title: '备注 ',hide:true, align: 'center'}
             // , {field: 'addtime', title: '创建时间 ',hide:true, align: 'center'}
             // , {field: 'handleState', title: '签收情况 ', align: 'center',
