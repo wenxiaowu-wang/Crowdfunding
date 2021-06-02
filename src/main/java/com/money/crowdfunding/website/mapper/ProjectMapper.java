@@ -57,7 +57,7 @@ public interface ProjectMapper {
             "(#{xiangmubianhao},#{biaoti},#{leibie},#{zhongchoujine},#{qixian},#{shouyi},#{xiangqing},#{faburen},#{issh},#{addtime})")
     boolean publishProject(ZhongChouXiangMu zhongChouXiangMu);
 
-    @Select("select xiangmubianhao from touzidingdan where   ID = #{id}")
-    String getXiangmubianhao(@Param("id") String id);
 
+    @Update("UPDATE xinwentongzhi SET dianjilv = dianjilv+1 WHERE ID = #{id} ")
+    boolean updateDJL(@Param("id") String id);
 }

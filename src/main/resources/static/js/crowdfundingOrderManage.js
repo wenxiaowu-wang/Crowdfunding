@@ -38,7 +38,7 @@ layui.use(['table'], function () {
             , {field: 'touziren', title: '投资人', align: 'center'}
             , {field: 'addtime', title: '添加时间', align: 'center'}
             , {field: 'iszf', title: 'iszf',hide:true, align: 'center'}
-            , {field: 'issh', title: '审核状态 ', align: 'center',
+            , {field: 'issh', title: '审核状态 ',hide:true, align: 'center',
                 templet: function (d) {
                     // console.log("this is data[d]:"+JSON.stringify(d));
                     if (d.issh === "是"){
@@ -63,11 +63,27 @@ layui.use(['table'], function () {
             closeAll();
             displayUpdate(obj.data.leibie,npid);
         }else if (obj.event === 'look'){
-            viewcl(npid);       //查看用户详情信息
+            // viewcl(npid);       //查看用户详情信息
+            axios.post("/setOrderIdToSession/" +
+                npid).then(response =>{
+                //response.data本身即为字符串格式，JSON处理是为了将整个response对象解析成字符串，否则直接打印response为Object
+                let theResult = response.data;
+                if (theResult) {
+                    //跳转界面
+                    window.open("/auditOrderInterface"); //修改众筹投资订单详情界面
+                } else {
+                    this.$message({
+                        type: 'error',
+                        message: '系统错误'
+                    });
+                }
+            }).catch(error =>{
+                console.log("跳转失败+" + error);
+            });
         }else if (obj.event === 'end'){
             endAccount(npid);   //禁用对应用户账号
         }else if (obj.event === 'audit' || obj.event === 'changeAudit') {
-            alert("标记功能尚未开放，阁下过段时间再来");   //审核
+            // alert("标记功能尚未开放，阁下过段时间再来");   //审核
         }
     });
 

@@ -26,21 +26,18 @@
                     <el-menu-item index="1"><i class="el-icon-s-home"></i>首页</el-menu-item>
                     <el-menu-item index="2"><i class="el-icon-reading"></i>众筹须知</el-menu-item>
                     <el-menu-item index="3"><i class="el-icon-s-order"></i>众筹项目</el-menu-item>
-<!--                    <el-menu-item index="4"><i class="el-icon-chat-line-round"></i>在线留言</el-menu-item>-->
                     <el-menu-item index="4"><i class="el-icon-setting"></i>管理员端</el-menu-item>
                 </el-menu>
             </div>
 
             <div class="top_data">
                 <div>
-
                     <el-avatar :src="imageURL_header+avatar+imageURL_suffix"></el-avatar>
                     用户:{{user_name2}}，您好<br>
                     <el-button type="text" @click="personally()">个人中心</el-button>
                     <el-button type="text" @click="signOut()">退出登录</el-button>
                 </div>
             </div>
-
         </div>
     </div>
 

@@ -108,6 +108,11 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
     }
 
     @Override
+    public TouZiDingDan getOneOrderById(int id) {
+        return projectTypeMapper.getOneOrderById(id);
+    }
+
+    @Override
     public ZhongChouXiangMu getOneProjectInfoById(int id) {
         return projectTypeMapper.getOneProjectById(id);
     }

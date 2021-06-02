@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>项目审核</title>
+    <link rel="stylesheet" href="css/common/layui.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <script src="js/common/jquery.js"></script>
+</head>
+<body>
+<div id="userEditOfManage" style="max-width: 50%;text-align: center;margin-left:25%; margin-top: 20px;" >
+    <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="编号">
+            <el-input v-model="form.xiangmubianhao" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="标题">
+<!--            <el-input v-model="form.mima" show-password :disabled="true"></el-input>-->
+            <el-input v-model="form.biaoti" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="类别">
+            <el-input v-model="form.leibie" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="众筹金额">
+            <el-input v-model="form.zhongchoujine" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="期限">
+            <el-input v-model="form.qixian" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="收益">
+            <el-input v-model="form.shouyi" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="发布人">
+            <el-input v-model="form.faburen" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="投资人">
+            <el-input v-model="form.touziren" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="发布时间">
+            <el-input v-model="form.addtime" :disabled="true"></el-input>
+        </el-form-item>
+<!--        <el-form-item label="审核状态">-->
+<!--            <el-radio-group v-model="form.issh">-->
+<!--                <el-radio label="待审核"></el-radio>-->
+<!--                <el-radio label="未通过"></el-radio>-->
+<!--                <el-radio label="已通过"></el-radio>-->
+<!--            </el-radio-group>-->
+<!--        </el-form-item>-->
+        <el-form-item>
+<!--            <el-button type="primary" @click="onSubmit()">确定</el-button>-->
+            <el-button @click="cancel()">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+<script src="js/common/layui.js"></script>
+</body>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/auditOrder.js"></script>
+
+</html>

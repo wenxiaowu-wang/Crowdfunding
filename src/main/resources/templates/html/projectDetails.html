@@ -50,9 +50,9 @@
     </div>
 
     <div class="body_left3">
-        <div class="P_all_top" >
+        <div class="P_all_top">
             <div class="el-image P_all_top_img">
-<!--                <div class="el-image__error"></div>-->
+                <!--                <div class="el-image__error"></div>-->
                 <img :src="'img/background/'+picture+'.png'" class="el-image__inner" style="object-fit: contain;">
             </div>
             <div class="P_all_top_text">
@@ -80,11 +80,19 @@
             项目介绍：
         </div>
         <br>
-        <div style="margin:0 auto; font-family: 宋体;color: #8D8D8D; width:900px;">
-            &nbsp;&nbsp;{{xiangqing}}
-        </div>
+        <template v-if=" xiangqing === '' ">
+            <div style="margin:0px 0px 25px 0px; text-align:center;font-size:15px;font-family: 宋体;color: #8D8D8D;">
+                本项目暂无介绍~
+            </div>
+        </template>
+        <template v-else>
+            <div style="margin:0 auto; font-family: 宋体;color: #8D8D8D; width:900px;">
+                &nbsp;&nbsp;{{xiangqing}}
+            </div>
+        </template>
         <div style="margin-left: 45%">
-            <el-button type="primary" plain @click="investment()">投资</el-button> <el-button type="primary" plain @click="comment()">评论</el-button>
+            <el-button type="primary" plain @click="investment()">投资</el-button>
+            <el-button type="primary" plain @click="comment()">评论</el-button>
         </div>
     </div>
 
@@ -143,7 +151,7 @@
             </el-form-item>
             <br><br><br>
             <el-form-item label="支付方式：" :label-width="formLabelWidth">
-                <el-radio-group  v-model="form.method">
+                <el-radio-group v-model="form.method">
                     <el-radio-button label="0" class="form_item_button">支付宝</el-radio-button>
                     <el-radio-button label="1" class="form_item_button">微信</el-radio-button>
                 </el-radio-group>
@@ -171,7 +179,7 @@
             <div class="photo">
                 <div class="demonstration">支付宝扫一扫付款</div>
                 <div class="photo_img">
-                    <img :src="alipayImg" />
+                    <img :src="alipayImg"/>
                 </div>
             </div>
             <div class="checkPaymentInput">
@@ -193,7 +201,7 @@
             <div class="photo">
                 <div class="demonstration">微信扫一扫付款</div>
                 <div class="photo_img">
-                    <img :src="weChatImg" />
+                    <img :src="weChatImg"/>
                 </div>
             </div>
             <div class="checkPaymentInput">
@@ -214,8 +222,6 @@
     <div class="address">地址:山东省东营市北二路271号中国石油大学胜利学院 邮编：257000 电话：123-123-1234 传真：123-1234567</div>
     <div class="beian">鲁ICP备08001421号鲁公网安备110108007702 人工客服QQ：66666666</div>
 </div>
-
-
 
 
 <script src="js/common/vue.js"></script>

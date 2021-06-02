@@ -44,6 +44,10 @@ public interface ProjectTypeMapper {
     @Select("select * from touzidingdan limit 12")
     List<TouZiDingDan> getAllOrderList();
 
+    //getOneOrderById
+    @Select("select * from touzidingdan where id = #{id}")
+    TouZiDingDan getOneOrderById(@Param("id")int id);
+
     //getOneProjectById
     @Select("select * from zhongchouxiangmu where id = #{id}")
     ZhongChouXiangMu getOneProjectById(@Param("id")int id);
