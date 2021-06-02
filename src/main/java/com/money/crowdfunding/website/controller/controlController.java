@@ -148,6 +148,14 @@ public class controlController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/updateAdminInfoInterface")
+    public ModelAndView updateAdminInfoInterface() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("html/updateAdminInterface");
+        modelAndView.addObject("key", "管理员信息更新");
+        return modelAndView;
+    }
+
     //添加项目id到session
     @RequestMapping("/setProjectIdToSession/{id}")
     @ResponseBody

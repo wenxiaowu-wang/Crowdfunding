@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="css/common/layui.css">
+    <link rel="stylesheet" href="css/common/theme-chalk.css">
+    <link rel="stylesheet" href="css/common/elementui.css">
+    <script src="js/common/jquery.js"></script>
+</head>
+<body>
+<div id="userEditOfManage" style="max-width: 50%;text-align: center;margin-left:25%; margin-top: 20px;" >
+    <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="用户名">
+            <el-input v-model="form.username" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="原密码">
+            <el-input v-model="form.oldPwd" show-password ></el-input>
+        </el-form-item>
+        <el-form-item label="新密码">
+            <el-input v-model="form.newPwd" show-password ></el-input>
+        </el-form-item>
+        <el-form-item label="密码确认">
+            <el-input v-model="form.doublePwd" show-password ></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit()">修改</el-button>
+            <el-button @click="cancel()">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+<script src="js/common/layui.js"></script>
+</body>
+<script src="js/common/vue.js"></script>
+<script src="js/common/elementui.js"></script>
+<script src="js/common/index.js"></script>
+<script src="js/common/axios.js"></script>
+<script src="js/updateAdminInterface.js"></script>
+
+</html>

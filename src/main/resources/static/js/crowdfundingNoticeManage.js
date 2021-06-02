@@ -28,14 +28,14 @@ layui.use(['table'], function () {
         }
         , cols: [[   //表格绑数据
             // {type: 'checkbox'}
-            , {field: 'id', title: '编号', align: 'center'}
-            , {field: 'biaoti', title: '标题', align: 'center'}
-            , {field: 'leibie', title: '类别', align: 'center'}
-            , {field: 'neirong', title: '内容 ', align: 'center'}
-            , {field: 'tianjiaren', title: '添加人 ', align: 'center'}
+            , {field: 'id', title: '编号', align: 'center',width:'100'}
+            , {field: 'biaoti', title: '标题', align: 'center',width:'243'}
+            , {field: 'leibie', title: '类别', align: 'center',width:'243'}
+            , {field: 'neirong', title: '内容 ', align: 'center',width:'243'}
+            , {field: 'tianjiaren', title: '添加人 ', align: 'center',width:'243'}
             , {field: 'shouyetupian', title: '首页图片 ',hide:true, align: 'center'}
             , {field: 'dianjilv', title: '点击率 ',hide:true, align: 'center'}
-            , {field: 'addtime', title: '创建时间 ', align: 'center'}
+            , {field: 'addtime', title: '创建时间 ', align: 'center',width:'243'}
             // , {field: 'handleState', title: '签收情况 ', align: 'center',
             //     templet: function (d) {
             //         // console.log("this is data[d]:"+JSON.stringify(d));
