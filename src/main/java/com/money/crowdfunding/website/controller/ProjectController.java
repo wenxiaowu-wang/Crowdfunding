@@ -118,6 +118,7 @@ public class ProjectController {
 
     @PostMapping("/setInvestment/{shouyi}/{touziren}/{xiangmubianhao}")
     public HttpResult setInvestment(@PathVariable("shouyi") String shouyi, @PathVariable("touziren") String touziren, @PathVariable("xiangmubianhao") String xiangmubianhao) {
+
         Date date = new Date();
         Timestamp addtime = new Timestamp(date.getTime());
         ZhongChouXiangMu zhongChouXiangMu = projectMapper.getZhongChouDetail(xiangmubianhao);
@@ -136,6 +137,10 @@ public class ProjectController {
         int allMoney = Integer.parseInt(projectMapper.getshouyi(xiangmubianhao));
         int touzi = Integer.parseInt(shouyi);
         int totle = allMoney+touzi;
+        int zhongchoujine = Integer.parseInt(projectMapper.getZhongChouJine(xiangmubianhao));
+        if (totle>=zhongchoujine){
+            projectMapper.updateJIN(xiangmubianhao);
+        }
         String fi = String.valueOf(totle);
         boolean update = projectMapper.updateJine(fi,xiangmubianhao);
         boolean insert = projectMapper.insertInvestment(touZiDingDan);

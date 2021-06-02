@@ -21,6 +21,7 @@ let myHomePage_vm = new Vue({
         faburen: '',
         xiangqing: '',
         picture: '001',
+        issh: '',
 
         projectId: '',
 
@@ -93,6 +94,13 @@ let myHomePage_vm = new Vue({
             // alert(this.projectId)
         },
         investment() {
+            if(this.issh==='已完成'){
+                this.$message({
+                    type: 'error',
+                    message: '该项目已完成投资，无须投资！'
+                });
+                return false;
+            }
             this.dialogVisible = true;
             // alert(this.projectId)
         },
@@ -259,6 +267,8 @@ let myHomePage_vm = new Vue({
                 this.faburen = data.faburen;
                 this.xiangqing = data.xiangqing;
                 this.picture = data.picture;
+                this.issh = data.issh;
+
 
             }).catch(error => {
                 this.$message({

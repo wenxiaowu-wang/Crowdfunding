@@ -18,7 +18,8 @@
         <div class="top_img"></div>
         <div class="top_content">
             <div class="top_tips">
-                <el-button type="text" icon="el-icon-back" @click="backProject()">返回</el-button>
+<!--                <el-button type="text" icon="el-icon-back" @click="backProject()">返回</el-button>-->
+                <el-button type="text" icon="el-icon-back" onclick="self.location=document.referrer">返回</el-button>
             </div>
             <div class="top_menu">
                 <el-menu
@@ -115,7 +116,10 @@
         </div>
 
         <template v-if=" commentData.length === 0 ">
-            <p>本项目暂无评论，赶快留下你的意见吧~</p>
+            <div style="margin-left: 25%;">
+                <p>本项目暂无评论，赶快留下你的意见吧~</p>
+                <img style="height: 50%;width: 55%;" src="img/background/none.png">
+            </div>
         </template>
         <template v-else>
             <div class="comment-parent" v-for="comment in commentData">
@@ -227,6 +231,7 @@
 <script src="js/common/vue.js"></script>
 <script src="js/common/elementui.js"></script>
 <script src="js/common/index.js"></script>
+<script src="js/common/jquery.js"></script>
 <script src="js/common/axios.js"></script>
 <script src="js/projectDetails.js"></script>
 
