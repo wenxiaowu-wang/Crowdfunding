@@ -27,19 +27,19 @@ layui.use(['table'], function () {
         }
         , cols: [[   //表格绑数据
             // {type: 'checkbox'}
-            , {field: 'id', title: '编号', align: 'center', width: 25}
-            , {field: 'yonghuming', title: '用户名', align: 'center',width: 30}
-            , {field: 'xingming', title: '姓名', align: 'center',width: 25}
-            , {field: 'xingbie', title: '性别 ', align: 'center',width: 25}
-            , {field: 'chushengnianyue', title: '出生年月 ', align: 'center'}
-            , {field: 'qq', title: 'qq ', align: 'center'}
-            , {field: 'youxiang', title: '邮箱 ', align: 'center'}
-            , {field: 'dianhua', title: '电话 ', align: 'center'}
-            , {field: 'shenfenzheng', title: '身份证 ', align: 'center'}
-            , {field: 'touxiang', title: '头像 ',hide:true, align: 'center'}
-            , {field: 'dizhi', title: '地址 ', align: 'center'}
-            , {field: 'beizhu', title: '备注 ',hide:true, align: 'center'}
-            , {field: 'addtime', title: '创建时间 ',hide:true, align: 'center'}
+            {field: 'id', title: '编号',  width: "6%"}
+            , {field: 'yonghuming', title: '用户名',width: "8%"}
+            , {field: 'xingming', title: '姓名', width: "8%"}
+            , {field: 'xingbie', title: '性别 ', width: "6%"}
+            , {field: 'chushengnianyue', title: '出生年月 '}
+            , {field: 'qq', title: 'qq ', }
+            , {field: 'youxiang', title: '邮箱 ',width: "12%" }
+            , {field: 'dianhua', title: '电话 ', }
+            , {field: 'shenfenzheng', title: '身份证 ', }
+            // , {field: 'touxiang', title: '头像 ',hide:true, }
+            , {field: 'dizhi', title: '地址 ',width: "15%"}
+            // , {field: 'beizhu', title: '备注 ',hide:true, align: 'center'}
+            // , {field: 'addtime', title: '创建时间 ',hide:true, align: 'center'}
             // , {field: 'handleState', title: '签收情况 ', align: 'center',
             //     templet: function (d) {
             //         // console.log("this is data[d]:"+JSON.stringify(d));
@@ -49,7 +49,7 @@ layui.use(['table'], function () {
             //             return "<span style='color: #262424;'>"+d.handleState+"</span>";
             //         }
             //     }}
-            , {field:'operation', title: '操作', toolbar: '#barDemo', align: 'center',width: 130}
+            , {field:'operation', title: '操作', toolbar: '#barDemo',}
         ]],
         // request: {
         //     page: 'pageCurrent' //页码的参数名称，默认：page
@@ -422,7 +422,6 @@ function openAccount(id){
         }
     });
 }
-
 // 填写评价
 function assess(npid){
     //页面层
