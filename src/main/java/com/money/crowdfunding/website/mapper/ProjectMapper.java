@@ -33,7 +33,7 @@ public interface ProjectMapper {
     @Select("select * from zhongchouxiangmu where  xiangmubianhao = #{xiangmubianhao}")
     ZhongChouXiangMu getZhongChouDetail(@Param("xiangmubianhao") String xiangmubianhao);
 
-    @Select("select shouyi from zhongchouxiangmu where issh ='已通过' and  ID = #{id}")
+    @Select("select shouyi from zhongchouxiangmu where issh ='已通过' and  xiangmubianhao = #{id}")
     String getshouyi(@Param("id") String id);
 
 
@@ -49,7 +49,7 @@ public interface ProjectMapper {
             "(#{xiangmubianhao},#{biaoti},#{leibie},#{zhongchoujine},#{qixian},#{shouyi},#{faburen},#{touziren},#{issh},#{iszf},#{addtime})")
     boolean insertInvestment(TouZiDingDan touZiDingDan);
 
-    @Update("UPDATE zhongchouxiangmu SET shouyi = #{shouyi} WHERE ID = #{id} ")
+    @Update("UPDATE zhongchouxiangmu SET shouyi = #{shouyi} WHERE xiangmubianhao = #{id} ")
     boolean updateJine(@Param("shouyi") String shouyi,@Param("id") String id);
 
 

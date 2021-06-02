@@ -115,7 +115,11 @@
         </div>
 
         <template v-if=" commentData.length === 0 ">
-            <p>本项目暂无评论，赶快留下你的意见吧~</p>
+
+<!--            <div style="height: 25%;width: 25%;">-->
+                <p>本项目暂无评论，赶快留下你的意见吧~</p>
+<!--                <img src="img/background/none.png">-->
+<!--            </div>-->
         </template>
         <template v-else>
             <div class="comment-parent" v-for="comment in commentData">
