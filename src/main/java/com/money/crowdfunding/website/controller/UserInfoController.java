@@ -78,8 +78,8 @@ public class UserInfoController {
     }
 
     @GetMapping("/getAllUser")
-    public HttpResult getAllUser(){
-        return HttpResult.ok().setData(userInfoService.getAllUser());
+    public HttpResult getAllUser(@Param("searchData")String searchData){
+        return HttpResult.ok().setData(userInfoService.getAllUser(searchData));
     }
 
     //禁用用户账号

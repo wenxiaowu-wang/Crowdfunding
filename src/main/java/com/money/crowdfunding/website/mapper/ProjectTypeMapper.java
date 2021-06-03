@@ -29,20 +29,20 @@ public interface ProjectTypeMapper {
     int updateOneAdminById(@Param("leibie")String type,@Param("id")int id);
 
     //getAllType
-    @Select("select * from xiangmuleibie")
-    List<XiangMuLeiBie> getAllList();
+    @Select("select * from xiangmuleibie where leibie like #{searchData} limit 12")
+    List<XiangMuLeiBie> getAllList(@Param("searchData")String searchData);
 
     //根据id修改isdelete
     @Update("update xiangmuleibie set isdelete = #{isdelete} where id = #{id}")
     int updateOneIsDeleteById(@Param("isdelete")String isdelete,@Param("id")int id);
 
     //getAllProject
-    @Select("select * from zhongchouxiangmu limit 12")
-    List<ZhongChouXiangMu> getAllProjectList();
+    @Select("select * from zhongchouxiangmu where biaoti like #{searchData} limit 12")
+    List<ZhongChouXiangMu> getAllProjectList(@Param("searchData")String searchData);
 
     //getAllOrder
-    @Select("select * from touzidingdan limit 12")
-    List<TouZiDingDan> getAllOrderList();
+    @Select("select * from touzidingdan where biaoti like #{searchData} limit 12")
+    List<TouZiDingDan> getAllOrderList(@Param("searchData")String searchData);
 
     //getOneOrderById
     @Select("select * from touzidingdan where id = #{id}")

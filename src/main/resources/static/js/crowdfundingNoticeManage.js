@@ -52,7 +52,7 @@ layui.use(['table'], function () {
     }
     });
 
-
+    refreshBgtDbTable();
 
     //监听行工具事件
     table.on('tool(test)', function(obj){

@@ -6,7 +6,7 @@ layui.use(['table'], function () {
     $('#close').click(function () {
         layer.close(layer.index);
     });
-
+    let searchData = getSearchData();
 
     // 表格渲染
     table.render({
@@ -33,7 +33,7 @@ layui.use(['table'], function () {
             , {field: 'leibie', title: '类别', align: 'center'}
             , {field: 'zhongchoujine', title: '众筹金额', align: 'center'}
             , {field: 'qixian', title: '期限', align: 'center'}
-            , {field: 'shouji', title: '手机号', align: 'center'}
+            , {field: 'shouyi', title: '收益', align: 'center'}
             , {field: 'xiangqing', title: '详情', align: 'center'}
             , {field: 'faburen', title: '发布人', align: 'center'}
             , {field: 'addtime', title: '添加时间', align: 'center'}
@@ -49,10 +49,12 @@ layui.use(['table'], function () {
                     }
                 }}
             , {field:'operation', title: '操作', toolbar: '#barDemo', align: 'center'}
-        ]],
+        ]],where: {
+            searchData: searchData
+        }
     });
 
-
+    refreshBgtDbTable();
 
     //监听行工具事件
     table.on('tool(test)', function(obj){
@@ -232,7 +234,6 @@ function openAccount(id){
     });
 }
 
-
 // 按下回车，执行搜索
 $(document).keypress(function(e) {
     if((e.keyCode || e.which) === 13) {
@@ -241,36 +242,27 @@ $(document).keypress(function(e) {
     }
 });
 
-
 //刷新办公厅待办表格
 function refreshBgtDbTable(){
-    // console.log("执行刷新办公厅待办表格操作=====================================》");
+    let searchData = getSearchData();
     layui.use(['table'], function () {
         var table = layui.table;
         var active =
             {
                 reload: function () {
                     //执行重载
-                    // sysUnitInfoCondition_value = {
-                    //     dateRange: $('#dateRange').val(),
-                    //     personName: "%" + $('#personName').val() + "%",
-                    //     unitName: "%" + $('#unitName').val() + "%",
-                    //     titleKey: "%" + $('#titleKey').val() + "%"  //大搜索框
-                    // };
-                    // console.log("执行重载");
+                    // initData();
                     table.reload('idTest',
                         {
                             page: {
                                 curr: 1
                             },//重新从第 1 页开始
-                            // where: {
-                            //     sysUnitInfoCondition: sysUnitInfoCondition_value
-                            // }
+                            where: {
+                                searchData: searchData
+                            }
                         });
-                    layer.close(layer.index);
                 }
             };
-        // console.log("active.reload()·······························》");
         active.reload();
     });
 }
@@ -282,33 +274,40 @@ window.addEventListener('visibilitychange',()=>{
         refreshBgtDbTable();
     }
 });
+
+//获取搜索信息
+function getSearchData(){
+    let searchData = $("#level1").val();
+    if (searchData === null || searchData === ""){
+        return "%%";
+    }else{
+        return "%"+searchData+"%";
+    }
+}
+
 //执行搜索，表格重载$("[name='dataSearch']")
 $("#dataSearch1").click(function (e) {
+    let searchData = getSearchData();
     layui.use(['table'], function () {
-    var table = layui.table;
-    let sysUnitInfoCondition_search1 = {
-        dateRange: "",
-        personName: "%%",
-        unitName: "%%",
-        titleKey: "%" + $("#level1").val() + "%"  //大搜索框
-    };
-    var active =
-        {
-            reload: function () {
-                //执行重载
-                // initData();
-                table.reload('idTest',
-                    {
-                        page: {
-                            curr: 1
-                        },//重新从第 1 页开始
-                        where: {
-                            sysUnitInfoCondition: sysUnitInfoCondition_search1
-                        }
-                    });
-            }
-        };
-    active.reload();
+        var table = layui.table;
+        var active =
+            {
+                reload: function () {
+                    //执行重载
+                    // initData();
+                    table.reload('idTest',
+                        {
+                            page: {
+                                curr: 1
+                            },//重新从第 1 页开始
+                            where: {
+                                searchData: searchData
+                            }
+                        });
+                }
+            };
+        active.reload();
     });
 });
+
 

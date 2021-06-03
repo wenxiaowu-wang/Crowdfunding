@@ -19,7 +19,7 @@ public interface UserInfoService {
 
     public boolean getLoginResult(String yonghuming, String mima);
 
-    public List<UserInfo> getAllUser();
+    public List<UserInfo> getAllUser(String searchData);
 
     boolean disableUserAccount(Integer id);
 

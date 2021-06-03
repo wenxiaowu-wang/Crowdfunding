@@ -67,8 +67,8 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public List<UserInfo> getAllUser() {
-        return userInfoMapper.selectAllUser();
+    public List<UserInfo> getAllUser(String searchData) {
+        return userInfoMapper.selectAllUser(searchData);
     }
 
     @Override

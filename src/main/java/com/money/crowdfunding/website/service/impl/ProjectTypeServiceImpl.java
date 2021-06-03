@@ -65,8 +65,8 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
     }
 
     @Override
-    public List<XiangMuLeiBie> getAllList() {
-        return projectTypeMapper.getAllList();
+    public List<XiangMuLeiBie> getAllList(String searchData) {
+        return projectTypeMapper.getAllList(searchData);
     }
 
     //封禁一套记录
@@ -98,13 +98,13 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
     }
 
     @Override
-    public List<ZhongChouXiangMu> getAllProjectList() {
-        return projectTypeMapper.getAllProjectList();
+    public List<ZhongChouXiangMu> getAllProjectList(String searchData) {
+        return projectTypeMapper.getAllProjectList(searchData);
     }
 
     @Override
-    public List<TouZiDingDan> getAllOrderList() {
-        return projectTypeMapper.getAllOrderList();
+    public List<TouZiDingDan> getAllOrderList(String searchData) {
+        return projectTypeMapper.getAllOrderList(searchData);
     }
 
     @Override

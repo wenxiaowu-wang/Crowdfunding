@@ -6,7 +6,7 @@ layui.use(['table'], function () {
     $('#close').click(function () {
         layer.close(layer.index);
     });
-
+    let searchData = getSearchData();
 
     // 表格渲染
     table.render({
@@ -39,10 +39,12 @@ layui.use(['table'], function () {
             // , {field: 'touxiang', title: '头像 ',hide:true, }
             , {field: 'dizhi', title: '地址 ',align: 'center',width: "13%"}
             , {field:'operation', title: '操作', toolbar: '#barDemo',align: 'center'}
-        ]],
+        ]],where: {
+            searchData: searchData
+        }
     });
 
-
+    refreshBgtDbTable();
 
     //监听行工具事件
     table.on('tool(test)', function(obj){
@@ -90,24 +92,6 @@ $("#refresh").click(function () {
     this.refreshBgtDbTable();
 });
 
-// 搜索按钮
-$("#search").click(function () {
-    search()
-})
-//执行搜索，表格重载
-function search(){
-    target = $('#unitInput').val();
-    //执行重载
-    layui.table.reload('tableUnit', {
-        page: {
-            curr: 1 //重新从第 1 页开始
-        }
-        ,where: {
-            organName: target
-        }
-    });
-}
-
 // 按下回车，执行搜索
 $(document).keypress(function(e) {
     if((e.keyCode || e.which) === 13) {
@@ -116,80 +100,6 @@ $(document).keypress(function(e) {
     }
 });
 
-
-
-//上传弹框的打开以及监听事件
-function uploadLeaderOpinion(npid){
-
-    //清空弹框的输入内容
-    $("#feedback").val("");
-    $("#leaderName").val("");
-
-    //打开上传panel
-    layer.open({
-        type: 1,
-        title: '上传批示意见',
-        // shade: 0,
-        zIndex: 1998,
-        area: '750px', //宽
-        content: $("#uploadPanel")
-    });
-
-    //监听上传表单
-    layui.use(['form'], function() {
-        var form = layui.form
-            , layer = layui.layer;
-        //监听提交按钮
-        $("#submit_now").click(function () {
-            attachmentfjIDS=attachmentfjIDS.substring(0, attachmentfjIDS.length - 1);
-            let feedback = $("#feedback").val();
-            let leaderName = $("#leaderName").val();
-            // layer.alert(attachmentfjIDS, {
-            //     title: 'feedback = '+feedback+npid
-            // });
-            if (leaderName === "" || feedback === ""){
-                layer.msg('领导名字或批示内容均不可为空！', {
-                    icon: 5,
-                    time: 2000, //2s后自动关闭
-                });
-                return false;
-            }
-            config.post_ajax(config.occ_url() + "/occ-deal/bgtUploadLeaderOpinion", {
-                async: false,
-                // contentType:"application/json;charset=UTF-8",
-                data: {
-                    attachmentfjIDS:attachmentfjIDS,
-                    feedback:feedback,
-                    npid:npid,
-                    leaderName:leaderName
-                },
-                success: function (res) {
-                    layer.closeAll('page');    //关闭所有页面层
-                    $("#feedback").val("");
-                    $("#leaderName").val("");
-                    if (res.code === 200) {
-                        let getData = res.data;
-                        if (getData){
-                            layer.msg("领导批示上传成功", {
-                                icon: 6,
-                                time: 1000, //1s后自动关闭
-                            }, function () {
-                                // refreshBgtDbTable();    //刷新表格
-                                window.location.reload();
-                            });
-                        }else {
-                            layer.msg('领导批示上传失败！', {
-                                icon: 5,
-                                time: 2000, //2s后自动关闭
-                            });
-                        }
-                    }
-                }
-            }, "bgtUploadLeaderOpinion");
-        });
-
-    });
-}
 //禁用id对应的用户账号
 function endAccount(id){
     $.ajax({
@@ -246,23 +156,23 @@ function openAccount(id){
 
 //刷新表格
 function refreshBgtDbTable(){
-    // console.log("执行刷新办公厅待办表格操作=====================================》");
+    let searchData = getSearchData();
     layui.use(['table'], function () {
         var table = layui.table;
         var active =
             {
                 reload: function () {
                     //执行重载
+                    // initData();
                     table.reload('idTest',
                         {
                             page: {
                                 curr: 1
                             },//重新从第 1 页开始
-                            // where: {
-                            //     sysUnitInfoCondition: sysUnitInfoCondition_value
-                            // }
+                            where: {
+                                searchData: searchData
+                            }
                         });
-                    layer.close(layer.index);
                 }
             };
         active.reload();
@@ -276,27 +186,40 @@ window.addEventListener('visibilitychange',()=>{
         this.refreshBgtDbTable();
     }
 });
+//获取搜索信息
+function getSearchData(){
+    let searchData = $("#level1").val();
+    if (searchData === null || searchData === ""){
+        return "%%";
+    }else{
+        return "%"+searchData+"%";
+    }
+}
+
 //执行搜索，表格重载$("[name='dataSearch']")
 $("#dataSearch1").click(function (e) {
+    let searchData = getSearchData();
     layui.use(['table'], function () {
-    var table = layui.table;
-    var active =
-        {
-            reload: function () {
-                //执行重载
-                // initData();
-                table.reload('idTest',
-                    {
-                        page: {
-                            curr: 1
-                        },//重新从第 1 页开始
-                        // where: {
-                        //     sysUnitInfoCondition: sysUnitInfoCondition_search1
-                        // }
-                    });
-            }
-        };
-    active.reload();
+        var table = layui.table;
+        var active =
+            {
+                reload: function () {
+                    //执行重载
+                    // initData();
+                    table.reload('idTest',
+                        {
+                            page: {
+                                curr: 1
+                            },//重新从第 1 页开始
+                            where: {
+                                searchData: searchData
+                            }
+                        });
+                }
+            };
+        active.reload();
     });
 });
+
+
 

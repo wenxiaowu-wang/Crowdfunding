@@ -16,7 +16,7 @@ public interface ProjectTypeService {
     Map<String,Object> updateOneAdminById(String type,int id);
 
     //getAll
-    List<XiangMuLeiBie> getAllList();
+    List<XiangMuLeiBie> getAllList(String searchData);
 
     //禁用一条类别记录
     boolean disableOne(Integer id);
@@ -25,10 +25,10 @@ public interface ProjectTypeService {
     Map<String,Object> openOne(Integer id);
 
     //getAllProject
-    List<ZhongChouXiangMu> getAllProjectList();
+    List<ZhongChouXiangMu> getAllProjectList(String searchData);
 
     //getAllOrder
-    List<TouZiDingDan> getAllOrderList();
+    List<TouZiDingDan> getAllOrderList(String searchData);
 
     //getOneOrderById
     TouZiDingDan getOneOrderById(int id);

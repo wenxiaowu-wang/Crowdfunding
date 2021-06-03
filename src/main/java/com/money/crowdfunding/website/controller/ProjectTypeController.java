@@ -38,8 +38,8 @@ public class ProjectTypeController {
     }
 
     @GetMapping("/getAllList")
-    public HttpResult getAllList() {
-        return HttpResult.ok().setData(projectTypeService.getAllList());
+    public HttpResult getAllList(@Param("searchData")String searchData) {
+        return HttpResult.ok().setData(projectTypeService.getAllList(searchData));
     }
 
     //禁用
@@ -57,13 +57,13 @@ public class ProjectTypeController {
     }
 
     @GetMapping("/getAllProjectList")
-    public HttpResult getAllProjectList() {
-        return HttpResult.ok().setData(projectTypeService.getAllProjectList());
+    public HttpResult getAllProjectList(@Param("searchData")String searchData) {
+        return HttpResult.ok().setData(projectTypeService.getAllProjectList(searchData));
     }
 
     @GetMapping("/getAllOrderList")
-    public HttpResult getAllOrderList() {
-        return HttpResult.ok().setData(projectTypeService.getAllOrderList());
+    public HttpResult getAllOrderList(@Param("searchData")String searchData) {
+        return HttpResult.ok().setData(projectTypeService.getAllOrderList(searchData));
     }
 
     //获取跳转到auditProjectInterface的缓存id对应的项目信息
