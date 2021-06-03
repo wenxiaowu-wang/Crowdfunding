@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="css/projectDetail.css"/>
     <link rel="stylesheet" href="css/comment.css"/>
     <link rel="stylesheet" href="css/topUp.css"/>
+    <style>
+        .el-input__inner {
+            height: 30px;
+            width: 300px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -51,16 +58,21 @@
     </div>
 
     <div class="body_left3">
+        <form name="form1">
+            <div style="text-align: center" >
+                <center>距离投资截止还有:<br>
+                    <el-input disabled name="left" size="35" ></el-input>
+                </center>
+            </div>
+        </form>
         <div class="P_all_top">
             <div class="el-image P_all_top_img">
-                <!--                <div class="el-image__error"></div>-->
                 <img :src="'img/background/'+picture+'.png'" class="el-image__inner" style="object-fit: contain;">
             </div>
             <div class="P_all_top_text">
                 <div class="P_all_top_text_a">
                     <div class="P_all_top_text_a_text">{{biaoti}}</div>
-                    <div class="P_all_top_text_a_text_a">{{addtime}}</div>
-                    <div class="P_all_top_text_a_text_b">328阅读量</div> <!----> <!----> <!----></div>
+                </div>
                 <div class="P_all_top_text_xx">
                     <div class="P_all_top_text_xx_a">
                         <div class="P_all_top_text_xx_a_box">项目类型: <span>独资/投资建厂,参股合作,其它合作方式   </span></div>
@@ -234,6 +246,123 @@
 <script src="js/common/jquery.js"></script>
 <script src="js/common/axios.js"></script>
 <script src="js/projectDetails.js"></script>
+<script LANGUAGE="javascript">
 
+    var AddSecond = 0;
+    var AddMinute = 0;
+    var AddHour = 0;
+    var AddMonth = 0;
+    var AddDay = 0;
+    var AddYear = 0;
+
+    $.ajax({
+        url: "project/getProjectDetailSession",
+        type: "get",
+        dataType: 'json'
+        , headers: 'getProjectDetailSession',
+        success: function (msg) {
+            console.log("原生ajax"+msg.data)
+
+            $.ajax({
+                url: "project/getDate",
+                type: "get",
+                data:{
+                    id:msg.data
+                },
+                dataType: 'json'
+                , headers: 'getDate',
+                success: function (msg) {
+
+                    AddSecond = msg.data[0];
+                    console.log("秒"+msg.data[0])
+                    console.log("分"+msg.data[1])
+                    console.log("时"+msg.data[2])
+                    console.log("日"+msg.data[3])
+                    console.log("月"+msg.data[4])
+                    console.log("年"+msg.data[5])
+                    startclock(msg.data[0],msg.data[1],msg.data[2],msg.data[3],msg.data[4],msg.data[5]);
+
+
+
+
+
+
+                    var timerID = null;
+                    var timerRunning = false;
+                    function showtime(AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear) {
+                        Today = new Date();
+                        var NowHour = Today.getHours();
+                        var NowMinute = Today.getMinutes();
+                        var NowMonth = Today.getMonth();
+                        var NowDate = Today.getDate();
+                        var NowYear = Today.getFullYear();
+                        var NowSecond = Today.getSeconds();
+                        if (NowYear <2000)
+                            NowYear=1900+NowYear;
+                        Today = null;
+                        Hourleft = AddHour - NowHour
+                        Minuteleft = AddMinute - NowMinute
+                        Secondleft = AddSecond - NowSecond
+                        Yearleft = AddYear - NowYear
+                        Monthleft = AddMonth - NowMonth - 1
+                        Dateleft = AddDay - NowDate
+                        if (Secondleft<0)
+                        {
+                            Secondleft=60+Secondleft;
+                            Minuteleft=Minuteleft-1;
+                        }
+                        if (Minuteleft<0)
+                        {
+                            Minuteleft=60+Minuteleft;
+                            Hourleft=Hourleft-1;
+                        }
+                        if (Hourleft<0)
+                        {
+                            Hourleft=24+Hourleft;
+                            Dateleft=Dateleft-1;
+                        }
+                        if (Dateleft<0)
+                        {
+                            Dateleft=31+Dateleft;
+                            Monthleft=Monthleft-1;
+                        }
+                        if (Monthleft<0)
+                        {
+                            Monthleft=12+Monthleft;
+                            Yearleft=Yearleft-1;
+                        }
+                        if(Secondleft===0&&Minuteleft===0&&Hourleft===0&&Dateleft===0&&Monthleft===0&&Yearleft===0){
+                            console.log("zhixng")
+                            Temp=0+'年 '+0+'月 '+0+'天 '+0+'时 '+0+'分 '+0+'秒'+'(已截止)'
+                        }else if(Secondleft<0||Minuteleft<0||Hourleft<0||Dateleft<0||Monthleft<0||Yearleft<0){
+                            Temp=0+'年 '+0+'月 '+0+'天 '+0+'时 '+0+'分 '+0+'秒'+'(已截止)'
+                        }else{
+                            Temp=Yearleft+'年 '+Monthleft+'月 '+Dateleft+'天 '+Hourleft+'时 '+Minuteleft+'分 '+Secondleft+'秒'
+                        }
+                        document.form1.left.value=Temp;
+
+                        timerID = setTimeout("showtime(AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear)",1000);
+                        timerRunning = true;
+                    }
+                    var timerID = null;
+                    var timerRunning = false;
+                    function stopclock () {
+                        if(timerRunning)
+                            clearTimeout(timerID);
+                        timerRunning = false;
+                    }
+                    function startclock (AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear) {
+                        stopclock();
+                        showtime(AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear);
+                    }
+                }
+            });
+
+        }
+    });
+
+
+
+</script>
 </body>
 </html>

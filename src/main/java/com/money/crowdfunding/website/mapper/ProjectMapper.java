@@ -6,6 +6,7 @@ import com.money.crowdfunding.website.model.*;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -66,4 +67,10 @@ public interface ProjectMapper {
 
     @Update("UPDATE zhongchouxiangmu SET issh = '已完成' WHERE xiangmubianhao = #{id} ")
     boolean updateJIN(@Param("id") String id);
+
+    @Select("select qixian from zhongchouxiangmu where xiangmubianhao = #{id}")
+    int getQixian(@Param("id") String id);
+
+    @Select("select addtime from zhongchouxiangmu where xiangmubianhao = #{id}")
+    Date getAddTime(@Param("id") String id);
 }

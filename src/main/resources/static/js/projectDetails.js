@@ -308,6 +308,5 @@ let myHomePage_vm = new Vue({
             console.log("获取session信息失败！" + error);
         });
 
-
     }
 });

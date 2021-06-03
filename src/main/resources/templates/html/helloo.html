@@ -6,5 +6,88 @@
 </head>
 <body>
 hello hello hahahello
+
+<form name="form1">
+    <div align="center" align="center">
+        <center>距离投资截止还有:<br>
+            <input type="textarea" disabled name="left" size="35" style="text-align: center">
+        </center>
+    </div>
+</form>
+<script src="js/common/jquery.js"></script>
+<script src="js/common/jquery-4.0.min.js"></script>
+<script LANGUAGE="javascript">
+
+
+    startclock(AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear);
+    var timerID = null;
+    var timerRunning = false;
+    function showtime(AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear) {
+        Today = new Date();
+        var NowHour = Today.getHours();
+        var NowMinute = Today.getMinutes();
+        var NowMonth = Today.getMonth();
+        var NowDate = Today.getDate();
+        var NowYear = Today.getFullYear();
+        var NowSecond = Today.getSeconds();
+        if (NowYear <2000)
+            NowYear=1900+NowYear;
+        Today = null;
+        Hourleft = AddHour - NowHour
+        Minuteleft = AddMinute - NowMinute
+        Secondleft = AddSecond - NowSecond
+        Yearleft = AddYear - NowYear
+        Monthleft = AddMonth - NowMonth - 1
+        Dateleft = AddDay - NowDate
+        if (Secondleft<0)
+        {
+            Secondleft=60+Secondleft;
+            Minuteleft=Minuteleft-1;
+        }
+        if (Minuteleft<0)
+        {
+            Minuteleft=60+Minuteleft;
+            Hourleft=Hourleft-1;
+        }
+        if (Hourleft<0)
+        {
+            Hourleft=24+Hourleft;
+            Dateleft=Dateleft-1;
+        }
+        if (Dateleft<0)
+        {
+            Dateleft=31+Dateleft;
+            Monthleft=Monthleft-1;
+        }
+        if (Monthleft<0)
+        {
+            Monthleft=12+Monthleft;
+            Yearleft=Yearleft-1;
+        }
+        if(Secondleft===0&&Minuteleft===0&&Hourleft===0&&Dateleft===0&&Monthleft===0&&Yearleft===0){
+            console.log("zhixng")
+            Temp=0+'年 '+0+'月 '+0+'天 '+0+'时 '+0+'分 '+0+'秒'+'(已截止)'
+        }else if(Secondleft<0||Minuteleft<0||Hourleft<0||Dateleft<0||Monthleft<0||Yearleft<0){
+            Temp=0+'年 '+0+'月 '+0+'天 '+0+'时 '+0+'分 '+0+'秒'+'(已截止)'
+        }else{
+            Temp=Yearleft+'年 '+Monthleft+'月 '+Dateleft+'天 '+Hourleft+'时 '+Minuteleft+'分 '+Secondleft+'秒'
+        }
+        document.form1.left.value=Temp;
+        timerID = setTimeout("showtime(AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear)",1000);
+        timerRunning = true;
+    }
+    var timerID = null;
+    var timerRunning = false;
+    function stopclock () {
+        if(timerRunning)
+            clearTimeout(timerID);
+        timerRunning = false;
+    }
+    function startclock (AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear) {
+        stopclock();
+        showtime(AddSecond,AddMinute,AddHour,AddMonth,AddDay,AddYear);
+    }
+    // -->
+</script>
 </body>
 </html>

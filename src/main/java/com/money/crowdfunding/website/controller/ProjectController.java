@@ -7,12 +7,14 @@ import com.money.crowdfunding.website.service.ProjectService;
 
 import com.money.crowdfunding.website.utils.httpUtils.HttpResult;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -156,4 +158,31 @@ public class ProjectController {
         update = projectMapper.updateDJL(id);
         return HttpResult.ok().setData(update);
     }
+
+    @GetMapping("/getDate")
+    public HttpResult getDate(@Param("id")String id){
+        int qixian = projectMapper.getQixian(id);
+        Date addtime = projectMapper.getAddTime(id);
+        SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy");
+        SimpleDateFormat formatter2 = new SimpleDateFormat("MM");
+        SimpleDateFormat formatter3 = new SimpleDateFormat("dd");
+        SimpleDateFormat formatter4 = new SimpleDateFormat("HH");
+        SimpleDateFormat formatter5 = new SimpleDateFormat("mm");
+        SimpleDateFormat formatter6 = new SimpleDateFormat("ss");
+        List<Integer> list = new ArrayList<>();
+        int endTime1 =Integer.parseInt(formatter1.format(addtime))+qixian;
+        int endTime2 =Integer.parseInt(formatter2.format(addtime));
+        int endTime3 =Integer.parseInt(formatter3.format(addtime));
+        int endTime4 =Integer.parseInt(formatter4.format(addtime));
+        int endTime5 =Integer.parseInt(formatter5.format(addtime));
+        int endTime6 =Integer.parseInt(formatter6.format(addtime));
+        list.add(endTime6);
+        list.add(endTime5);
+        list.add(endTime4);
+        list.add(endTime3);
+        list.add(endTime2);
+        list.add(endTime1);
+        return HttpResult.ok().setData(list);
+    }
+
 }
