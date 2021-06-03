@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface ProjectMapper {
 
-    @Select("select  * from zhongchouxiangmu where issh = '已通过' order by addtime DESC limit 6")
+    @Select("select  * from zhongchouxiangmu where issh = '已通过' || issh = '已截止' || issh = '已完成' order by addtime DESC limit 6")
     List<ZhongChouXiangMu> getZhongChouXiangMu();
 
     @Select("select  * from zhongchouxiangmu where issh != '已删除' and faburen = #{faburen}  order by addtime DESC limit 6")
@@ -68,9 +68,15 @@ public interface ProjectMapper {
     @Update("UPDATE zhongchouxiangmu SET issh = '已完成' WHERE xiangmubianhao = #{id} ")
     boolean updateJIN(@Param("id") String id);
 
+    @Update("UPDATE zhongchouxiangmu SET issh = '已截止' WHERE xiangmubianhao = #{id} ")
+    boolean updateJieZhi(@Param("id") String id);
+
     @Select("select qixian from zhongchouxiangmu where xiangmubianhao = #{id}")
     int getQixian(@Param("id") String id);
 
     @Select("select addtime from zhongchouxiangmu where xiangmubianhao = #{id}")
     Date getAddTime(@Param("id") String id);
+
+    @Select("select issh from zhongchouxiangmu where xiangmubianhao = #{id}")
+    String getIssh(@Param("id") String id);
 }
