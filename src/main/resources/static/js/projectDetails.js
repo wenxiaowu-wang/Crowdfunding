@@ -236,7 +236,7 @@ let myHomePage_vm = new Vue({
             form.name = data.yonghuming;
 
         }).catch(error => {
-            console.log("获取session信息失败！" + error);
+            console.log("获取用户session信息失败！" + error);
             // this.$confirm('请先登录！', '提示', {
             //     confirmButtonText: '确定',
             //     cancelButtonText: '取消',
@@ -280,9 +280,11 @@ let myHomePage_vm = new Vue({
             axios.get('/project/getComment/' +
                 data).then(resss => {
                 let data = resss.data.data
+                console.log(data)
+                console.log(data)
+                console.log(data)
                 let tableData = [];
                 data.forEach(function (value) {
-
                     let list = {
                         user_id: value["pinglunren"],
                         user_name: value["yonghuming"],
