@@ -20,6 +20,7 @@ let myHomePage_vm = new Vue({
             qixian:'2',
             shouP:'张三',
             faP:'李四',
+            state:'进行中'
         }],
 
     },
@@ -97,11 +98,18 @@ let myHomePage_vm = new Vue({
                     qixian: value["qixian"],
                     shouP: value["shouyi"],
                     faP:value["faburen"],
+                    state:value["issh"]
                 };
                 tableData.push(list);
             });
 
             this.tableData = tableData;
+            for (let i =0 ; i<this.tableData.length;i++){
+
+                if(this.tableData[i].state === '已通过'){
+                    this.tableData[i].state = '进行中';
+                }
+            }
 
         }).catch(error => {
             this.$message({

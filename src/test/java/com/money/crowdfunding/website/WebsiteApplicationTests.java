@@ -20,6 +20,7 @@ class WebsiteApplicationTests {
     @Test
     void contextLoads() {
 
+        projectMapper.updateJieZhi("0531225404");
         int qixian = projectMapper.getQixian("0531225404");
         Date addtime = projectMapper.getAddTime("0531225404");
         SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy");

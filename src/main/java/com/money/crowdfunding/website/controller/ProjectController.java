@@ -92,7 +92,7 @@ public class ProjectController {
     public HttpResult setComment(@PathVariable("yonghuming") String yonghuming, @PathVariable("pinglunneirong") String pinglunneirong, @PathVariable("xinwenid") String xinwenid) {
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
-        return HttpResult.ok().setData(projectMapper.insertComment(xinwenid,pinglunneirong,yonghuming,timestamp));
+        return HttpResult.ok().setData(projectMapper.insertComment(xinwenid, pinglunneirong, yonghuming, timestamp));
 
     }
 
@@ -138,15 +138,15 @@ public class ProjectController {
         touZiDingDan.setIszf("是");
         int allMoney = Integer.parseInt(projectMapper.getshouyi(xiangmubianhao));
         int touzi = Integer.parseInt(shouyi);
-        int totle = allMoney+touzi;
+        int totle = allMoney + touzi;
         int zhongchoujine = Integer.parseInt(projectMapper.getZhongChouJine(xiangmubianhao));
-        if (totle>=zhongchoujine){
+        if (totle >= zhongchoujine) {
             projectMapper.updateJIN(xiangmubianhao);
         }
         String fi = String.valueOf(totle);
-        boolean update = projectMapper.updateJine(fi,xiangmubianhao);
+        boolean update = projectMapper.updateJine(fi, xiangmubianhao);
         boolean insert = projectMapper.insertInvestment(touZiDingDan);
-        if (update&&insert){
+        if (update && insert) {
             return HttpResult.ok().setData(true);
         }
         return HttpResult.ok().setData(false);
@@ -160,7 +160,7 @@ public class ProjectController {
     }
 
     @GetMapping("/getDate")
-    public HttpResult getDate(@Param("id")String id){
+    public HttpResult getDate(@Param("id") String id) {
         int qixian = projectMapper.getQixian(id);
         Date addtime = projectMapper.getAddTime(id);
         SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy");
@@ -170,12 +170,12 @@ public class ProjectController {
         SimpleDateFormat formatter5 = new SimpleDateFormat("mm");
         SimpleDateFormat formatter6 = new SimpleDateFormat("ss");
         List<Integer> list = new ArrayList<>();
-        int endTime1 =Integer.parseInt(formatter1.format(addtime))+qixian;
-        int endTime2 =Integer.parseInt(formatter2.format(addtime));
-        int endTime3 =Integer.parseInt(formatter3.format(addtime));
-        int endTime4 =Integer.parseInt(formatter4.format(addtime));
-        int endTime5 =Integer.parseInt(formatter5.format(addtime));
-        int endTime6 =Integer.parseInt(formatter6.format(addtime));
+        int endTime1 = Integer.parseInt(formatter1.format(addtime)) + qixian;
+        int endTime2 = Integer.parseInt(formatter2.format(addtime));
+        int endTime3 = Integer.parseInt(formatter3.format(addtime));
+        int endTime4 = Integer.parseInt(formatter4.format(addtime));
+        int endTime5 = Integer.parseInt(formatter5.format(addtime));
+        int endTime6 = Integer.parseInt(formatter6.format(addtime));
         list.add(endTime6);
         list.add(endTime5);
         list.add(endTime4);
@@ -183,6 +183,20 @@ public class ProjectController {
         list.add(endTime2);
         list.add(endTime1);
         return HttpResult.ok().setData(list);
+    }
+
+    @GetMapping("/updateJieZhi")
+    public HttpResult updateJieZhi(@Param("id") String id) {
+        return HttpResult.ok().setData(projectMapper.updateJieZhi(id));
+    }
+
+    @GetMapping("/getIssh")
+    public HttpResult getIssh(@Param("id") String id) {
+        boolean is = false;
+        if (projectMapper.getIssh(id).equals("已完成")) {
+            is = true;
+        }
+        return HttpResult.ok().setData(is);
     }
 
 }

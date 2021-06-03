@@ -59,6 +59,7 @@
                     <div class="bookStatus">&nbsp;&nbsp;&nbsp;期限（年）</div>
                     <div class="updateTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收益</div>
                     <div class="updateTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布人</div>
+                    <div class="updateTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态</div>
                     <div></div>
                     <div class="ctrlBook">操作</div>
                 </div>
@@ -78,6 +79,7 @@
                         <div class="bookStatus">{{work.qixian}}</div>
                         <div class="updateTime">{{work.shouP}}</div>
                         <div class="updateTime">{{work.faP}}</div>
+                        <div class="updateTime">{{work.state}}</div>
                         <div></div>
                         <div class="ctrlBook"><a target="_blank"  class="redbtn"  @click="goToDetails(work.pId)">详细信息</a>
                         </div>
