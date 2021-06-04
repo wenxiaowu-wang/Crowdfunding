@@ -9,8 +9,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 包:com.money.crowdfunding.website.controller
- * 作者:
- * 日期:
+ *  用来页面跳转的 controller
  * 项目:website
  * 描述:
  */
