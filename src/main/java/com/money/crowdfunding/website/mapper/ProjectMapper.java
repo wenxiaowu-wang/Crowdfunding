@@ -77,6 +77,4 @@ public interface ProjectMapper {
     @Select("select addtime from zhongchouxiangmu where xiangmubianhao = #{id}")
     Date getAddTime(@Param("id") String id);
 
-    @Select("select issh from zhongchouxiangmu where xiangmubianhao = #{id}")
-    String getIssh(@Param("id") String id);
 }

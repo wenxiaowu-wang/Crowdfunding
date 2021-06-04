@@ -28,37 +28,65 @@ public class ProjectController {
     @Autowired
     ProjectMapper projectMapper;
 
+    /**
+     *获取所有的众筹项目记录
+     * @return
+     */
     @GetMapping("/getZhongChouXiangMu")
     public HttpResult getZhongChouXiangMu() {
         List<ZhongChouXiangMu> zhongChouXiangMu = projectService.getZhongChouXiangMu();
         return HttpResult.ok().setData(zhongChouXiangMu);
     }
 
+    /**
+     * 根据用户名获取自己发布的众筹项目
+     * @param yonghuming
+     * @return
+     */
     @GetMapping("/getMyZhongChouXiangMu/{yonghuming}")
     public HttpResult getMyZhongChouXiangMu(@PathVariable(value = "yonghuming") String yonghuming) {
         List<ZhongChouXiangMu> zhongChouXiangMu = projectMapper.getMyZhongChouXiangMu(yonghuming);
         return HttpResult.ok().setData(zhongChouXiangMu);
     }
 
+    /**
+     * 根据用户名获取投资自己的众筹项目
+     * @param yonghuming
+     * @return
+     */
     @GetMapping("/getTouziMyXiangMu/{yonghuming}")
     public HttpResult getTouziMyXiangMu(@PathVariable(value = "yonghuming") String yonghuming) {
         List<TouZiDingDan> zhongChouXiangMu = projectMapper.getTouziMyXiangMu(yonghuming);
         return HttpResult.ok().setData(zhongChouXiangMu);
     }
 
+    /**
+     * 根据用户名获取自己投资的众筹项目
+     * @param yonghuming
+     * @return
+     */
     @GetMapping("/getMyTouziXiangMu/{yonghuming}")
     public HttpResult getMyTouziXiangMu(@PathVariable(value = "yonghuming") String yonghuming) {
         List<TouZiDingDan> zhongChouXiangMu = projectMapper.getMyTouziXiangMu(yonghuming);
         return HttpResult.ok().setData(zhongChouXiangMu);
     }
 
+    /**
+     * 获取所有的众筹须知
+     * @return
+     */
     @GetMapping("/getZhongChouXuZhi")
     public HttpResult getZhongChouXuZhi() {
         List<XinWenTongZhi> xinWenTongZhiList = projectService.getZhongChouXuZhi();
         return HttpResult.ok().setData(xinWenTongZhiList);
     }
 
-
+    /**
+     * 将一条众筹项目的信息存入session
+     * @param id
+     * @param httpSession
+     * @return
+     */
     @RequestMapping("/setProjectDetailSession/{id}")
     @ResponseBody
     public HttpResult setProjectDetailSession(@PathVariable(value = "id") String id, HttpSession httpSession) {
@@ -66,28 +94,54 @@ public class ProjectController {
         return HttpResult.ok().setData(id);
     }
 
-
+    /**
+     * 从session中获取一条众筹项目的信息
+     * @param httpSession
+     * @return
+     */
     @GetMapping("/getProjectDetailSession")
     public HttpResult getProjectDetailSession(HttpSession httpSession) {
         String id = (String) httpSession.getAttribute("id");
         return HttpResult.ok().setData(id);
     }
 
+    /**
+     * 获取一条众筹须知的信息
+     * @param id
+     * @return
+     */
     @GetMapping("/getZhongChouXuZhiDetail/{id}")
     public HttpResult getZhongChouXuZhiDetail(@PathVariable("id") String id) {
         return HttpResult.ok().setData(projectService.getZhongChouXuZhiDetail(id));
     }
 
+    /**
+     * 获取一条众筹项目的详细信息
+     * @param id
+     * @return
+     */
     @GetMapping("/getZhongChouDetail/{id}")
     public HttpResult getZhongChouDetail(@PathVariable("id") String id) {
         return HttpResult.ok().setData(projectService.getZhongChouDetail(id));
     }
 
+    /**
+     * 获取一条众筹项目下面的评论信息
+     * @param id
+     * @return
+     */
     @GetMapping("/getComment/{id}")
     public HttpResult getComment(@PathVariable("id") String id) {
         return HttpResult.ok().setData(projectMapper.getComment(id));
     }
 
+    /**
+     * 存入用户输入的评论信息
+     * @param yonghuming
+     * @param pinglunneirong
+     * @param xinwenid
+     * @return
+     */
     @PostMapping("/setComment/{yonghuming}/{pinglunneirong}/{xinwenid}")
     public HttpResult setComment(@PathVariable("yonghuming") String yonghuming, @PathVariable("pinglunneirong") String pinglunneirong, @PathVariable("xinwenid") String xinwenid) {
         Date date = new Date();
@@ -96,6 +150,16 @@ public class ProjectController {
 
     }
 
+    /**
+     * 用户发布众筹项目
+     * @param biaoti
+     * @param leibie
+     * @param money
+     * @param qixian
+     * @param xiangqing
+     * @param faburen
+     * @return
+     */
     @PostMapping("/publishProject/{biaoti}/{leibie}/{money}/{qixian}/{xiangqing}/{faburen}")
     public HttpResult publishProject(@PathVariable("biaoti") String biaoti, @PathVariable("leibie") String leibie, @PathVariable("money") String money, @PathVariable("qixian") String qixian, @PathVariable("xiangqing") String xiangqing, @PathVariable("faburen") String faburen) {
         Date date = new Date();
@@ -118,6 +182,13 @@ public class ProjectController {
 
     }
 
+    /**
+     * 用户投资项目，将信息存入投资订单表
+     * @param shouyi
+     * @param touziren
+     * @param xiangmubianhao
+     * @return
+     */
     @PostMapping("/setInvestment/{shouyi}/{touziren}/{xiangmubianhao}")
     public HttpResult setInvestment(@PathVariable("shouyi") String shouyi, @PathVariable("touziren") String touziren, @PathVariable("xiangmubianhao") String xiangmubianhao) {
 
@@ -152,6 +223,11 @@ public class ProjectController {
         return HttpResult.ok().setData(false);
     }
 
+    /**
+     * 用户点击一条众筹须知的详情，增加该条的点击率
+     * @param id
+     * @return
+     */
     @PostMapping("/updateDJL/{id}")
     public HttpResult updateDJL(@PathVariable("id") String id) {
         boolean update = false;
@@ -159,6 +235,11 @@ public class ProjectController {
         return HttpResult.ok().setData(update);
     }
 
+    /**
+     * 获取一条众筹项目的发布时间和期限，用于在前端展示倒计时。判断该项目是否已截止
+     * @param id
+     * @return
+     */
     @GetMapping("/getDate")
     public HttpResult getDate(@Param("id") String id) {
         int qixian = projectMapper.getQixian(id);
@@ -185,18 +266,14 @@ public class ProjectController {
         return HttpResult.ok().setData(list);
     }
 
+    /**
+     * 如果时间倒计时为0 自动截止停止投资，但可以评论
+     * @param id
+     * @return
+     */
     @GetMapping("/updateJieZhi")
     public HttpResult updateJieZhi(@Param("id") String id) {
         return HttpResult.ok().setData(projectMapper.updateJieZhi(id));
-    }
-
-    @GetMapping("/getIssh")
-    public HttpResult getIssh(@Param("id") String id) {
-        boolean is = false;
-        if (projectMapper.getIssh(id).equals("已完成")) {
-            is = true;
-        }
-        return HttpResult.ok().setData(is);
     }
 
 }

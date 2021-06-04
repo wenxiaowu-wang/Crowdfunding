@@ -40,6 +40,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public boolean getRegisterResult(UserInfo userInfo) {
+
+        //如果用户名已存在返回false结果
         if(userInfoMapper.selectUserInfoIsExistByName(userInfo.getYonghuming())){
             return false;
         }

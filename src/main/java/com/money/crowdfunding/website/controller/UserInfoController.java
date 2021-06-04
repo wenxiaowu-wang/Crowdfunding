@@ -25,6 +25,11 @@ public class UserInfoController {
     @Autowired
     UserInfoMapper userInfoMapper;
 
+    /**
+     * 根据用户名获取用户所有信息
+     * @param name
+     * @return
+     */
     @GetMapping("/getUserByName")
     public UserInfo getUserByName(@Param("userName") String name){
         UserInfo userInfo = userInfoService.getUserInfoByName(name);
@@ -32,12 +37,25 @@ public class UserInfoController {
         return userInfo;
     }
 
-
+    /**
+     * 用户注册获取注册结果
+     * 用户名已存在直接返回false结果
+     * @param userInfo
+     * @return
+     */
     @PostMapping("/getRegisterResult")
     public HttpResult getRegisterResult(UserInfo userInfo){
         return HttpResult.ok().setData(userInfoService.getRegisterResult(userInfo));
     }
 
+    /**
+     * 用户登录根据用户名、密码查询该用户账号密码是否正确
+     * 账号密码正确将用户所有信息存入session
+     * @param yonghuming
+     * @param mima
+     * @param httpSession
+     * @return
+     */
     @RequestMapping("/getLoginResult/{yonghuming}/{mima}")
     @ResponseBody
     public HttpResult getLoginResult(@PathVariable(value = "yonghuming") String yonghuming, @PathVariable(value = "mima") String mima, HttpSession httpSession){
@@ -46,7 +64,19 @@ public class UserInfoController {
         return HttpResult.ok().setData(userInfoService.getLoginResult(yonghuming,mima));
     }
 
-    //用户修改资料
+
+    /**
+     *  用户根据用户名修改资料
+     * @param yonghuming
+     * @param xingbie
+     * @param chushengnianyue
+     * @param qq
+     * @param youxiang
+     * @param dianhua
+     * @param dizhi
+     * @param httpSession
+     * @return
+     */
     @PostMapping("/updateUser")
     public HttpResult updateUser(@Param("yonghuming")String yonghuming,@Param("xingbie")String xingbie,@Param("chushengnianyue")String chushengnianyue,@Param("qq")String qq,@Param("youxiang")String youxiang,@Param("dianhua")String dianhua,@Param("dizhi")String dizhi,HttpSession httpSession){
 
@@ -58,7 +88,14 @@ public class UserInfoController {
         return HttpResult.ok().setData(false);
     }
 
-    //用户修改密码
+
+    /**
+     * 用户修改密码，修改完成信息后更新用户session
+     * @param yonghuming
+     * @param mima
+     * @param httpSession
+     * @return
+     */
     @PostMapping("/updatePwd")
     public HttpResult updatePwd(@Param("yonghuming")String yonghuming,@Param("mima")String mima,HttpSession httpSession){
 
@@ -70,25 +107,44 @@ public class UserInfoController {
         return HttpResult.ok().setData(false);
     }
 
-
+    /**
+     * 获取登录账号存入的session信息
+     * @param httpSession
+     * @return
+     */
     @GetMapping("/getUserSession")
     public HttpResult getUserSession(HttpSession httpSession){
         UserInfo userInfo = (UserInfo) httpSession.getAttribute("userInfo");
         return HttpResult.ok().setData(userInfo);
     }
 
+    /**
+     * 获取所有用户信息
+     * @param searchData
+     * @return
+     */
     @GetMapping("/getAllUser")
     public HttpResult getAllUser(@Param("searchData")String searchData){
         return HttpResult.ok().setData(userInfoService.getAllUser(searchData));
     }
 
-    //禁用用户账号
+
+    /**
+     * 禁用用户账号
+     * @param id
+     * @return
+     */
     @PostMapping("/disableUserAccount")
     public HttpResult disableUserAccount(@Param("id")Integer id){
         return HttpResult.ok().setData(userInfoService.disableUserAccount(id));
     }
 
-    //解封用户账号
+
+    /**
+     * 解封用户账号
+     * @param id
+     * @return
+     */
     @PostMapping("/openUserAccount")
     public HttpResult openUserAccount(@Param("id")Integer id){
         return HttpResult.ok().setData(userInfoService.openUserAccount(id));
@@ -102,7 +158,7 @@ public class UserInfoController {
         return HttpResult.ok().setData(userInfo);
     }
 
-    //修改信息
+    //修改用户信息
     @PostMapping("/updateUserById")
     public HttpResult updateUserById(UserInfo userInfo){
         return HttpResult.ok().setData(userInfoService.updateUserInfoById(userInfo));
