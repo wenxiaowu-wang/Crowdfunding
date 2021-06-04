@@ -33,11 +33,13 @@ public class controlController {
         return "html/UserLogin";
     }
 
+    //跳转到管理员登录界面
     @RequestMapping("/adminLogin")
     public String adminLogin() {
         return "html/adminLoginInterface";
     }
 
+    //跳转到后台管理主框架
     @RequestMapping("/toAdminMain")
     public String toAdminMain() {
         return "html/adminFrame";
@@ -96,6 +98,7 @@ public class controlController {
         return "html/touziMy";
     }
 
+    //跳转到后台用户信息管理界面
     @RequestMapping("/admin/userManagement")
     public ModelAndView userManagement() {
         ModelAndView modelAndView = new ModelAndView();
@@ -104,11 +107,13 @@ public class controlController {
         return modelAndView;
     }
 
+    //跳转到后台编辑用户信息界面
     @RequestMapping("/userEditOfManage")
     public String userEditOfManage(){
         return "html/userEditOfManagement";
     }
 
+    //将用户id存入session中，方便跳转到编辑用户信息界面获取用户信息
     @RequestMapping("/setUserEditIdToSession/{id}")
     @ResponseBody
     public int setUserEditIdToSession(@PathVariable("id")Integer id,HttpSession httpSession){
@@ -116,6 +121,7 @@ public class controlController {
         return (int) httpSession.getAttribute("userEditId");
     }
 
+    //后台管理系统跳转到众筹类别管理界面
     @RequestMapping("/admin/crowdfundingTypeManagement")
     public ModelAndView crowdfundingTypeManagement() {
         ModelAndView modelAndView = new ModelAndView();
@@ -124,6 +130,7 @@ public class controlController {
         return modelAndView;
     }
 
+    //后台管理系统跳转到众筹项目管理界面
     @RequestMapping("/admin/crowdfundingProjectManagement")
     public ModelAndView crowdfundingProjectManagement() {
         ModelAndView modelAndView = new ModelAndView();
@@ -132,6 +139,7 @@ public class controlController {
         return modelAndView;
     }
 
+    //后台管理系统跳转到众筹订单管理界面
     @RequestMapping("/admin/crowdfundingOrderManagement")
     public ModelAndView crowdfundingOrderManagement() {
         ModelAndView modelAndView = new ModelAndView();
@@ -140,6 +148,7 @@ public class controlController {
         return modelAndView;
     }
 
+    //后台管理系统跳转到通知信息管理界面
     @RequestMapping("/admin/crowdfundingNoticeManagement")
     public ModelAndView crowdfundingNoticeManagement() {
         ModelAndView modelAndView = new ModelAndView();
@@ -148,6 +157,7 @@ public class controlController {
         return modelAndView;
     }
 
+    //后台管理系统跳转到更新管理员密码界面
     @RequestMapping("/admin/updateAdminInfoInterface")
     public ModelAndView updateAdminInfoInterface() {
         ModelAndView modelAndView = new ModelAndView();
@@ -156,7 +166,7 @@ public class controlController {
         return modelAndView;
     }
 
-    //添加项目id到session
+    //添加众筹项目id到session，方便跳转页面后获取对应项目信息
     @RequestMapping("/setProjectIdToSession/{id}")
     @ResponseBody
     public int setProjectIdToSession(@PathVariable("id")Integer id,HttpSession httpSession){
@@ -164,24 +174,27 @@ public class controlController {
         return (int) httpSession.getAttribute("projectId");
     }
 
+    //后台管理系统跳转到审核一个众筹项目界面
     @RequestMapping("/auditProjectInterface")
     public String auditProjectInterface(){
         return "html/auditProjectInterface";
     }
 
-    //添加订单id到session
+    //添加众筹项目订单id到session，方便跳转页面后获取对应订单信息
     @RequestMapping("/setOrderIdToSession/{id}")
     @ResponseBody
-    public int v(@PathVariable("id")Integer id,HttpSession httpSession){
+    public int setOrderIdToSession(@PathVariable("id")Integer id,HttpSession httpSession){
         httpSession.setAttribute("orderId",id);
         return (int) httpSession.getAttribute("orderId");
     }
 
+    //后台管理系统跳转到审核一个订单界面
     @RequestMapping("/auditOrderInterface")
     public String auditOrderInterface(){
         return "html/auditOrderInterface";
     }
 
+    //获取添加通知信息界面
     @RequestMapping("/addNoticeInterface")
     public String addNoticeInterface(){
         return "html/addNoticeInterface";
