@@ -16,10 +16,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class controlController {
 
-    public controlController() {
-//        System.out.println("hello");
-    }
-
     @RequestMapping("/hello")
     public String sayHello() {
         System.out.println("进来了");
