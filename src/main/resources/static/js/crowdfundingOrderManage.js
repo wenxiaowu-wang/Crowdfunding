@@ -86,6 +86,7 @@ layui.use(['table'], function () {
             endAccount(npid);   //禁用对应用户账号
         }else if (obj.event === 'audit' || obj.event === 'changeAudit') {
             // alert("标记功能尚未开放，阁下过段时间再来");   //审核
+            //暂未开放
         }
     });
 
