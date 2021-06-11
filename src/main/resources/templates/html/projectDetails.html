@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/projectDetail.css"/>
     <link rel="stylesheet" href="css/comment.css"/>
     <link rel="stylesheet" href="css/topUp.css"/>
+    <link rel="stylesheet" href="js/common/jquery.js"/>
+    <link rel="stylesheet" href="js/common/LodopFuncs.js"/>
     <style>
         .el-input__inner {
             height: 30px;
@@ -57,7 +59,7 @@
         </div>
     </div>
 
-    <div class="body_left3">
+    <div class="body_left3" id="body_left3">
         <form name="form1" id="yinc">
             <div style="text-align: center">
                 <center>距离投资截止还有:<br>
@@ -106,6 +108,7 @@
         <div style="margin-left: 45%">
             <el-button type="primary" plain @click="investment()">投资</el-button>
             <el-button type="primary" plain @click="comment()">评论</el-button>
+            <el-button type="primary" id="print" plain onClick="PrintAll()">打印该页面</el-button>
         </div>
     </div>
 
@@ -384,7 +387,31 @@
         showtime(AddSecond, AddMinute, AddHour, AddMonth, AddDay, AddYear, id);
     }
 
-
+    function PrintAll() {
+        console.log("in-out")
+        $("#print").hide();
+        var strBodyStyle = "<style>" + document.getElementById("body_left3").innerHTML + "</style>";
+        var strFormHtml = strBodyStyle + "<body>" + document.getElementById("body_left3").innerHTML + "</body>";
+        strFormHtml = strFormHtml.replace(/>正文</g, "><");
+        strFormHtml = strFormHtml.replace(/\(点击编辑或阅读\)/g, "");
+        strFormHtml = strFormHtml.replace("打印表单", "");
+        var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows")
+        if(!isWin) {
+            var LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+            LODOP.PRINT_INIT("领导日程安排");
+            LODOP.SET_PRINT_PAGESIZE(0, 0, 0, "A4");
+            LODOP.ADD_PRINT_HTM("3%", "5%", "90%", "100%", strFormHtml);
+            LODOP.PREVIEW();
+        }else {
+            var strPrintStyle = "<style media='print'>@page {size: auto;margin: 0mm 15mm 0mm 15mm;}</style><div style='height: 25px;'></div>"; //去掉页眉页尾
+            window.document.body.innerHTML = strPrintStyle + strFormHtml;
+            window.print();
+            window.location.href = window.location.href;
+        }
+        setTimeout(function () {
+            $("#print").show();
+        }, 1000);
+    };
 </script>
 </body>
 </html>

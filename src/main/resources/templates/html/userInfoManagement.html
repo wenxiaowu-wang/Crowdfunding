@@ -8,9 +8,13 @@
     <link rel="stylesheet" href="css/common/theme-chalk.css">
     <link rel="stylesheet" href="css/common/elementui.css">
     <script src="js/common/jquery.js"></script>
+    <link rel="stylesheet" href="js/common/LodopFuncs.js"/>
+    <style id="print2">
+
+    </style>
 </head>
 <body>
-<div>
+<div id="print">
     <!-- 头部工具栏 -->
     <div>
         <blockquote class="layui-elem-quote">
@@ -19,15 +23,18 @@
                 <!--  <a class="layui-btn layui-btn-normal layui-btn-sm" onclick="openAdd()">汇总上报</a>-->
 
                 <div class="layui-input-inline">
-                    <input type="text" name="level1" id="level1" placeholder="请输入用户名关键字" autocomplete="off" class="layui-input">
+                    <input type="text" name="level1" id="level1" placeholder="请输入用户名关键字" autocomplete="off"
+                           class="layui-input">
                 </div>
                 <a class="layui-btn  layui-btn-sm" name="dataSearch" type="reset" id="dataSearch1">搜索</a>
-<!--                <a class="layui-btn  layui-btn-sm" id="search2" type="reset">更多搜索</a>-->
+                <a class="layui-btn  layui-btn-sm" onclick="PrintAll()" type="reset">打印</a>
                 <a class="layui-btn  layui-btn-sm" id="refresh" type="reset">刷新表格</a>
             </div>
         </blockquote>
-        <table  class="layui-hide" id="test" lay-filter="test"></table>
+        <table class="layui-hide" id="test" lay-filter="test"></table>
     </div>
+
+
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="upload">修改</a>
         {{# if (d.issh === "D"){ }}
@@ -37,8 +44,9 @@
         {{# } }}
     </script>
     <script type="text/html" id="evname">
-        <a  onclick="skip('{{ d.unitID }}')" class="layui-table-link" target="_blank">{{ d.name}}</a>
+        <a onclick="skip('{{ d.unitID }}')" class="layui-table-link" target="_blank">{{ d.name}}</a>
     </script>
+
 </div>
 <script src="js/common/layui.js"></script>
 </body>
@@ -47,5 +55,31 @@
 <script src="js/common/index.js"></script>
 <script src="js/common/axios.js"></script>
 <script src="js/userInfoManagement.js"></script>
-
+<script>
+    function PrintAll() {
+        console.log("in-out")
+        $("#print").hide();
+        var strBodyStyle = "<style>" + document.getElementById("print2").innerHTML + "</style>";
+        var strFormHtml = strBodyStyle + "<body>" + document.getElementById("print").innerHTML + "</body>";
+        strFormHtml = strFormHtml.replace(/>正文</g, "><");
+        strFormHtml = strFormHtml.replace(/\(点击编辑或阅读\)/g, "");
+        strFormHtml = strFormHtml.replace("打印表单", "");
+        var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows")
+        if (!isWin) {
+            var LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+            LODOP.PRINT_INIT("领导日程安排");
+            LODOP.SET_PRINT_PAGESIZE(0, 0, 0, "A4");
+            LODOP.ADD_PRINT_HTM("3%", "5%", "90%", "100%", strFormHtml);
+            LODOP.PREVIEW();
+        } else {
+            var strPrintStyle = "<style media='print'>@page {size: auto;margin: 0mm 15mm 0mm 15mm;}</style><div style='height: 25px;'></div>"; //去掉页眉页尾
+            window.document.body.innerHTML = strPrintStyle + strFormHtml;
+            window.print();
+            window.location.href = window.location.href;
+        }
+        setTimeout(function () {
+            $("#print").show();
+        }, 1000);
+    };
+</script>
 </html>
